@@ -7,7 +7,7 @@ public class PlayerHealth : MonoBehaviour
 	public float repeatDamagePeriod = 2f;		// How frequently the player can be damaged.
 	public AudioClip[] ouchClips;				// Array of clips to play when the player is damaged.
 	public float hurtForce = 10f;				// The force with which the player is pushed when hurt.
-
+	public float damageAmount = 10f;
 
 	private SpriteRenderer healthBar;			// Reference to the sprite renderer of the health bar.
 	private float lastHitTime;					// The time at which the player was last hit.
@@ -26,7 +26,7 @@ public class PlayerHealth : MonoBehaviour
 	}
 
 
-	void OnCollisionStay2D (Collision2D col)
+	void OnCollisionEnter2D (Collision2D col)
 	{
 		// If the colliding gameobject is an Enemy...
 		if(col.gameObject.tag == "Enemy")
@@ -61,7 +61,7 @@ public class PlayerHealth : MonoBehaviour
 		rigidbody2D.AddForce(hurtVector * hurtForce);
 
 		// Reduce the player's health by 10.
-		health -= 10f;
+		health -= damageAmount;
 
 		// Update what the health bar looks like.
 		UpdateHealthBar();

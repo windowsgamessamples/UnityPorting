@@ -36,8 +36,13 @@ public class BombPickup : MonoBehaviour
 		{
 			// ... set the animator trigger parameter Land.
 			anim.SetTrigger("Land");
+			// Remove the rigidbody from the parent to stop the parachute falling
+			Destroy(transform.parent.GetComponent<Rigidbody2D>());
+			// Detach the crate itself from the parent object by making its parent null
 			transform.parent = null;
+			// Add a rigidbody to the crate so it can fall off of ledges and down slopes
 			gameObject.AddComponent<Rigidbody2D>();
+			// stop any of the landing actions recurring
 			landed = true;		
 		}
 	}

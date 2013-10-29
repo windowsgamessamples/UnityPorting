@@ -7,6 +7,7 @@ public class Bomb : MonoBehaviour
 	public float bombForce = 100f;			// Force that enemies are thrown from the blast.
 	public AudioClip boom;					// Audioclip of explosion.
 	public AudioClip fuse;					// Audioclip of fuse.
+	public float fuseTime = 1.5f;
 	public GameObject explosion;			// Prefab of explosion effect.
 
 
@@ -38,7 +39,7 @@ public class Bomb : MonoBehaviour
 		AudioSource.PlayClipAtPoint(fuse, transform.position);
 
 		// Wait for 2 seconds.
-		yield return new WaitForSeconds(2);
+		yield return new WaitForSeconds(fuseTime);
 
 		// Explode the bomb.
 		Explode();

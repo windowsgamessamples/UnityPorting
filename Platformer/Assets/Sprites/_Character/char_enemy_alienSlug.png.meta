@@ -21,7 +21,7 @@ TextureImporter:
   generateCubemap: 0
   seamlessCubemap: 0
   textureFormat: -1
-  maxTextureSize: 4096
+  maxTextureSize: 1024
   textureSettings:
     filterMode: -1
     aniso: 1
@@ -35,7 +35,7 @@ TextureImporter:
   spriteGenerateTightMesh: 1
   alignment: 0
   spritePivot: {x: .5, y: .5}
-  spritePixelsToUnits: 110
+  spritePixelsToUnits: 100
   alphaIsTransparency: 1
   textureType: 8
   buildTargetSettings: []
@@ -77,5 +77,5 @@ TextureImporter:
         height: 136
       alignment: 0
       pivot: {x: .5, y: .5}
-  spritePackingTag: 
+  spritePackingTag: characters
   userData: 

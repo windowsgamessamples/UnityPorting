@@ -11,7 +11,6 @@ GameObject:
   - 212: {fileID: 21200000}
   - 114: {fileID: 11400000}
   - 58: {fileID: 5800000}
-  - 61: {fileID: 6100000}
   - 50: {fileID: 5000000}
   m_Layer: 8
   m_Name: bomb
@@ -87,17 +86,6 @@ CircleCollider2D:
   m_IsTrigger: 0
   m_Radius: 1.25999999
   m_Center: {x: 0, y: .0199999996}
---- !u!61 &6100000
-BoxCollider2D:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100000}
-  m_Enabled: 0
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Size: {x: .839999974, y: .579999983}
-  m_Center: {x: -.100000001, y: .219999999}
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -109,10 +97,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d060b6f2711747368c4bc5aae24049b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bombRadius: 7
+  bombRadius: 8
   bombForce: 100
   boom: {fileID: 8300000, guid: 8b4e61c51941a46d1aac273472c814fd, type: 3}
   fuse: {fileID: 8300000, guid: 238da4efc08184aee919af254edb2ef1, type: 3}
+  fuseTime: 1.5
   explosion: {fileID: 100000, guid: 9c8b546f746e74328ab6b8bba733af67, type: 2}
 --- !u!114 &11400002
 MonoBehaviour:
@@ -1203,9 +1192,7 @@ SpriteRenderer:
   m_SortingOrder: 10
   m_SortingLayerID: 2511236001
   m_Sprite: {fileID: 21300000, guid: c2fc7b356ebe242deaefac9ceb95a7e1, type: 3}
-  m_Color:
-    serializedVersion: 2
-    rgba: 4294967295
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
