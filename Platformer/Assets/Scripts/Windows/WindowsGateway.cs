@@ -11,12 +11,9 @@ public class WindowsGateway : MonoBehaviour
     static WindowsGateway _instance;
     public static WindowsGateway Instance
     {
-        get
-        {
+        get        {
             if (_instance == null)
-            {
                 _instance = FindObjectOfType(typeof(WindowsGateway)) as WindowsGateway;
-            }
             return _instance;
         }
         set { _instance = value; }
@@ -33,9 +30,12 @@ public class WindowsGateway : MonoBehaviour
 
     private void Awake()
     {
-        DontDestroyOnLoad(this.gameObject);
         _instance = this;
-        
+
+        // Don't destroy this object, so any public methods in this class can be referred to from any script in our game
+        // Usage : WindowsGateway.Instance.YourPublicMethodName();
+        DontDestroyOnLoad(this.gameObject);
+
         // Code here to let the XAML app know that the first Unity scene has finished loading...
         UnityLoaded();
 
