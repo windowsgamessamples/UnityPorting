@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using UnityEngine.Windows;
-using UnityPlayer;
 using Windows.ApplicationModel.Activation;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
@@ -18,6 +17,8 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 
+// The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
+
 namespace Template
 {
     /// <summary>
@@ -29,8 +30,6 @@ namespace Template
         private Rect splashImageRect;
         private WindowSizeChangedEventHandler onResizeHandler;
 
-        private DispatcherTimer timer;
-
         public MainPage(SplashScreen splashScreen)
         {
             this.InitializeComponent();
@@ -38,32 +37,8 @@ namespace Template
             splash = splashScreen;
             GetSplashBackgroundColor();
             OnResize();
-            Window.Current.SizeChanged += onResizeHandler = new WindowSizeChangedEventHandler((o, e) => OnResize(e));
-            WindowsGateway.UnityLoaded += OnUnityLoaded;
-
-
-            // TODO - need to have unity tell us when the scene is actually loaded and ready. AppCallbacks.Initialized happens too early in most cases?
-
-            timer = new DispatcherTimer();
-            timer.Interval = TimeSpan.FromMilliseconds(100);
-            timer.Tick += timer_Tick;
-            timer.Start();
+            Window.Current.SizeChanged += onResizeHandler = new WindowSizeChangedEventHandler((o, e) => OnResize());
         }
-
-        void timer_Tick(object sender, object e)
-        {
-            var increment = timer.Interval.TotalMilliseconds;
-            if (SplashProgress.Value <= (SplashProgress.Maximum - increment))
-            {
-                SplashProgress.Value += increment;
-            }
-            else
-            {
-                SplashProgress.Value = SplashProgress.Maximum;
-                RemoveSplashScreen();
-            }
-        }
-
 
         /// <summary>
         /// Invoked when this page is about to be displayed in a Frame.
@@ -74,25 +49,14 @@ namespace Template
         {
             splash = (SplashScreen)e.Parameter;
             OnResize();
-            timer.Start();
         }
 
-        private void OnResize(WindowSizeChangedEventArgs args = null)
+        private void OnResize()
         {
             if (splash != null)
             {
                 splashImageRect = splash.ImageLocation;
                 PositionImage();
-            }
-            else if (args != null)
-            {
-                var height = args.Size.Height;
-                var width = args.Size.Width;
-                // Tell Unity engine that the window size has changed
-                UnityEngine.WSA.Application.InvokeOnAppThread(() =>
-                    {
-                        WindowsGateway.WindowSizeChanged(height, width);
-                    }, false);
             }
         }
 
@@ -125,7 +89,7 @@ namespace Template
                 byte g = (byte) ((value & 0x0000FF00) >> 8);
                 byte b = (byte) (value & 0x000000FF);
 
-                CoreWindow.GetForCurrentThread().Dispatcher.RunAsync(CoreDispatcherPriority.High, delegate()
+                await CoreWindow.GetForCurrentThread().Dispatcher.RunAsync(CoreDispatcherPriority.High, delegate()
                     {
                         ExtendedSplashGrid.Background = new SolidColorBrush(Color.FromArgb(0xFF, r, g, b));
                     });
@@ -134,36 +98,19 @@ namespace Template
             {}
         }
 
-        public SwapChainBackgroundPanel GetSwapChainBackgroundPanel()
+		public SwapChainBackgroundPanel GetSwapChainBackgroundPanel()
 		{
-            return DXSwapChainBackgroundPanel;
+			return DXSwapChainPanel;
 		}
 
         public void RemoveSplashScreen()
         {
-            if (timer != null)
+            DXSwapChainPanel.Children.Remove(ExtendedSplashGrid);
+            if (onResizeHandler != null)
             {
-                timer.Stop();
+                Window.Current.SizeChanged -= onResizeHandler;
+                onResizeHandler = null;
             }
-            if (DXSwapChainBackgroundPanel.Children.Count > 0)
-            { 
-                DXSwapChainBackgroundPanel.Children.Remove(ExtendedSplashGrid);
-                splash = null;
-            }
-            //if (onResizeHandler != null)
-            //{
-            //    Window.Current.SizeChanged -= onResizeHandler;
-            //    onResizeHandler = null;
-            //}
-        }
-
-        async void OnUnityLoaded()
-        {
-            AppCallbacks.Instance.InvokeOnUIThread(new AppCallbackItem(() =>
-                {
-                    SplashProgress.Value = SplashProgress.Maximum;
-                    RemoveSplashScreen();
-                }), false);
         }
     }
 }
