@@ -86,10 +86,12 @@ namespace Template
             }
             else if (args != null)
             {
+                var height = args.Size.Height;
+                var width = args.Size.Width;
                 // Tell Unity engine that the window size has changed
                 UnityEngine.WSA.Application.InvokeOnAppThread(() =>
                     {
-                        WindowsGateway.WindowSizeChanged(args.Size.Height, args.Size.Width);
+                        WindowsGateway.WindowSizeChanged(height, width);
                     }, false);
             }
         }
