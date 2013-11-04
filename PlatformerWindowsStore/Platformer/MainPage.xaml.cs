@@ -40,7 +40,7 @@ namespace Template
             splash = splashScreen;
             GetSplashBackgroundColor();
             OnResize();
-            Window.Current.SizeChanged += onResizeHandler = new WindowSizeChangedEventHandler((o, e) => OnResize());
+            Window.Current.SizeChanged += onResizeHandler = new WindowSizeChangedEventHandler((o, e) => OnResize(e));
 
             // TODO - need to have unity tell us when the scene is actually loaded and ready. AppCallbacks.Initialized happens too early in most cases.
 
@@ -82,12 +82,20 @@ namespace Template
             timer.Start();
         }
 
-        private void OnResize()
+        private void OnResize(WindowSizeChangedEventArgs args)
         {
             if (splash != null)
             {
                 splashImageRect = splash.ImageLocation;
                 PositionImage();
+            }
+            else
+            {
+                // Tell Unity engine that the window size has changed
+                UnityEngine.WSA.Application.InvokeOnAppThread(() =>
+                    {
+                        WindowsGateway.WindowSizeChanged(args.Size.Height, args.Size.Width);
+                    }, false);
             }
         }
 
