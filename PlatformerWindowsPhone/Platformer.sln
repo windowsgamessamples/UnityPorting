@@ -1,0 +1,38 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Platformer", "Platformer\Platformer.csproj", "{754898A3-D6B3-ED44-ACFD-A12CE9CA6CCE}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|ARM = Debug|ARM
+		Debug|x86 = Debug|x86
+		Master|ARM = Master|ARM
+		Master|x86 = Master|x86
+		Release|ARM = Release|ARM
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{754898A3-D6B3-ED44-ACFD-A12CE9CA6CCE}.Debug|ARM.ActiveCfg = Debug|ARM
+		{754898A3-D6B3-ED44-ACFD-A12CE9CA6CCE}.Debug|ARM.Build.0 = Debug|ARM
+		{754898A3-D6B3-ED44-ACFD-A12CE9CA6CCE}.Debug|ARM.Deploy.0 = Debug|ARM
+		{754898A3-D6B3-ED44-ACFD-A12CE9CA6CCE}.Debug|x86.ActiveCfg = Debug|x86
+		{754898A3-D6B3-ED44-ACFD-A12CE9CA6CCE}.Debug|x86.Build.0 = Debug|x86
+		{754898A3-D6B3-ED44-ACFD-A12CE9CA6CCE}.Debug|x86.Deploy.0 = Debug|x86
+		{754898A3-D6B3-ED44-ACFD-A12CE9CA6CCE}.Master|ARM.ActiveCfg = Master|ARM
+		{754898A3-D6B3-ED44-ACFD-A12CE9CA6CCE}.Master|ARM.Build.0 = Master|ARM
+		{754898A3-D6B3-ED44-ACFD-A12CE9CA6CCE}.Master|ARM.Deploy.0 = Master|ARM
+		{754898A3-D6B3-ED44-ACFD-A12CE9CA6CCE}.Master|x86.ActiveCfg = Master|x86
+		{754898A3-D6B3-ED44-ACFD-A12CE9CA6CCE}.Master|x86.Build.0 = Master|x86
+		{754898A3-D6B3-ED44-ACFD-A12CE9CA6CCE}.Master|x86.Deploy.0 = Master|x86
+		{754898A3-D6B3-ED44-ACFD-A12CE9CA6CCE}.Release|ARM.ActiveCfg = Release|ARM
+		{754898A3-D6B3-ED44-ACFD-A12CE9CA6CCE}.Release|ARM.Build.0 = Release|ARM
+		{754898A3-D6B3-ED44-ACFD-A12CE9CA6CCE}.Release|ARM.Deploy.0 = Release|ARM
+		{754898A3-D6B3-ED44-ACFD-A12CE9CA6CCE}.Release|x86.ActiveCfg = Release|x86
+		{754898A3-D6B3-ED44-ACFD-A12CE9CA6CCE}.Release|x86.Build.0 = Release|x86
+		{754898A3-D6B3-ED44-ACFD-A12CE9CA6CCE}.Release|x86.Deploy.0 = Release|x86
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
