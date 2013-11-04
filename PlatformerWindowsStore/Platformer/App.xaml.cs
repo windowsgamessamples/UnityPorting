@@ -35,7 +35,6 @@ namespace Template
 		{
 			this.InitializeComponent();
 			appCallbacks = new AppCallbacks(false);
-            appCallbacks.Initialized += RemoveSplashScreen;
 		}
 
 		/// <summary>
@@ -72,15 +71,5 @@ namespace Template
 			Window.Current.Activate();
 		}
 
-        private void RemoveSplashScreen()
-        {
-            try
-            {
-                MainPage page = (MainPage)Window.Current.Content;
-                page.RemoveSplashScreen();
-            }
-            catch (InvalidCastException)
-            { }
-        }
 	}
 }

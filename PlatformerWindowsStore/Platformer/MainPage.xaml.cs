@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using UnityEngine.Windows;
+using UnityPlayer;
 using Windows.ApplicationModel.Activation;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
@@ -30,6 +31,8 @@ namespace Template
         private Rect splashImageRect;
         private WindowSizeChangedEventHandler onResizeHandler;
 
+        private DispatcherTimer timer;
+
         public MainPage(SplashScreen splashScreen)
         {
             this.InitializeComponent();
@@ -38,7 +41,34 @@ namespace Template
             GetSplashBackgroundColor();
             OnResize();
             Window.Current.SizeChanged += onResizeHandler = new WindowSizeChangedEventHandler((o, e) => OnResize());
+
+            // TODO - need to have unity tell us when the scene is actually loaded and ready. AppCallbacks.Initialized happens too early in most cases.
+
+            timer = new DispatcherTimer();
+            timer.Interval = TimeSpan.FromMilliseconds(100);
+            timer.Tick += timer_Tick;
+            timer.Start();
         }
+
+        void Instance_Initialized()
+        {
+            RemoveSplashScreen();
+        }
+
+        void timer_Tick(object sender, object e)
+        {
+            var increment = timer.Interval.TotalMilliseconds;
+            if (SplashProgress.Value <= (SplashProgress.Maximum - increment))
+            {
+                SplashProgress.Value += increment;
+            }
+            else
+            {
+                SplashProgress.Value = SplashProgress.Maximum;
+                RemoveSplashScreen();
+            }
+        }
+
 
         /// <summary>
         /// Invoked when this page is about to be displayed in a Frame.
@@ -49,6 +79,7 @@ namespace Template
         {
             splash = (SplashScreen)e.Parameter;
             OnResize();
+            timer.Start();
         }
 
         private void OnResize()
@@ -105,7 +136,14 @@ namespace Template
 
         public void RemoveSplashScreen()
         {
-            DXSwapChainBackgroundPanel.Children.Remove(ExtendedSplashGrid);
+            if (timer != null)
+            {
+                timer.Stop();
+            }
+            if (DXSwapChainBackgroundPanel.Children.Count > 0)
+            { 
+                DXSwapChainBackgroundPanel.Children.Remove(ExtendedSplashGrid);
+            }
             if (onResizeHandler != null)
             {
                 Window.Current.SizeChanged -= onResizeHandler;
