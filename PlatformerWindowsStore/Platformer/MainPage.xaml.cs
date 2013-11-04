@@ -42,17 +42,12 @@ namespace Template
             OnResize();
             Window.Current.SizeChanged += onResizeHandler = new WindowSizeChangedEventHandler((o, e) => OnResize(e));
 
-            // TODO - need to have unity tell us when the scene is actually loaded and ready. AppCallbacks.Initialized happens too early in most cases.
+            // TODO - need to have unity tell us when the scene is actually loaded and ready. AppCallbacks.Initialized happens too early in most cases?
 
             timer = new DispatcherTimer();
             timer.Interval = TimeSpan.FromMilliseconds(100);
             timer.Tick += timer_Tick;
             timer.Start();
-        }
-
-        void Instance_Initialized()
-        {
-            RemoveSplashScreen();
         }
 
         void timer_Tick(object sender, object e)
@@ -82,14 +77,14 @@ namespace Template
             timer.Start();
         }
 
-        private void OnResize(WindowSizeChangedEventArgs args)
+        private void OnResize(WindowSizeChangedEventArgs args = null)
         {
             if (splash != null)
             {
                 splashImageRect = splash.ImageLocation;
                 PositionImage();
             }
-            else
+            else if (args != null)
             {
                 // Tell Unity engine that the window size has changed
                 UnityEngine.WSA.Application.InvokeOnAppThread(() =>
@@ -151,12 +146,13 @@ namespace Template
             if (DXSwapChainBackgroundPanel.Children.Count > 0)
             { 
                 DXSwapChainBackgroundPanel.Children.Remove(ExtendedSplashGrid);
+                splash = null;
             }
-            if (onResizeHandler != null)
-            {
-                Window.Current.SizeChanged -= onResizeHandler;
-                onResizeHandler = null;
-            }
+            //if (onResizeHandler != null)
+            //{
+            //    Window.Current.SizeChanged -= onResizeHandler;
+            //    onResizeHandler = null;
+            //}
         }
     }
 }
