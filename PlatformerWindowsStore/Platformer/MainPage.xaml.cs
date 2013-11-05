@@ -55,7 +55,7 @@ namespace Template
             else
             {
                 SplashProgress.Value = SplashProgress.Maximum;
-                await Task.Delay(250);
+                await Task.Delay(250); // force a little delay so that user can see progress bar maxing out very briefly
                 RemoveExtendedSplash();
             }
         }
@@ -65,7 +65,7 @@ namespace Template
         /// </summary>
         private async void OnUnityLoaded()
         {
-            await Task.Delay(3000); // faked delay as sample game loads very quickly!
+            await Task.Delay(3000); // faked delay as sample game loads very quickly, remove in a release game!
             isUnityLoaded = true;
         }
 
