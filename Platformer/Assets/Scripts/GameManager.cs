@@ -4,7 +4,7 @@ using System.Collections;
 public class GameManager : MonoBehaviour {
 
     public bool Paused { get; set; }
-    private float _originalTimeScale;
+    private float _originalTimeScale = 1;
 
     #region Instance
     static GameManager _instance;
@@ -26,18 +26,15 @@ public class GameManager : MonoBehaviour {
 #endif
 	}
 	
-	void Update () {
-	
-	}
-
     // Pause the game
     public void Pause()
     {
         // Stop all audio from playing
         AudioListener.pause = true;
 
+        // Set the game's timescale to 0
         _originalTimeScale = Time.timeScale;
-        Time.timeScale = 0;
+        Time.timeScale = 0; 
 
         Paused = true;
     }
@@ -48,6 +45,7 @@ public class GameManager : MonoBehaviour {
         // Resume all audio playing
         AudioListener.pause = false;
 
+        // Return game's timescale to original value
         Time.timeScale = _originalTimeScale;
 
         Paused = false;
