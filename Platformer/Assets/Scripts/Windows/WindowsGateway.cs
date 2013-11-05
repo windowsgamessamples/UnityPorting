@@ -32,7 +32,11 @@ public static class WindowsGateway
 	public static void WindowSizeChanged (double height, double width) 
     {
 	    // TODO deal with window resizing. e.g. if <= 500 implement pause screen
-	}
+        if (width <= 500)
+            SnapModeManager.Instance.Show();
+        else
+            SnapModeManager.Instance.Hide();
+	}   
 
 }
 
