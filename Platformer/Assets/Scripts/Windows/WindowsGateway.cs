@@ -25,6 +25,11 @@ public class WindowsGateway : MonoBehaviour
     /// </summary>
     public static Action UnityLoaded;
 
+    /// <summary>
+    /// Called from Unity when the app is invokeing the share charm 
+    /// </summary>
+    public static Action ShowShareUI;
+
 	/// <summary>
 	/// Called from Windows Store app when the app's window is resized
 	/// </summary>

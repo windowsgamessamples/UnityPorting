@@ -1,9 +1,13 @@
 ﻿using System;
 using System.Threading.Tasks;
+using UnityPlayer;
 using Windows.ApplicationModel.Activation;
+using Windows.ApplicationModel.DataTransfer;
 using Windows.Foundation;
 using Windows.Storage;
+using Windows.System;
 using Windows.UI;
+using Windows.UI.ApplicationSettings;
 using Windows.UI.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -19,6 +23,8 @@ namespace Template
         private WindowSizeChangedEventHandler onResizeHandler;
         private DispatcherTimer extendedSplashTimer;
         private bool isUnityLoaded;
+        private static SettingsPane settingsPane;
+
 
         public MainPage(SplashScreen splashScreen)
         {
@@ -40,6 +46,15 @@ namespace Template
             extendedSplashTimer.Interval = TimeSpan.FromMilliseconds(100);
             extendedSplashTimer.Tick += ExtendedSplashTimer_Tick;
             extendedSplashTimer.Start();
+
+            // configure settings charm
+            settingsPane = SettingsPane.GetForCurrentView();
+            settingsPane.CommandsRequested += OnSettingsCommandsRequested;
+
+            // configure share charm
+            var dataTransferManager = DataTransferManager.GetForCurrentView();
+            dataTransferManager.DataRequested += DataTransferManager_DataRequested;
+            WindowsGateway.ShowShareUI = OnShowShareUI;
         }
 
         /// <summary>
@@ -88,7 +103,7 @@ namespace Template
                 // Game has loaded, tell Unity engine that the window size has changed
                 var height = args.Size.Height;
                 var width = args.Size.Width;
-                UnityEngine.WSA.Application.InvokeOnAppThread(() =>
+                AppCallbacks.Instance.InvokeOnAppThread(() =>
                 {
                     WindowsGateway.WindowSizeChanged(height, width);
                 }, false);
@@ -142,6 +157,66 @@ namespace Template
                 DXSwapChainBackgroundPanel.Children.Remove(ExtendedSplashGrid);
                 splash = null;
             }
+        }
+
+        /// <summary>
+        /// Show the Share Charm
+        /// </summary>
+        static void OnShowShareUI()
+        {
+            AppCallbacks.Instance.InvokeOnUIThread(() =>
+            {
+                DataTransferManager.ShowShareUI();
+            }, false);
+        }
+
+        static void DataTransferManager_DataRequested(DataTransferManager sender, DataRequestedEventArgs args)
+        {
+            DataRequest request = args.Request;
+
+            // TODO retrieve the player's score from Unity!
+            var score = 500;
+
+            if (score <= 0)
+            {
+                request.Data.Properties.Title = "Platformer";
+            }
+            else
+            {
+                request.Data.Properties.Title = String.Format("Platformer High Score of {0}!", score);
+                request.Data.Properties.Description = "Check out my hi score on Platformer!";
+            }
+
+            try
+            {
+                request.Data.SetUri(Windows.ApplicationModel.Store.CurrentApp.LinkUri);
+            }
+            catch // exception will be thrown if app not published, manually set a url for testing
+            {
+                request.Data.SetUri(new Uri("http://www.mygameurl.com"));
+            }
+        }
+
+        private static void OnSettingsCommandsRequested(SettingsPane sender, SettingsPaneCommandsRequestedEventArgs args)
+        {
+            args.Request.ApplicationCommands.Add(new SettingsCommand("privacy", "Privacy Policy", h => OnViewPrivacyPolicy()));
+            args.Request.ApplicationCommands.Add(new SettingsCommand("termsofuse", "Terms of Use", h => OnViewTermsOfUse()));
+        }
+
+        private static void OnViewTermsOfUse()
+        {
+            AppCallbacks.Instance.InvokeOnUIThread(async () =>
+            {
+                await Launcher.LaunchUriAsync(new Uri("http://www.myplatformergame.com/corp/tos.html", UriKind.Absolute));
+            }, false);
+        }
+
+        private static void OnViewPrivacyPolicy()
+        {
+            AppCallbacks.Instance.InvokeOnUIThread(async () =>
+            {
+                await Launcher.LaunchUriAsync(new Uri("http://www.myplatformergame.com/corp/privacy.html", UriKind.Absolute));
+            }, false);
         }
 
         public SwapChainBackgroundPanel GetSwapChainBackgroundPanel()
