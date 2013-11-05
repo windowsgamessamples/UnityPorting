@@ -5,7 +5,7 @@ using System;
 using System.Collections;
 
 /// <summary>
-/// Receives calls directly from Windows Store App
+/// Interop between Uni
 /// </summary>
 public class WindowsGateway : MonoBehaviour
 {
@@ -20,9 +20,14 @@ public class WindowsGateway : MonoBehaviour
         set { _instance = value; }
     }
 
+    /// <summary>
+    /// Called from Unity when the app is responsive and ready for play
+    /// </summary>
     public static Action UnityLoaded;
 
-	// called when window is resized
+	/// <summary>
+	/// Called from Windows Store app when the app's window is resized
+	/// </summary>
 	public static void WindowSizeChanged (double height, double width) 
     {
 	    // TODO deal with window resizing. e.g. if <= 500 implement pause screen
@@ -40,7 +45,10 @@ public class WindowsGateway : MonoBehaviour
     private void Start()
     {
 #if UNITY_METRO && !UNITY_EDITOR
-        UnityLoaded();
+        if (UnityLoaded != null)
+        {
+            UnityLoaded();
+        }
 #endif
     }
 }

@@ -1,56 +1,53 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
 using System.Threading.Tasks;
-using UnityEngine.Windows;
-using UnityPlayer;
 using Windows.ApplicationModel.Activation;
 using Windows.Foundation;
-using Windows.Foundation.Collections;
 using Windows.Storage;
 using Windows.UI;
 using Windows.UI.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 
 namespace Template
 {
-    /// <summary>
-    /// An empty page that can be used on its own or navigated to within a Frame.
-    /// </summary>
     public sealed partial class MainPage : Page
     {
         private SplashScreen splash;
         private Rect splashImageRect;
         private WindowSizeChangedEventHandler onResizeHandler;
-        private DispatcherTimer timer;
+        private DispatcherTimer extendedSplashTimer;
         private bool isUnityLoaded;
 
         public MainPage(SplashScreen splashScreen)
         {
             this.InitializeComponent();
 
+            // initialize extended splash
             splash = splashScreen;
-            GetSplashBackgroundColor();
+            SetExtendedSplashBackgroundColor();
+
+            // ensure we are aware of app window being resuzed
             OnResize();
             Window.Current.SizeChanged += onResizeHandler = new WindowSizeChangedEventHandler((o, e) => OnResize(e));
-            WindowsGateway.UnityLoaded += OnUnityLoaded;
 
-            timer = new DispatcherTimer();
-            timer.Interval = TimeSpan.FromMilliseconds(100);
-            timer.Tick += timer_Tick;
-            timer.Start();
+            // ensure we listen to when unity tells us game is ready
+            WindowsGateway.UnityLoaded = OnUnityLoaded;
+
+            // create extended splash timer
+            extendedSplashTimer = new DispatcherTimer();
+            extendedSplashTimer.Interval = TimeSpan.FromMilliseconds(100);
+            extendedSplashTimer.Tick += ExtendedSplashTimer_Tick;
+            extendedSplashTimer.Start();
         }
 
-        async void timer_Tick(object sender, object e)
+        /// <summary>
+        /// Control the extended splash experience
+        /// </summary>
+        async void ExtendedSplashTimer_Tick(object sender, object e)
         {
-            var increment = timer.Interval.TotalMilliseconds;
+            var increment = extendedSplashTimer.Interval.TotalMilliseconds;
             if (!isUnityLoaded && SplashProgress.Value <= (SplashProgress.Maximum - increment))
             {
                 SplashProgress.Value += increment;
@@ -59,56 +56,49 @@ namespace Template
             {
                 SplashProgress.Value = SplashProgress.Maximum;
                 await Task.Delay(250);
-                RemoveSplashScreen();
+                RemoveExtendedSplash();
             }
         }
 
-
-        async void OnUnityLoaded()
+        /// <summary>
+        /// Unity has loaded and the game is playable 
+        /// </summary>
+        private async void OnUnityLoaded()
         {
+            await Task.Delay(3000); // faked delay as sample game loads very quickly!
             isUnityLoaded = true;
         }
 
         /// <summary>
-        /// Invoked when this page is about to be displayed in a Frame.
+        /// Respond to window resizing
         /// </summary>
-        /// <param name="e">Event data that describes how this page was reached.  The Parameter
-        /// property is typically used to configure the page.</param>
-        protected override void OnNavigatedTo(NavigationEventArgs e)
-        {
-            splash = (SplashScreen)e.Parameter;
-            OnResize();
-            timer.Start();
-        }
-
         private void OnResize(WindowSizeChangedEventArgs args = null)
         {
             if (splash != null)
             {
+                // extended splash is still visible, game not loaded
                 splashImageRect = splash.ImageLocation;
-                PositionImage();
+                ExtendedSplashImage.SetValue(Canvas.LeftProperty, splashImageRect.X);
+                ExtendedSplashImage.SetValue(Canvas.TopProperty, splashImageRect.Y);
+                ExtendedSplashImage.Height = splashImageRect.Height;
+                ExtendedSplashImage.Width = splashImageRect.Width;
             }
             else if (args != null)
             {
+                // Game has loaded, tell Unity engine that the window size has changed
                 var height = args.Size.Height;
                 var width = args.Size.Width;
-                // Tell Unity engine that the window size has changed
                 UnityEngine.WSA.Application.InvokeOnAppThread(() =>
-                    {
-                        WindowsGateway.WindowSizeChanged(height, width);
-                    }, false);
+                {
+                    WindowsGateway.WindowSizeChanged(height, width);
+                }, false);
             }
         }
 
-        private void PositionImage()
-        {
-            ExtendedSplashImage.SetValue(Canvas.LeftProperty, splashImageRect.X);
-            ExtendedSplashImage.SetValue(Canvas.TopProperty, splashImageRect.Y);
-            ExtendedSplashImage.Height = splashImageRect.Height;
-            ExtendedSplashImage.Width = splashImageRect.Width;
-        }
-
-        private async void GetSplashBackgroundColor()
+        /// <summary>
+        /// Set the extended splash background color based on app manifest
+        /// </summary>
+        private async void SetExtendedSplashBackgroundColor()
         {
             try
             {
@@ -117,48 +107,46 @@ namespace Template
                 int idx = manifest.IndexOf("SplashScreen");
                 manifest = manifest.Substring(idx);
                 idx = manifest.IndexOf("BackgroundColor");
-				if (idx < 0)  // background is optional
-					return;
+                if (idx < 0)  // background is optional
+                    return;
                 manifest = manifest.Substring(idx);
                 idx = manifest.IndexOf("\"");
                 manifest = manifest.Substring(idx + 2); // also remove quote and # char after it
                 idx = manifest.IndexOf("\"");
                 manifest = manifest.Substring(0, idx);
                 int value = Convert.ToInt32(manifest, 16) & 0x00FFFFFF;
-                byte r = (byte) (value >> 16);
-                byte g = (byte) ((value & 0x0000FF00) >> 8);
-                byte b = (byte) (value & 0x000000FF);
+                byte r = (byte)(value >> 16);
+                byte g = (byte)((value & 0x0000FF00) >> 8);
+                byte b = (byte)(value & 0x000000FF);
 
-                CoreWindow.GetForCurrentThread().Dispatcher.RunAsync(CoreDispatcherPriority.High, delegate()
-                    {
-                        ExtendedSplashGrid.Background = new SolidColorBrush(Color.FromArgb(0xFF, r, g, b));
-                    });
+                await CoreWindow.GetForCurrentThread().Dispatcher.RunAsync(CoreDispatcherPriority.High, delegate()
+                {
+                    ExtendedSplashGrid.Background = new SolidColorBrush(Color.FromArgb(0xFF, r, g, b));
+                });
             }
             catch (Exception)
-            {}
+            { }
         }
 
-        public SwapChainBackgroundPanel GetSwapChainBackgroundPanel()
-		{
-            return DXSwapChainBackgroundPanel;
-		}
-
-        public void RemoveSplashScreen()
+        /// <summary>
+        /// Remove the extended splash 
+        /// </summary>
+        public void RemoveExtendedSplash()
         {
-            if (timer != null)
+            if (extendedSplashTimer != null)
             {
-                timer.Stop();
+                extendedSplashTimer.Stop();
             }
             if (DXSwapChainBackgroundPanel.Children.Count > 0)
-            { 
+            {
                 DXSwapChainBackgroundPanel.Children.Remove(ExtendedSplashGrid);
                 splash = null;
             }
-            //if (onResizeHandler != null)
-            //{
-            //    Window.Current.SizeChanged -= onResizeHandler;
-            //    onResizeHandler = null;
-            //}
+        }
+
+        public SwapChainBackgroundPanel GetSwapChainBackgroundPanel()
+        {
+            return DXSwapChainBackgroundPanel;
         }
 
     }
