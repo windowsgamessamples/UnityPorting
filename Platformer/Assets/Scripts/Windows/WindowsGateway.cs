@@ -1,4 +1,4 @@
-﻿#if UNITY_METRO
+﻿//#if UNITY_METRO
 
 using UnityEngine;
 using System.Collections;
@@ -37,11 +37,23 @@ public class WindowsGateway : MonoBehaviour
         DontDestroyOnLoad(this.gameObject);
 
         // Code here to let the XAML app know that the first Unity scene has finished loading...
-        UnityLoaded();
+
 
         // Now that our singleton WindowsGatewayObject exists, load the next game scene
         Application.LoadLevel(1);
     }
+
+    private void OnLevelWasLoaded(int level)
+    {
+        Debug.Log("Level " + level + " was loaded");
+
+        if (level == 1)
+            Debug.Log("Level 1 loaded");
+
+#if UNITY_METRO && !UNITY_EDITOR
+        UnityLoaded();
+#endif
+    }
 }
 
-#endif
+//#endif
