@@ -1,4 +1,4 @@
-﻿//#if UNITY_METRO
+﻿#if UNITY_METRO
 
 using UnityEngine;
 using System;
@@ -39,8 +39,10 @@ public class WindowsGateway : MonoBehaviour
 
     private void Start()
     {
+#if UNITY_METRO && !UNITY_EDITOR
         UnityLoaded();
+#endif
     }
 }
 
-//#endif
+#endif
