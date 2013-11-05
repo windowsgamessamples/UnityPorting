@@ -28,7 +28,7 @@ namespace Template
             splash = splashScreen;
             SetExtendedSplashBackgroundColor();
 
-            // ensure we are aware of app window being resuzed
+            // ensure we are aware of app window being resized
             OnResize();
             Window.Current.SizeChanged += onResizeHandler = new WindowSizeChangedEventHandler((o, e) => OnResize(e));
 
