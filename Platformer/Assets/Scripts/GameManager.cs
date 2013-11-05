@@ -5,8 +5,9 @@ public class GameManager : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        // Tell our Windows Gateway class that Unity has loaded
-        WindowsGateway.DoUnityLoaded();
+#if UNITY_METRO && !UNITY_EDITOR  
+        WindowsGateway.UnityLoaded();
+#endif
 	}
 	
 	// Update is called once per frame
