@@ -1,59 +1,39 @@
-﻿//#if UNITY_METRO
+﻿#if UNITY_METRO
 
-using UnityEngine;
+using System;
 using System.Collections;
 
 /// <summary>
-/// Receives calls directly from Windows Store App
+/// Interop between Unity and Windows Store App
 /// </summary>
-public class WindowsGateway : MonoBehaviour
+public static class WindowsGateway
 {
-    static WindowsGateway _instance;
-    public static WindowsGateway Instance
+
+    static WindowsGateway()
     {
-        get        {
-            if (_instance == null)
-                _instance = FindObjectOfType(typeof(WindowsGateway)) as WindowsGateway;
-            return _instance;
-        }
-        set { _instance = value; }
+        // create blank implementations to avvoid errors within editor
+        UnityLoaded = delegate {};
+        ShowShareUI = delegate {};
     }
 
-    public delegate void UnityLoadedHandler();
-    public static event UnityLoadedHandler UnityLoaded;
+    /// <summary>
+    /// Called from Unity when the app is responsive and ready for play
+    /// </summary>
+    public static Action UnityLoaded;
 
-	// called when window is resized
+    /// <summary>
+    /// Called from Unity when the app is invoking the share charm 
+    /// </summary>
+    public static Action ShowShareUI;
+
+	/// <summary>
+	/// Called from Windows Store app when the app's window is resized
+	/// </summary>
 	public static void WindowSizeChanged (double height, double width) 
     {
 	    // TODO deal with window resizing. e.g. if <= 500 implement pause screen
 	}
 
-    private void Awake()
-    {
-        _instance = this;
-
-        // Don't destroy this object, so any public methods in this class can be referred to from any script in our game
-        // Usage : WindowsGateway.Instance.YourPublicMethodName();
-        DontDestroyOnLoad(this.gameObject);
-
-        // Code here to let the XAML app know that the first Unity scene has finished loading...
-
-
-        // Now that our singleton WindowsGatewayObject exists, load the next game scene
-        Application.LoadLevel(1);
-    }
-
-    private void OnLevelWasLoaded(int level)
-    {
-        Debug.Log("Level " + level + " was loaded");
-
-        if (level == 1)
-            Debug.Log("Level 1 loaded");
-
-#if UNITY_METRO && !UNITY_EDITOR
-        UnityLoaded();
-#endif
-    }
 }
 
-//#endif
+#endif
