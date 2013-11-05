@@ -1,6 +1,7 @@
 ﻿//#if UNITY_METRO
 
 using UnityEngine;
+using System;
 using System.Collections;
 
 /// <summary>
@@ -19,8 +20,7 @@ public class WindowsGateway : MonoBehaviour
         set { _instance = value; }
     }
 
-    public delegate void UnityLoadedHandler();
-    public static event UnityLoadedHandler UnityLoaded;
+    public static Action UnityLoaded;
 
 	// called when window is resized
 	public static void WindowSizeChanged (double height, double width) 
@@ -35,24 +35,11 @@ public class WindowsGateway : MonoBehaviour
         // Don't destroy this object, so any public methods in this class can be referred to from any script in our game
         // Usage : WindowsGateway.Instance.YourPublicMethodName();
         DontDestroyOnLoad(this.gameObject);
-
-        // Code here to let the XAML app know that the first Unity scene has finished loading...
-
-
-        // Now that our singleton WindowsGatewayObject exists, load the next game scene
-        Application.LoadLevel(1);
     }
 
-    private void OnLevelWasLoaded(int level)
+    private void Start()
     {
-        Debug.Log("Level " + level + " was loaded");
-
-        if (level == 1)
-            Debug.Log("Level 1 loaded");
-
-#if UNITY_METRO && !UNITY_EDITOR
         UnityLoaded();
-#endif
     }
 }
 
