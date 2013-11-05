@@ -5,7 +5,7 @@ using System;
 using System.Collections;
 
 /// <summary>
-/// Interop between Uni
+/// Interop between Unity and Windows Store App
 /// </summary>
 public class WindowsGateway : MonoBehaviour
 {
