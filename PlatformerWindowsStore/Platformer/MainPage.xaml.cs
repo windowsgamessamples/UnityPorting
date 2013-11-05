@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Threading.Tasks;
 using UnityEngine.Windows;
 using UnityPlayer;
 using Windows.ApplicationModel.Activation;
@@ -28,8 +29,8 @@ namespace Template
         private SplashScreen splash;
         private Rect splashImageRect;
         private WindowSizeChangedEventHandler onResizeHandler;
-
         private DispatcherTimer timer;
+        private bool isUnityLoaded;
 
         public MainPage(SplashScreen splashScreen)
         {
@@ -41,29 +42,32 @@ namespace Template
             Window.Current.SizeChanged += onResizeHandler = new WindowSizeChangedEventHandler((o, e) => OnResize(e));
             WindowsGateway.UnityLoaded += OnUnityLoaded;
 
-
-            // TODO - need to have unity tell us when the scene is actually loaded and ready. AppCallbacks.Initialized happens too early in most cases?
-
             timer = new DispatcherTimer();
             timer.Interval = TimeSpan.FromMilliseconds(100);
             timer.Tick += timer_Tick;
             timer.Start();
         }
 
-        void timer_Tick(object sender, object e)
+        async void timer_Tick(object sender, object e)
         {
             var increment = timer.Interval.TotalMilliseconds;
-            if (SplashProgress.Value <= (SplashProgress.Maximum - increment))
+            if (!isUnityLoaded && SplashProgress.Value <= (SplashProgress.Maximum - increment))
             {
                 SplashProgress.Value += increment;
             }
             else
             {
                 SplashProgress.Value = SplashProgress.Maximum;
+                await Task.Delay(250);
                 RemoveSplashScreen();
             }
         }
 
+
+        async void OnUnityLoaded()
+        {
+            isUnityLoaded = true;
+        }
 
         /// <summary>
         /// Invoked when this page is about to be displayed in a Frame.
@@ -157,13 +161,5 @@ namespace Template
             //}
         }
 
-        async void OnUnityLoaded()
-        {
-            AppCallbacks.Instance.InvokeOnUIThread(new AppCallbackItem(() =>
-                {
-                    SplashProgress.Value = SplashProgress.Maximum;
-                    RemoveSplashScreen();
-                }), false);
-        }
     }
 }
