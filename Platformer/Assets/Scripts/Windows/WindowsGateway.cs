@@ -2,6 +2,7 @@
 
 using System;
 using System.Collections;
+using MyPlugin;
 
 /// <summary>
 /// Interop between Unity and Windows Store App
@@ -13,18 +14,20 @@ public static class WindowsGateway
     {
         // create blank implementations to avvoid errors within editor
         UnityLoaded = delegate {};
-        ShowShareUI = delegate {};
+    }
+
+    /// <summary>
+    /// Called from Unity when the app is invoking the share charm, demonstrates plugin approach
+    /// </summary>
+    public static void ShowShareUI()
+    {
+        MyPlugin.WindowsPlugin.ShowShareUI();
     }
 
     /// <summary>
     /// Called from Unity when the app is responsive and ready for play
     /// </summary>
     public static Action UnityLoaded;
-
-    /// <summary>
-    /// Called from Unity when the app is invoking the share charm 
-    /// </summary>
-    public static Action ShowShareUI;
 
 	/// <summary>
 	/// Called from Windows Store app when the app's window is resized
@@ -33,9 +36,13 @@ public static class WindowsGateway
     {
 	    // TODO deal with window resizing. e.g. if <= 500 implement pause screen
         if (width <= 500)
+        {
             SnapModeManager.Instance.Show();
+        }
         else
+        {
             SnapModeManager.Instance.Hide();
+        }
 	}   
 
 }

@@ -57,7 +57,6 @@ namespace Template
             // configure share charm
             var dataTransferManager = DataTransferManager.GetForCurrentView();
             dataTransferManager.DataRequested += DataTransferManager_DataRequested;
-            WindowsGateway.ShowShareUI = OnShowShareUI;
         }
 
         /// <summary>
@@ -199,18 +198,9 @@ namespace Template
                 DXSwapChainBackgroundPanel.Children.Remove(ExtendedSplashGrid);
                 splash = null;
             }
+
         }
 
-        /// <summary>
-        /// Show the Share Charm
-        /// </summary>
-        static void OnShowShareUI()
-        {
-            AppCallbacks.Instance.InvokeOnUIThread(() =>
-            {
-                DataTransferManager.ShowShareUI();
-            }, false);
-        }
 
         static void DataTransferManager_DataRequested(DataTransferManager sender, DataRequestedEventArgs args)
         {
