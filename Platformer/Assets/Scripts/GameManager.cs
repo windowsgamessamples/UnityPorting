@@ -5,6 +5,7 @@ public class GameManager : MonoBehaviour {
 
     public bool Paused { get; set; }
     private float _originalTimeScale = 1;
+    private Score _score;
 
     #region Instance
     static GameManager _instance;
@@ -20,10 +21,14 @@ public class GameManager : MonoBehaviour {
     }
     #endregion
 
-    void Start () {
+    void Start () 
+    {
+        _score = GameObject.Find("Score").GetComponent<Score>();
+
 #if UNITY_METRO && !UNITY_EDITOR  
         WindowsGateway.UnityLoaded();
 #endif
+
 	}
 	
     // Pause the game
@@ -49,5 +54,10 @@ public class GameManager : MonoBehaviour {
         Time.timeScale = _originalTimeScale;
 
         Paused = false;
+    }
+
+    public int GetScore()
+    {
+        return _score.GetScore();
     }
 }

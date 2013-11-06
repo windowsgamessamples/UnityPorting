@@ -16,6 +16,11 @@ public class Score : MonoBehaviour
 		playerControl = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerControl>();
 	}
 
+    public int GetScore()
+    {
+        return previousScore;
+    }
+
 
 	void Update ()
 	{
