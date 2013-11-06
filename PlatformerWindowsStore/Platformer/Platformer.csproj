@@ -15,6 +15,9 @@
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{BC8A1FFA-BEE3-4634-8014-F334798102B3};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <PackageCertificateKeyFile>MetroTestCertificate.pfx</PackageCertificateKeyFile>
+    <AppxAutoIncrementPackageRevision>False</AppxAutoIncrementPackageRevision>
+    <AppxPackageDir>E:\Builds\PlatformPackage\</AppxPackageDir>
+    <AppxBundlePlatforms>x86</AppxBundlePlatforms>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|ARM'">
     <DebugSymbols>true</DebugSymbols>
@@ -93,16 +96,23 @@
       <SubType>Designer</SubType>
     </AppxManifest>
     <None Include="MetroTestCertificate.pfx" />
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Assets\SquareTile.png" />
     <Content Include="Assets\SmallTile.png" />
     <Content Include="Assets\SplashScreen.png" />
+    <Content Include="Assets\SquareTile_310.scale-100.png" />
+    <Content Include="Assets\SquareTile_150.scale-100.png" />
+    <Content Include="Assets\SquareTile_70.scale-100.png" />
     <Content Include="Assets\StoreLogo.png" />
   </ItemGroup>
   <ItemGroup>
   </ItemGroup>
   <ItemGroup>
+    <Reference Include="NotificationsExtensions.WinRT">
+      <HintPath>..\packages\NotificationsExtensions.WinRT.1.0.1\lib\netcore45\NotificationsExtensions.WinRT.dll</HintPath>
+    </Reference>
     <Reference Include="UnityEngine">
       <HintPath>.\UnityEngine.dll</HintPath>
     </Reference>
@@ -152,6 +162,7 @@
     <Reference Include="WinRTLegacy.dll">
       <HintPath>.\		</HintPath>
     </Reference>
+    <Content Include="Assets\WideLogo.scale-100.png" />
     <Content Include="Data\**">
     </Content>
   </ItemGroup>

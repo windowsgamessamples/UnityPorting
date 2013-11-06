@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Package xmlns="http://schemas.microsoft.com/appx/2010/manifest" xmlns:m2="http://schemas.microsoft.com/appx/2013/manifest">
-  <Identity Name="Platformer" Publisher="CN=DefaultCompany" Version="1.0.0.0" ProcessorArchitecture="x86" />
+  <Identity Name="Platformer" Publisher="CN=DefaultCompany" Version="0.0.0.1" ProcessorArchitecture="x86" />
   <Properties>
     <DisplayName>Platformer</DisplayName>
     <PublisherDisplayName>DefaultCompany</PublisherDisplayName>
@@ -16,7 +16,7 @@
   <Applications>
     <Application Id="App" Executable="Template.exe" EntryPoint="Platformer.App">
       <m2:VisualElements DisplayName="Platformer" Description="Platformer" BackgroundColor="#000000" ForegroundText="light" Square150x150Logo="Assets\SquareTile.png" Square30x30Logo="Assets\SmallTile.png" ToastCapable="true">
-        <m2:DefaultTile ShortName="Platformer" DefaultSize="square150x150Logo">
+        <m2:DefaultTile ShortName="Platformer" DefaultSize="square150x150Logo" Square70x70Logo="Assets\SquareTile_70.png" Square310x310Logo="Assets\SquareTile_310.png" Wide310x150Logo="Assets\WideLogo.png">
           <m2:ShowNameOnTiles>
             <m2:ShowOn Tile="square150x150Logo" />
           </m2:ShowNameOnTiles>
@@ -29,4 +29,7 @@
       </m2:VisualElements>
     </Application>
   </Applications>
+  <Capabilities>
+    <Capability Name="internetClient" />
+  </Capabilities>
 </Package>
