@@ -35,25 +35,16 @@ public class PlayerControl : MonoBehaviour
 
     private void OnGUI()
     {
-#if UNITY_WP8
+#if UNITY_WP8 // Windows phone specific touch buttons. See Gun.cs for shoot button input
+        _horizontalAxis = 0;
+
         if (GUI.RepeatButton(new Rect(20, Screen.height - 90, 80, 80), "Left"))
-        {
             _horizontalAxis = -1;
-        }
-        else if (GUI.RepeatButton(new Rect(120, Screen.height - 90, 80, 80), "Right"))
-        {
+        if (GUI.RepeatButton(new Rect(120, Screen.height - 90, 80, 80), "Right"))
             _horizontalAxis = 1;
-        }
-        else
-        {
-            //_horizontalAxis = Mathf.Lerp(_horizontalAxis, 0, Time.deltaTime / 10);
-            _horizontalAxis = 0;
-        }
 
         if (GUI.Button(new Rect(Screen.width - 90, Screen.height - 90, 80, 80), "Jump"))
-        {
             jump = true;
-        }
 #endif
     }
 
