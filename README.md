@@ -9,21 +9,21 @@ Unity Porting Code Samples
 
 This is the sample Unity game project you can simply open with Unity 4.3.
 
-*Building to Windows Store App from Unity*
+**Building to Windows Store App from Unity**
 
 You must do this before the Windows Store  app will work.
 File > Build Settings > Windows Store. 
 Select Xaml/C# and 8.1
 Build out on top of \PlatformerApps\PlatformerWindowsStore folder
 
-*Building Windows Phone App from Unity*
+**Building Windows Phone App from Unity**
 
 You must do this before the Windows Phone app will work.
 File > Build Settings > Windows Phone
 Select Xaml/C# 
 Build out on top of \PlatformerApps\PlatformerWindowsPhone folder
 
-*The Windows Solution*
+**The Windows Solution**
 
 Open \UnityPorting\PlatformerApps\Platformer.sln with Visual Studio 2013. 
 
@@ -38,19 +38,19 @@ In addition, there are 3 projets for the sample "MyPlugin" plugin.
 - MyPluginWindows - Windows 8.1 plugin project
 - MyPluginWP8 - WP8 plugin project
 
-*Running the Windows Store App*
+**Running the Windows Store App**
 
 Make sure you build out from Unity as above "Building to Windows Store App from Unity"
 Ensure PlatfomerWindows is set as the startup project
 Then simply F5 the solution and it shoudl run!
 
-*Running the Windows Store App*
+**Running the Windows Store App**
 
 Make sure you build out from Unity as above "Building to Windows Phone App from Unity"
 Ensure PlatfomerWP8 is set as the startup project
 Then simply F5 the solution and it should run!
 
-*Updating the Sample Windows Plugin*
+**Updating the Sample Windows Plugin**
 
 The MyPlugin pluing is already include in the Unity project source. 
 
