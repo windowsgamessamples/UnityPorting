@@ -43,7 +43,7 @@ namespace MyPlugin
             }
             catch (Exception ex)
             {
-               // TODO - fix null reference exception!
+                // TODO - fix null reference exception!
             }
 
 
