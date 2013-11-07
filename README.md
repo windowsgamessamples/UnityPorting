@@ -5,7 +5,7 @@ Unity Porting Code Samples
 -  PlatformerApps - Sample Windows Store and Windows Phone Apps along with Plugin Examples
 -  Resources -  Classes to help overcome .Net Core compilation errors in Unity for Windows Store, along with a package to highlight shader issues on Windows
 
-*Sample Unity App - Platformer*
+**Sample Unity App - Platformer**
 
 This is the sample Unity game project you can simply open with Unity 4.3.
 
