@@ -53,9 +53,11 @@ public class Gun : MonoBehaviour
 
     private void OnGUI()
     {
+#if UNITY_WP8
         if (GUI.Button(new Rect(Screen.width - 180, Screen.height - 90, 80, 80), "Shoot"))
         {
             Shoot();
         }
+#endif
     }
 }

@@ -35,6 +35,7 @@ public class PlayerControl : MonoBehaviour
 
     private void OnGUI()
     {
+#if UNITY_WP8
         if (GUI.RepeatButton(new Rect(20, Screen.height - 90, 80, 80), "Left"))
         {
             _horizontalAxis = -1;
@@ -53,6 +54,7 @@ public class PlayerControl : MonoBehaviour
         {
             jump = true;
         }
+#endif
     }
 
 
