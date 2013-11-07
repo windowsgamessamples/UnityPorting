@@ -108,13 +108,11 @@
     <Content Include="Assets\SquareTile_150.scale-100.png" />
     <Content Include="Assets\SquareTile_70.scale-100.png" />
     <Content Include="Assets\StoreLogo.png" />
+    <Content Include="MyPlugin.dll" />
   </ItemGroup>
   <ItemGroup>
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="MyPlugin">
-      <HintPath>.\MyPlugin.dll</HintPath>
-    </Reference>
     <Reference Include="NotificationsExtensions.WinRT">
       <HintPath>..\..\packages\NotificationsExtensions.WinRT.1.0.1\lib\netcore45\NotificationsExtensions.WinRT.dll</HintPath>
     </Reference>

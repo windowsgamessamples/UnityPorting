@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Package xmlns="http://schemas.microsoft.com/appx/2010/manifest" xmlns:m2="http://schemas.microsoft.com/appx/2013/manifest">
-  <Identity Name="Platformer" Publisher="CN=DefaultCompany" Version="0.0.0.1" ProcessorArchitecture="x86" />
+  <Identity Name="Platformer" Publisher="CN=DefaultCompany" Version="0.0.0.2" ProcessorArchitecture="x86" />
   <Properties>
     <DisplayName>Platformer</DisplayName>
     <PublisherDisplayName>DefaultCompany</PublisherDisplayName>

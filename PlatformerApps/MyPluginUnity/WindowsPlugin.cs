@@ -34,10 +34,18 @@ namespace MyPlugin
         public static async void ShowShareUI()
         {
 
-            await CoreWindow.GetForCurrentThread().Dispatcher.RunAsync(CoreDispatcherPriority.High, delegate()
+            try
             {
-                DataTransferManager.ShowShareUI();
-            });
+                await Windows.UI.Xaml.Window.Current.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+                {
+                    DataTransferManager.ShowShareUI();
+                });
+            }
+            catch (Exception ex)
+            {
+               // TODO - fix null reference exception!
+            }
+
 
 #elif WINDOWS_PHONE
 
