@@ -140,9 +140,9 @@ Global
 		{754898A3-D6B3-ED44-ACFD-A12CE9CA6CCE}.Master|ARM.ActiveCfg = Master|ARM
 		{754898A3-D6B3-ED44-ACFD-A12CE9CA6CCE}.Master|ARM.Build.0 = Master|ARM
 		{754898A3-D6B3-ED44-ACFD-A12CE9CA6CCE}.Master|ARM.Deploy.0 = Master|ARM
-		{754898A3-D6B3-ED44-ACFD-A12CE9CA6CCE}.Master|Mixed Platforms.ActiveCfg = Master|x86
-		{754898A3-D6B3-ED44-ACFD-A12CE9CA6CCE}.Master|Mixed Platforms.Build.0 = Master|x86
-		{754898A3-D6B3-ED44-ACFD-A12CE9CA6CCE}.Master|Mixed Platforms.Deploy.0 = Master|x86
+		{754898A3-D6B3-ED44-ACFD-A12CE9CA6CCE}.Master|Mixed Platforms.ActiveCfg = Master|ARM
+		{754898A3-D6B3-ED44-ACFD-A12CE9CA6CCE}.Master|Mixed Platforms.Build.0 = Master|ARM
+		{754898A3-D6B3-ED44-ACFD-A12CE9CA6CCE}.Master|Mixed Platforms.Deploy.0 = Master|ARM
 		{754898A3-D6B3-ED44-ACFD-A12CE9CA6CCE}.Master|x64.ActiveCfg = Master|x86
 		{754898A3-D6B3-ED44-ACFD-A12CE9CA6CCE}.Master|x86.ActiveCfg = Master|x86
 		{754898A3-D6B3-ED44-ACFD-A12CE9CA6CCE}.Master|x86.Build.0 = Master|x86
