@@ -52,7 +52,7 @@ Then simply F5 the solution and it should run!
 
 **Updating the Sample Windows Plugin**
 
-The MyPlugin pluing is already include in the Unity project source. 
+The MyPlugin plugin is already include in the Unity project source. 
 
 If you update the source, simply build in Release/Any CPu and copy the resulting dlls to the following folders:
 
