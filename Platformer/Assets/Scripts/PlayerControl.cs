@@ -22,6 +22,8 @@ public class PlayerControl : MonoBehaviour
 	private Transform groundCheck;			// A position marking where to check if the player is grounded.
 	private bool grounded = false;			// Whether or not the player is grounded.
 	private Animator anim;					// Reference to the player's animator component.
+    private float _horizontalAxis = 0;
+    private bool _buttonPressed = false;
 
 
 	void Awake()
@@ -31,8 +33,30 @@ public class PlayerControl : MonoBehaviour
 		anim = GetComponent<Animator>();
 	}
 
+    private void OnGUI()
+    {
+        if (GUI.RepeatButton(new Rect(20, Screen.height - 90, 80, 80), "Left"))
+        {
+            _horizontalAxis = -1;
+        }
+        else if (GUI.RepeatButton(new Rect(120, Screen.height - 90, 80, 80), "Right"))
+        {
+            _horizontalAxis = 1;
+        }
+        else
+        {
+            //_horizontalAxis = Mathf.Lerp(_horizontalAxis, 0, Time.deltaTime / 10);
+            _horizontalAxis = 0;
+        }
 
-	void Update()
+        if (GUI.Button(new Rect(Screen.width - 90, Screen.height - 90, 80, 80), "Jump"))
+        {
+            jump = true;
+        }
+    }
+
+
+    void Update()
 	{
 		// The player is grounded if a linecast to the groundcheck position hits anything on the ground layer.
 		grounded = Physics2D.Linecast(transform.position, groundCheck.position, 1 << LayerMask.NameToLayer("Ground"));  
@@ -45,16 +69,17 @@ public class PlayerControl : MonoBehaviour
 
 	void FixedUpdate ()
 	{
-		// Cache the horizontal input.
-		float h = Input.GetAxis("Horizontal");
+#if UNITY_METRO // Get keyboard input 
+        _horizontalAxis = Input.GetAxis("Horizontal");
+#endif
 
 		// The Speed animator parameter is set to the absolute value of the horizontal input.
-		anim.SetFloat("Speed", Mathf.Abs(h));
+		anim.SetFloat("Speed", Mathf.Abs(_horizontalAxis));
 
 		// If the player is changing direction (h has a different sign to velocity.x) or hasn't reached maxSpeed yet...
-		if(h * rigidbody2D.velocity.x < maxSpeed)
+		if(_horizontalAxis * rigidbody2D.velocity.x < maxSpeed)
 			// ... add a force to the player.
-			rigidbody2D.AddForce(Vector2.right * h * moveForce);
+			rigidbody2D.AddForce(Vector2.right * _horizontalAxis * moveForce);
 
 		// If the player's horizontal velocity is greater than the maxSpeed...
 		if(Mathf.Abs(rigidbody2D.velocity.x) > maxSpeed)
@@ -62,31 +87,36 @@ public class PlayerControl : MonoBehaviour
 			rigidbody2D.velocity = new Vector2(Mathf.Sign(rigidbody2D.velocity.x) * maxSpeed, rigidbody2D.velocity.y);
 
 		// If the input is moving the player right and the player is facing left...
-		if(h > 0 && !facingRight)
+		if(_horizontalAxis > 0 && !facingRight)
 			// ... flip the player.
 			Flip();
 		// Otherwise if the input is moving the player left and the player is facing right...
-		else if(h < 0 && facingRight)
+		else if(_horizontalAxis < 0 && facingRight)
 			// ... flip the player.
 			Flip();
 
-		// If the player should jump...
-		if(jump)
-		{
-			// Set the Jump animator trigger parameter.
-			anim.SetTrigger("Jump");
-
-			// Play a random jump audio clip.
-			int i = Random.Range(0, jumpClips.Length);
-			AudioSource.PlayClipAtPoint(jumpClips[i], transform.position);
-
-			// Add a vertical force to the player.
-			rigidbody2D.AddForce(new Vector2(0f, jumpForce));
-
-			// Make sure the player can't jump again until the jump conditions from Update are satisfied.
-			jump = false;
-		}
+	    Jump();
 	}
+
+    void Jump()
+    {
+        // If the player should jump...
+        if (jump)
+        {
+            // Set the Jump animator trigger parameter.
+            anim.SetTrigger("Jump");
+
+            // Play a random jump audio clip.
+            int i = Random.Range(0, jumpClips.Length);
+            AudioSource.PlayClipAtPoint(jumpClips[i], transform.position);
+
+            // Add a vertical force to the player.
+            rigidbody2D.AddForce(new Vector2(0f, jumpForce));
+
+            // Make sure the player can't jump again until the jump conditions from Update are satisfied.
+            jump = false;
+        }
+    }
 	
 	
 	void Flip ()

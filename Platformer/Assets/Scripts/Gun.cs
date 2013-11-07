@@ -22,25 +22,40 @@ public class Gun : MonoBehaviour
 	void Update ()
 	{
 		// If the fire button is pressed...
+#if UNITY_METRO
 		if(Input.GetButtonDown("Fire1"))
 		{
-			// ... set the animator Shoot trigger parameter and play the audioclip.
-			anim.SetTrigger("Shoot");
-			audio.Play();
-
-			// If the player is facing right...
-			if(playerCtrl.facingRight)
-			{
-				// ... instantiate the rocket facing right and set it's velocity to the right. 
-				Rigidbody2D bulletInstance = Instantiate(rocket, transform.position, Quaternion.Euler(new Vector3(0,0,0))) as Rigidbody2D;
-				bulletInstance.velocity = new Vector2(speed, 0);
-			}
-			else
-			{
-				// Otherwise instantiate the rocket facing left and set it's velocity to the left.
-				Rigidbody2D bulletInstance = Instantiate(rocket, transform.position, Quaternion.Euler(new Vector3(0,0,180f))) as Rigidbody2D;
-				bulletInstance.velocity = new Vector2(-speed, 0);
-			}
+			Shoot();
 		}
+#endif
 	}
+
+    void Shoot()
+    {
+        // ... set the animator Shoot trigger parameter and play the audioclip.
+		anim.SetTrigger("Shoot");
+		audio.Play();
+
+		// If the player is facing right...
+		if(playerCtrl.facingRight)
+		{
+			// ... instantiate the rocket facing right and set it's velocity to the right. 
+			Rigidbody2D bulletInstance = Instantiate(rocket, transform.position, Quaternion.Euler(new Vector3(0,0,0))) as Rigidbody2D;
+			bulletInstance.velocity = new Vector2(speed, 0);
+		}
+		else
+		{
+			// Otherwise instantiate the rocket facing left and set it's velocity to the left.
+			Rigidbody2D bulletInstance = Instantiate(rocket, transform.position, Quaternion.Euler(new Vector3(0,0,180f))) as Rigidbody2D;
+			bulletInstance.velocity = new Vector2(-speed, 0);
+		}
+    }
+
+    private void OnGUI()
+    {
+        if (GUI.Button(new Rect(Screen.width - 180, Screen.height - 90, 80, 80), "Shoot"))
+        {
+            Shoot();
+        }
+    }
 }
