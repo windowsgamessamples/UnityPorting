@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Net;
 using System.Windows;
@@ -12,6 +13,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
+using UnityPlayer;
 
 namespace Platformer
 {
@@ -75,6 +77,7 @@ namespace Platformer
 		// This code will not execute when the application is closing
 		private void Application_Deactivated(object sender, DeactivatedEventArgs e)
 		{
+		    UpdateLiveTile();
 			UnityPlayer.UnityApp.Deactivate();
 		}
 
@@ -82,8 +85,44 @@ namespace Platformer
 		// This code will not execute when the application is deactivated
 		private void Application_Closing(object sender, ClosingEventArgs e)
 		{
+            UpdateLiveTile();
 			UnityPlayer.UnityApp.Quit();
 		}
+
+        // Update the live tile
+	    private void UpdateLiveTile()
+	    {
+            UnityApp.BeginInvoke(() =>
+            {
+                var gameManager = GameManager.Instance; // Get our GameManager class from Unity
+
+                if (gameManager == null)
+                {
+                    Debug.WriteLine("Gamemanager not found in Unity project");
+                    return;
+                }
+
+                var score = GameManager.Instance.GetScore();
+                
+                ShellTile oTile = ShellTile.ActiveTiles.FirstOrDefault();
+                if (oTile != null)
+                {
+                    var backContent = "Score : " + score;
+                    var wideBackContent = "Score : " + score;
+
+                    var tileData = new FlipTileData()
+                    {
+                        BackTitle = "Score",
+                        BackContent = backContent,
+                        Count = 0,
+                        WideBackContent = wideBackContent,
+                        WideBackgroundImage =  new Uri("/Assets/Tiles/FlipCycleTileLarge.png", UriKind.Relative),
+                        BackgroundImage = new Uri("/Assets/Tiles/FlipCycleTileMedium.png", UriKind.Relative)
+                    };
+                    oTile.Update(tileData);
+                }
+            });
+	    }
 
 		// Code to execute if a navigation fails
 		private void RootFrame_NavigationFailed(object sender, NavigationFailedEventArgs e)
