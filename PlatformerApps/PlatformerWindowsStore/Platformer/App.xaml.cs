@@ -65,6 +65,9 @@ namespace Template
 
 				appCallbacks.SetCoreWindowEvents(Window.Current.CoreWindow);
 
+                // ensure we set the dispatcher so we can invoke onto UI thread in our plugin
+                MyPlugin.WindowsPlugin.CurrentDispatcher = Window.Current.Dispatcher;
+
 				appCallbacks.InitializeD3DXAML();
 			}
 
