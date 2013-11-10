@@ -25,7 +25,7 @@ public class GameManager : MonoBehaviour {
     {
         _score = GameObject.Find("Score").GetComponent<Score>();
 
-#if UNITY_METRO && !UNITY_EDITOR  
+#if UNITY_WINRT && !UNITY_EDITOR  
         WindowsGateway.UnityLoaded();
 #endif
 
