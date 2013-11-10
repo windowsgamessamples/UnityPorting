@@ -26,40 +26,35 @@ namespace MyPlugin
 
         public static void ShowShareUI()
         {
-
-        // do nothing
+            // do nothing
+        }
 
 #elif NETFX_CORE
 
+        // needs to be set via the app so we can invoke onto UI Thread
+        public static CoreDispatcher CurrentDispatcher 
+        {get;set;}
+
         public static async void ShowShareUI()
         {
-
-            try
+            await CurrentDispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
             {
-                await Windows.UI.Xaml.Window.Current.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
-                {
-                    DataTransferManager.ShowShareUI();
-                });
-            }
-            catch (Exception ex)
-            {
-                // TODO - fix null reference exception!
-            }
-
+                DataTransferManager.ShowShareUI();
+            });
+        }
 
 #elif WINDOWS_PHONE
 
         public static void ShowShareUI()
         {
             ShareLinkTask shareLinkTask = new ShareLinkTask();
-
             shareLinkTask.Title = "Great Platformer Game!";
             shareLinkTask.LinkUri = new Uri("http://code.msdn.com/wpapps", UriKind.Absolute);
             shareLinkTask.Message = "Sharing the app for windows phone example!.";
-
             shareLinkTask.Show();
+        }
             
 #endif
-        }
+
     }
 }
