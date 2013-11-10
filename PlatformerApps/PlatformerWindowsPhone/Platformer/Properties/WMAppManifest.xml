@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Deployment xmlns="http://schemas.microsoft.com/windowsphone/2012/deployment" AppPlatformVersion="8.0">
   <DefaultLanguage xmlns="" code="en-US" />
-  <App xmlns="" ProductID="{754898A3-D6B3-ED44-ACFD-A12CE9CA6CCE}" Title="Platformer" RuntimeType="Silverlight" Version="1.0.0.0" Genre="apps.normal"  Author="DefaultCompany" Description="" Publisher="DefaultCompany" PublisherID="{36e0404a-2921-4b73-8632-3bf364496337}">
+  <App xmlns="" ProductID="{754898A3-D6B3-ED44-ACFD-A12CE9CA6CCE}" Title="Platformer" RuntimeType="Silverlight" Version="1.0.0.0" Genre="apps.games"  Author="DefaultCompany" Description="" Publisher="DefaultCompany" PublisherID="{36e0404a-2921-4b73-8632-3bf364496337}">
     <IconPath IsRelative="true" IsResource="false">Assets\ApplicationIcon.png</IconPath>
     <Capabilities>
       <Capability Name="ID_CAP_IDENTITY_DEVICE" />
