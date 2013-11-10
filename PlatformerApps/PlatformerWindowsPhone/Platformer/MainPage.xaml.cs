@@ -50,15 +50,14 @@ namespace Platformer
             else
             {
                 SplashProgress.Value = SplashProgress.Maximum;
-                //await Task.Delay(1000); // Timers here make no difference to the splash screen being removed before the scene loads
+                await Task.Delay(250);
                 RemoveExtendedSplash();
-                await Task.Delay(1000); // Timers here make no difference to the splash screen being removed before the scene loads
             }
         }
 
 	    private async void OnUnityLoaded()
 	    {
-	        await Task.Delay(0);
+	
 	        _isUnityLoaded = true;
 	    }
 
