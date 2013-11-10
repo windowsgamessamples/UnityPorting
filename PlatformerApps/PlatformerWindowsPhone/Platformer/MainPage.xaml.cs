@@ -1,16 +1,11 @@
 using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO.IsolatedStorage;
-using System.Linq;
-using System.Net;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Animation;
-using System.Windows.Shapes;
+using System.Windows.Threading;
+using Windows.ApplicationModel.Activation;
 using Microsoft.Phone.Controls;
 using Windows.Foundation;
 using Windows.Devices.Geolocation;
@@ -22,8 +17,12 @@ namespace Platformer
 {
 	public partial class MainPage : PhoneApplicationPage
 	{
+	    private SplashScreen _splash;
 		private bool _unityStartedLoading;
 		private bool _useLocation;
+        private bool _isUnityLoaded;
+        private DispatcherTimer _extendedSplashTimer;
+
 
 		// Constructor
 		public MainPage()
@@ -32,9 +31,46 @@ namespace Platformer
 			UnityApp.SetBridge(bridge);
 			InitializeComponent();
 			bridge.Control = DrawingSurfaceBackground;
+
+            _extendedSplashTimer = new DispatcherTimer();
+            _extendedSplashTimer.Interval = TimeSpan.FromMilliseconds(50);
+            _extendedSplashTimer.Tick += ExtendedSplashTimer_Tick;
+            _extendedSplashTimer.Start();
+
+            // ensure we listen to when unity tells us game is ready
+            WindowsGateway.UnityLoaded = OnUnityLoaded;
+
 		}
 
-		private void DrawingSurfaceBackground_Loaded(object sender, RoutedEventArgs e)
+        async void ExtendedSplashTimer_Tick(object sender, EventArgs e)
+        {
+            var increment = _extendedSplashTimer.Interval.TotalMilliseconds * 10;
+            if (!_isUnityLoaded && SplashProgress.Value <= (SplashProgress.Maximum - increment))
+                SplashProgress.Value += increment;
+            else
+            {
+                SplashProgress.Value = SplashProgress.Maximum;
+                await Task.Delay(150);
+                RemoveExtendedSplash();
+            }
+        }
+
+	    private async void OnUnityLoaded()
+	    {
+	        await Task.Delay(0);
+	        _isUnityLoaded = true;
+	    }
+
+	    private void RemoveExtendedSplash()
+	    {
+            if(_extendedSplashTimer != null)
+                _extendedSplashTimer.Stop();
+
+	        if (DrawingSurfaceBackground.Children.Count > 0)
+	            DrawingSurfaceBackground.Children.Remove(ExtendedSplashGrid);
+	    }
+
+	    private void DrawingSurfaceBackground_Loaded(object sender, RoutedEventArgs e)
 		{
 			if (!_unityStartedLoading)
 			{
@@ -48,12 +84,14 @@ namespace Platformer
 
 				UnityApp.SetNativeResolution(width, height);
 				UnityApp.SetRenderResolution(width, height);
-				UnityPlayer.UnityApp.SetOrientation((int)Orientation);
+				UnityApp.SetOrientation((int)Orientation);
 
 				DrawingSurfaceBackground.SetBackgroundContentProvider(UnityApp.GetBackgroundContentProvider());
 				DrawingSurfaceBackground.SetBackgroundManipulationHandler(UnityApp.GetManipulationHandler());
 			}
 		}
+
+        
 
 		private void Unity_Loaded()
 		{
