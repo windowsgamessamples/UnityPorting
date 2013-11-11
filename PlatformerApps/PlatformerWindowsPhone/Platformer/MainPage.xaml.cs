@@ -17,7 +17,6 @@ namespace Platformer
 {
 	public partial class MainPage : PhoneApplicationPage
 	{
-	    private SplashScreen _splash;
 		private bool _unityStartedLoading;
 		private bool _useLocation;
 	    public static bool IsUnityLoaded { get; set; }
@@ -55,9 +54,8 @@ namespace Platformer
             }
         }
 
-	    private async void OnUnityLoaded()
+	    private void OnUnityLoaded()
 	    {
-	
 	        IsUnityLoaded = true;
 	    }
 
@@ -90,8 +88,6 @@ namespace Platformer
 				DrawingSurfaceBackground.SetBackgroundManipulationHandler(UnityApp.GetManipulationHandler());
 			}
 		}
-
-        
 
 		private void Unity_Loaded()
 		{
