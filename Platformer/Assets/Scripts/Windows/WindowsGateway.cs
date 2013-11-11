@@ -32,7 +32,7 @@ public static class WindowsGateway
     public static Action UnityLoaded;
 
 	/// <summary>
-	/// Called from Windows Store app when the app's window is resized
+	/// Deal with windows resizing
 	/// </summary>
     public static void WindowSizeChanged(int width, int height) 
     {
