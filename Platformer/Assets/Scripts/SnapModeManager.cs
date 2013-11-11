@@ -1,7 +1,11 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class SnapModeManager : MonoBehaviour {
+public class SnapModeManager : MonoBehaviour
+{
+    private bool _snapped = false;
+
+    #region Instance
 
     static SnapModeManager _instance;
     public static SnapModeManager Instance
@@ -14,11 +18,8 @@ public class SnapModeManager : MonoBehaviour {
         }
         set { _instance = value; }
     }
+#endregion
 
-	void Start () {
-	
-	}
-	
 	void Update () {
         if (Input.GetKeyDown(KeyCode.O))
             Show();
@@ -30,16 +31,18 @@ public class SnapModeManager : MonoBehaviour {
     public void Show()
     {
         GameManager.Instance.Pause();
+        _snapped = true;
     }
 
     public void Hide()
     {
         GameManager.Instance.Resume();
+        _snapped = false;
     }
 
     void OnGUI()
     {
-        if (!GameManager.Instance.Paused)
+        if (!_snapped)
             return;
 
         if(GUI.Button(new Rect(Screen.width / 2 - 50, Screen.height / 2 - 50, 100, 100), "Resume Game"))
