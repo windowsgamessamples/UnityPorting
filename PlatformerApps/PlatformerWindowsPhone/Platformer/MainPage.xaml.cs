@@ -20,7 +20,7 @@ namespace Platformer
 	    private SplashScreen _splash;
 		private bool _unityStartedLoading;
 		private bool _useLocation;
-        private bool _isUnityLoaded;
+	    public static bool IsUnityLoaded { get; set; }
         private DispatcherTimer _extendedSplashTimer;
 
 
@@ -45,7 +45,7 @@ namespace Platformer
         async void ExtendedSplashTimer_Tick(object sender, EventArgs e)
         {
             var increment = _extendedSplashTimer.Interval.TotalMilliseconds * 10;
-            if (!_isUnityLoaded && SplashProgress.Value <= (SplashProgress.Maximum - increment))
+            if (!IsUnityLoaded && SplashProgress.Value <= (SplashProgress.Maximum - increment))
                 SplashProgress.Value += increment;
             else
             {
@@ -58,7 +58,7 @@ namespace Platformer
 	    private async void OnUnityLoaded()
 	    {
 	
-	        _isUnityLoaded = true;
+	        IsUnityLoaded = true;
 	    }
 
 	    private void RemoveExtendedSplash()

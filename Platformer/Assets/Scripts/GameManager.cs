@@ -6,6 +6,8 @@ public class GameManager : MonoBehaviour {
     public bool Paused { get; set; }
     private float _originalTimeScale = 1;
     private Score _score;
+    private bool _showConfirmQuit = false;
+    private bool _showResume = false;
 
     #region Instance
     static GameManager _instance;
@@ -30,6 +32,43 @@ public class GameManager : MonoBehaviour {
 #endif
 
 	}
+
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            Pause();
+            _showConfirmQuit = true;
+        }
+    }
+
+    void OnGUI()
+    {
+        if (_showConfirmQuit)
+        {
+            if (GUI.Button(new Rect(Screen.width/2 - 100, Screen.height/2 - 50, 100, 100), "Confirm Quit"))
+                Application.Quit();
+            if (GUI.Button(new Rect(Screen.width/2 + 50, Screen.height/2 - 50, 100, 100), "Cancel"))
+            {
+                _showConfirmQuit = false;
+                Resume();
+            }
+        }
+
+        if (_showResume)
+        {
+            if (GUI.Button(new Rect(Screen.width/2 - 50, Screen.height/2 - 50, 100, 100), "Resume Game"))
+            {
+                _showResume = false;
+                Resume();
+            }
+        }
+    }
+
+    public void ShowResume()
+    {
+        _showResume = true;
+    }
 	
     // Pause the game
     public void Pause()

@@ -1,16 +1,8 @@
 using System;
-using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
-using System.Net;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Animation;
 using System.Windows.Navigation;
-using System.Windows.Shapes;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
 using UnityPlayer;
@@ -77,7 +69,7 @@ namespace Platformer
 		// This code will not execute when the application is closing
 		private void Application_Deactivated(object sender, DeactivatedEventArgs e)
 		{
-		    UpdateLiveTile();
+            AppDeactivatedOrClosing();
 			UnityPlayer.UnityApp.Deactivate();
 		}
 
@@ -85,9 +77,31 @@ namespace Platformer
 		// This code will not execute when the application is deactivated
 		private void Application_Closing(object sender, ClosingEventArgs e)
 		{
-            UpdateLiveTile();
+		    AppDeactivatedOrClosing();
 			UnityPlayer.UnityApp.Quit();
 		}
+
+        private void AppDeactivatedOrClosing()
+        {
+            if (!MainPage.IsUnityLoaded)
+                return;
+
+            UpdateLiveTile();
+
+            // Anything being called back into Unity should be called on the Unity app thread to prevent threading exceptions
+            UnityApp.BeginInvoke(() =>
+            {
+                if (GameManager.Instance == null)
+                {
+                    Debug.WriteLine("No GameManager component.. AppDeactivatedOrClosing will not be run.");
+                    return;
+                }
+
+                // Tell the Unity GameManager to pause the game, and show a resume button, if the game resumes focus..
+                GameManager.Instance.Pause();
+                GameManager.Instance.ShowResume();
+            });
+        }
 
         // Update the live tile
 	    private void UpdateLiveTile()

@@ -141,6 +141,8 @@
     </Content>
     <Content Include="SplashScreenImage.jpg" />
     <Content Include="SplashScreenImageLandscapeLeft.jpg" />
+    <Content Include="SplashScreenImagePortrait.jpg" />
+    <Content Include="SplashScreenImagePortraitUpsideDown.jpg" />
   </ItemGroup>
   <Choose>
     <When Condition=" '$(Configuration)' == 'Debug' Or '$(Configuration)' == 'Release' ">
