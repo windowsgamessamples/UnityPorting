@@ -13,7 +13,6 @@ public static class WindowsGateway
     static WindowsGateway()
     {
         UnityEngine.WSA.Application.windowSizeChanged += WindowSizeChanged;
-
         // create blank implementations to avvoid errors within editor
         UnityLoaded = delegate {};
     }
