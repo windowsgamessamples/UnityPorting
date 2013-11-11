@@ -12,6 +12,8 @@ public static class WindowsGateway
 
     static WindowsGateway()
     {
+        UnityEngine.WSA.Application.windowSizeChanged += WindowSizeChanged;
+
         // create blank implementations to avvoid errors within editor
         UnityLoaded = delegate {};
     }
@@ -32,7 +34,7 @@ public static class WindowsGateway
 	/// <summary>
 	/// Called from Windows Store app when the app's window is resized
 	/// </summary>
-	public static void WindowSizeChanged (double height, double width) 
+    public static void WindowSizeChanged(int width, int height) 
     {
 	    // TODO deal with window resizing. e.g. if <= 500 implement pause screen
         if (width <= 500)

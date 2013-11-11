@@ -100,19 +100,9 @@ namespace Template
                 ExtendedSplashImage.Height = splashImageRect.Height;
                 ExtendedSplashImage.Width = splashImageRect.Width;
             }
-            else if (args != null)
-            {
-                // Game has loaded, tell Unity engine that the window size has changed
-                var height = args.Size.Height;
-                var width = args.Size.Width;
-                AppCallbacks.Instance.InvokeOnAppThread(() =>
-                {
-                    WindowsGateway.WindowSizeChanged(height, width);
-                }, false);
-            }
         }
 
-        private async void OnWindowVisibilityChanged(object sender, VisibilityChangedEventArgs e)
+        private void OnWindowVisibilityChanged(object sender, VisibilityChangedEventArgs e)
         {
             if (e.Visible)
             {
