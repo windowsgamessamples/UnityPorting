@@ -54,7 +54,9 @@ In addition, there are 3 projets for the sample "MyPlugin" plugin.
 
 The MyPlugin plugin is already include in the Unity project source. 
 
-If you update the source, simply build in Release/Any CPu and copy the resulting dlls to the following folders:
+When updating the source of any of the pluing projects (MyPluginUnity, MyPluginWindows or MyPluginWP8), if you ensure 
+that you set the build configuration for "Release" and "Any CPU", there is a post build event that will automatically 
+copy the rsulting MyPlugin dll to the correct locations in the Unity project automatically as fllows:
 
 - /Assets/Plugins/MyPlugin.dll < From the MyPluginUnity Project
 - /Assets/Plugins/Metro/MyPlugin.dll < From the MyPluginWindows Project
