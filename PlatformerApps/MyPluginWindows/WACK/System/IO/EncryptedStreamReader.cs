@@ -7,7 +7,7 @@ using Windows.ApplicationModel.Store;
 
 namespace MyPlugin.WACK.System.IO
 {
-    public class EncryptedStreamReader : StreamReader
+    internal class EncryptedStreamReader : StreamReader
     {
         public EncryptedStreamReader(Stream stream)
             : base(stream)

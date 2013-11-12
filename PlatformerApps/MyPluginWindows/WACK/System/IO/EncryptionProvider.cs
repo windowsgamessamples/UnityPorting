@@ -5,7 +5,7 @@ using Windows.Storage.Streams;
 
 namespace MyPlugin.WACK.System.IO
 {
-    public static class EncryptionProvider
+    internal static class EncryptionProvider
     {
 
         public static IBuffer GetMD5Hash(string key)

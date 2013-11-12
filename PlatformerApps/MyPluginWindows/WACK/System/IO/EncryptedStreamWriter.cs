@@ -8,7 +8,7 @@ using Windows.ApplicationModel.Store;
 
 namespace MyPlugin.WACK.System.IO
 {
-    public class EncryptedStreamWriter : StreamWriter
+    internal class EncryptedStreamWriter : StreamWriter
     {
         public EncryptedStreamWriter(Stream str)
             : base(str)
