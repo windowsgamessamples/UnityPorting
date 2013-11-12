@@ -18,35 +18,9 @@ public static class WindowsGateway
             UnityEngine.WSA.Application.windowSizeChanged += WindowSizeChanged;
         }
 #endif
+
         // create blank implementations to avvoid errors within editor
         UnityLoaded = delegate {};
-
-        // simple call to some WACK tests
-        RunWACKSamples();
-
-    }
-
-    /// <summary>
-    /// rudimentary hooks using our WACK override classes (unit tests would be best)
-    /// </summary>
-    private static void RunWACKSamples()
-    {
-        // some games use thread.sleep, not in UNITY_METRO
-        Thread.Sleep(1); 
-
-        // these collections aren't in UNITY_METRO or UNITY_WP8
-        var hash = new Hashtable();
-        hash.Add("1", "first");
-        var alist = new ArrayList();
-        alist.Add("test");
-
-        if (File.Exists("test"))
-        {
-
-        }
-        if (Directory.Exists("test2"))
-        {
-        }
 
     }
 

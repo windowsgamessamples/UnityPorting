@@ -19,6 +19,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{A9EA72
 		.nuget\NuGet.targets = .nuget\NuGet.targets
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assembly-CSharp-vs", "..\Platformer\Assembly-CSharp-vs.csproj", "{100AE41E-9853-00A1-0814-C759729749EB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -188,6 +190,27 @@ Global
 		{1C6D430B-911E-4B0D-BC1C-B4B37100B393}.Release|x64.Build.0 = Release|x64
 		{1C6D430B-911E-4B0D-BC1C-B4B37100B393}.Release|x86.ActiveCfg = Release|x86
 		{1C6D430B-911E-4B0D-BC1C-B4B37100B393}.Release|x86.Build.0 = Release|x86
+		{100AE41E-9853-00A1-0814-C759729749EB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{100AE41E-9853-00A1-0814-C759729749EB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{100AE41E-9853-00A1-0814-C759729749EB}.Debug|ARM.ActiveCfg = Debug|Any CPU
+		{100AE41E-9853-00A1-0814-C759729749EB}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{100AE41E-9853-00A1-0814-C759729749EB}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{100AE41E-9853-00A1-0814-C759729749EB}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{100AE41E-9853-00A1-0814-C759729749EB}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{100AE41E-9853-00A1-0814-C759729749EB}.Master|Any CPU.ActiveCfg = Release|Any CPU
+		{100AE41E-9853-00A1-0814-C759729749EB}.Master|Any CPU.Build.0 = Release|Any CPU
+		{100AE41E-9853-00A1-0814-C759729749EB}.Master|ARM.ActiveCfg = Release|Any CPU
+		{100AE41E-9853-00A1-0814-C759729749EB}.Master|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{100AE41E-9853-00A1-0814-C759729749EB}.Master|Mixed Platforms.Build.0 = Release|Any CPU
+		{100AE41E-9853-00A1-0814-C759729749EB}.Master|x64.ActiveCfg = Release|Any CPU
+		{100AE41E-9853-00A1-0814-C759729749EB}.Master|x86.ActiveCfg = Release|Any CPU
+		{100AE41E-9853-00A1-0814-C759729749EB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{100AE41E-9853-00A1-0814-C759729749EB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{100AE41E-9853-00A1-0814-C759729749EB}.Release|ARM.ActiveCfg = Release|Any CPU
+		{100AE41E-9853-00A1-0814-C759729749EB}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{100AE41E-9853-00A1-0814-C759729749EB}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{100AE41E-9853-00A1-0814-C759729749EB}.Release|x64.ActiveCfg = Release|Any CPU
+		{100AE41E-9853-00A1-0814-C759729749EB}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
