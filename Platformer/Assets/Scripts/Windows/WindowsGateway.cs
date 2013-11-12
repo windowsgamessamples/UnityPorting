@@ -2,14 +2,7 @@
 
 using System;
 using System.Collections;
-using MyPlugin;
-
-#if UNITY_METRO
-
-// WACK fixes available vai WACK namespace in our plugin
-using WACK.System.Threading;
-
-#endif
+using System.Threading;
 
 /// <summary>
 /// Interop between Unity and Windows Store App
@@ -19,14 +12,33 @@ public static class WindowsGateway
 
     static WindowsGateway()
     {
-
-        UnityEngine.WSA.Application.windowSizeChanged += WindowSizeChanged;
+#if UNITY_METRO
+        { 
+            UnityEngine.WSA.Application.windowSizeChanged += WindowSizeChanged;
+        }
+#endif
         // create blank implementations to avvoid errors within editor
         UnityLoaded = delegate {};
 
-        // this will work fine in UNITY_EDITOR, UNITY_WP8
-        // for UNITY_METRO, implemented via plugin using WACK. namespace to avoid any code changes
-        Thread.Sleep(1);
+        // simple call to some WACK tests
+        RunWACKSamples();
+
+    }
+
+    /// <summary>
+    /// rudimentary hooks using our WACK override classes (unit tests would be best)
+    /// </summary>
+    private static void RunWACKSamples()
+    {
+        // some games use thread.sleep, not in UNITY_METRO
+        Thread.Sleep(1); 
+
+        // these collections aren't in UNITY_METRO or UNITY_WP8
+        var hash = new Hashtable();
+        hash.Add("1", "first");
+        var alist = new ArrayList();
+        alist.Add("test");
+
     }
 
     /// <summary>
@@ -42,6 +54,8 @@ public static class WindowsGateway
     /// </summary>
     public static Action UnityLoaded;
 
+#if UNITY_METRO
+
 	/// <summary>
 	/// Deal with windows resizing
 	/// </summary>
@@ -56,7 +70,9 @@ public static class WindowsGateway
         {
             SnapModeManager.Instance.Hide();
         }
-	}   
+	} 
+  
+#endif
 
 }
 

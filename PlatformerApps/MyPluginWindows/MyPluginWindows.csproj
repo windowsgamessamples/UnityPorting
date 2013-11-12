@@ -103,9 +103,6 @@
     <Prefer32Bit>true</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="..\MyPluginUnity\WACK\System\Threading\Thread.cs">
-      <Link>WACK\System\Threading\Thread.cs</Link>
-    </Compile>
     <Compile Include="..\MyPluginUnity\WindowsPlugin.cs">
       <Link>WindowsPlugin.cs</Link>
     </Compile>
