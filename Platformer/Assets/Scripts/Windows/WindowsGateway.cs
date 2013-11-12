@@ -4,6 +4,13 @@ using System;
 using System.Collections;
 using MyPlugin;
 
+#if UNITY_METRO
+
+// WACK fixes available vai WACK namespace in our plugin
+using WACK.System.Threading;
+
+#endif
+
 /// <summary>
 /// Interop between Unity and Windows Store App
 /// </summary>
@@ -12,9 +19,14 @@ public static class WindowsGateway
 
     static WindowsGateway()
     {
+
         UnityEngine.WSA.Application.windowSizeChanged += WindowSizeChanged;
         // create blank implementations to avvoid errors within editor
         UnityLoaded = delegate {};
+
+        // this will work fine in UNITY_EDITOR, UNITY_WP8
+        // for UNITY_METRO, implemented via plugin using WACK. namespace to avoid any code changes
+        Thread.Sleep(1);
     }
 
     /// <summary>
