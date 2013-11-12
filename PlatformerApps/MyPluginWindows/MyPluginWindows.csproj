@@ -109,6 +109,9 @@
     <Compile Include="..\MyPluginUnity\WACK\System\IO\FileNative.cs">
       <Link>WACK\System\IO\FileNative.cs</Link>
     </Compile>
+    <Compile Include="..\MyPluginUnity\WACK\System\Net\TcpClientNative.cs">
+      <Link>WACK\System\Net\TcpClientNative.cs</Link>
+    </Compile>
     <Compile Include="..\MyPluginUnity\WindowsPlugin.cs">
       <Link>WindowsPlugin.cs</Link>
     </Compile>

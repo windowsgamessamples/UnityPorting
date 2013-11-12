@@ -43,6 +43,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="WACK\System\IO\DirectoryNative.cs" />
     <Compile Include="WACK\System\IO\FileNative.cs" />
+    <Compile Include="WACK\System\Net\TcpClientNative.cs" />
     <Compile Include="WindowsPlugin.cs" />
   </ItemGroup>
   <ItemGroup />

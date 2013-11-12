@@ -1,4 +1,4 @@
-﻿#if UNITY_METRO && !UNITY_EDIOR
+﻿#if UNITY_METRO && !UNITY_EDITOR
 
 namespace System.Threading
 {

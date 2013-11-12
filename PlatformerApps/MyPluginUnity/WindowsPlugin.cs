@@ -26,7 +26,7 @@ namespace MyPlugin
 
         public static void ShowShareUI()
         {
-            // do nothing
+            throw new NotImplementedException();
         }
 
 #elif NETFX_CORE
