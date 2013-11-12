@@ -3,6 +3,7 @@
 using System;
 using System.Collections;
 using System.Threading;
+using System.IO;
 
 /// <summary>
 /// Interop between Unity and Windows Store App
@@ -38,6 +39,14 @@ public static class WindowsGateway
         hash.Add("1", "first");
         var alist = new ArrayList();
         alist.Add("test");
+
+        if (File.Exists("test"))
+        {
+
+        }
+        if (Directory.Exists("test2"))
+        {
+        }
 
     }
 

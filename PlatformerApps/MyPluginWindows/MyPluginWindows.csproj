@@ -103,10 +103,19 @@
     <Prefer32Bit>true</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="..\MyPluginUnity\WACK\System\IO\DirectoryNative.cs">
+      <Link>WACK\System\IO\DirectoryNative.cs</Link>
+    </Compile>
+    <Compile Include="..\MyPluginUnity\WACK\System\IO\FileNative.cs">
+      <Link>WACK\System\IO\FileNative.cs</Link>
+    </Compile>
     <Compile Include="..\MyPluginUnity\WindowsPlugin.cs">
       <Link>WindowsPlugin.cs</Link>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="WACK\System\IO\EncryptedStreamReader.cs" />
+    <Compile Include="WACK\System\IO\EncryptedStreamWriter.cs" />
+    <Compile Include="WACK\System\IO\EncryptionProvider.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
