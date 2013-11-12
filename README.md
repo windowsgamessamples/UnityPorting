@@ -9,6 +9,22 @@ Unity Porting Code Samples
 
 This is the sample Unity game project you can simply open with Unity 4.3.
 
+Windows Store and Windows Phone specific scripts are kept here:
+/Assets/Scripts/Windows
+
+The WindowsGateway.cs class holds most of the samples integration to/from Windows platforms
+/Assets/Scripts/Windows/WindowsGateway.cs
+
+Some important WACK overrides have been included at:
+/Assets/Scripts/Windows/WACK
+
+For example, the File WACK override for System.IO.File is here:
+/Assets/Scripts/Windows/WACK/System/IO/File.cs
+
+Additionally, any platform specific code will be available via a plugin as required (such as File above).
+
+This approach means you don't have to change ANY game code which relies on these unsupported APIs.
+
 **Building to Windows Store App from Unity**
 
 You must do this before the Windows Store  app will work.
@@ -54,13 +70,13 @@ In addition, there are 3 projets for the sample "MyPlugin" plugin.
 
 The MyPlugin plugin is already include in the Unity project source. 
 
-When updating the source of any of the pluing projects (MyPluginUnity, MyPluginWindows or MyPluginWP8), if you ensure 
+When updating the source of any of the plugin projects (MyPluginUnity, MyPluginWindows or MyPluginWP8), if you ensure 
 that you set the build configuration for "Release" and "Any CPU", there is a post build event that will automatically 
-copy the rsulting MyPlugin dll to the correct locations in the Unity project automatically as fllows:
+copy the resulting MyPlugin.dll to the correct locations in the Unity project automatically as follows:
 
-- /Assets/Plugins/MyPlugin.dll < From the MyPluginUnity Project
-- /Assets/Plugins/Metro/MyPlugin.dll < From the MyPluginWindows Project
-- /Assets/Plugins/WP8/MyPlugin.dll < From the MyPluginWP8 Project
+- MyPluginUnity Project > /Assets/Plugins/MyPlugin.dll 
+- MyPluginWindows Project > /Assets/Plugins/Metro/MyPlugin.dll
+- MyPluginWP8 Project > /Assets/Plugins/WP8/MyPlugin.dll
 
 
 
