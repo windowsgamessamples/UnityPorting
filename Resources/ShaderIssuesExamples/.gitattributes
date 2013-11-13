@@ -1,0 +1,20 @@
+# We need to force lf endings even on Windows, there are editors in windows that can handle lf only files 
+# Set default behaviour, equivalent to core.autocrlf=true
+* text=auto
+
+# definitely text files
+*.cs eol=lf
+*.meta eol=lf
+*.prefab eol=lf
+*.unity eol=lf
+*.txt eol=lf
+
+# definitely binary files
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.mb binary
+*.psd binary
+*.fbx binary
+
+
