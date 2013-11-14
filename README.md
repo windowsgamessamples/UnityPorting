@@ -1,6 +1,6 @@
 # Unity Porting Code Samples
 
-## RTFM
+## Read the Whitepapers
 
 This repo has been created as reference code samples for a set of whitepapers produced to help developers in 
 porting their games to Windows 8.1 and Windows Phone 8.
@@ -16,14 +16,17 @@ It is recommended that you read these whitepapers before delving into the code s
 
 The prerequisites for working with this repo are...
 
-**Unity 4.3**
+**[Unity 4.3](http://unity3d.com/unity/download)**
+
 Either the Unity free version or Unity Pro will work.  
 The add-ons for publishing to the Windows Store and to Windows Phone are free, for basic and Unity Pro users. 
 
 **Visual Studio .Net 2013**
+
 You can use any Visual Studio 2013 SKU, including the free Visual Studio Express.   
 
 **Windows 8.1**
+
 If you do not own a Windows 8 license, you can get a 90-day evaluation version.  
 If you are running Mac OS X or will install on Apple hardware, check different options for installing using Boot Camp, VMWare, or Parallels.   
 
