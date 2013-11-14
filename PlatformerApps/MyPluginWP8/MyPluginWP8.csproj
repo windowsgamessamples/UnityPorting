@@ -83,6 +83,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="..\MyPluginUnity\Facebook\FacebookPlugin.cs">
+      <Link>Facebook\FacebookPlugin.cs</Link>
+    </Compile>
     <Compile Include="..\MyPluginUnity\WindowsPlugin.cs">
       <Link>WindowsPlugin.cs</Link>
     </Compile>
