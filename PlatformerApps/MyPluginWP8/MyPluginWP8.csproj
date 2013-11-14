@@ -92,7 +92,7 @@
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\$(TargetFrameworkIdentifier)\$(TargetFrameworkVersion)\Microsoft.$(TargetFrameworkIdentifier).CSharp.targets" />
   <ProjectExtensions />
   <PropertyGroup>
-    <PostBuildEvent>if "$(ConfigurationName)" == "Release" (if "$(PlatformName)" == "AnyCPU" (copy /y "$(TargetPath)" "$(SolutionDir)\..\Platformer\Assets\Plugins\WP8"))</PostBuildEvent>
+    <PostBuildEvent>if "$(ConfigurationName)" == "Release" (if "$(PlatformName)" == "AnyCPU" (copy /y "$(TargetDir)*.dll" "$(SolutionDir)\..\Platformer\Assets\Plugins\WP8"))</PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

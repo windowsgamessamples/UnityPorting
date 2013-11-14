@@ -15,6 +15,7 @@ using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using NotificationsExtensions.TileContent;
+using MyPlugin;
 
 namespace Template
 {
@@ -57,6 +58,8 @@ namespace Template
             // configure share charm
             var dataTransferManager = DataTransferManager.GetForCurrentView();
             dataTransferManager.DataRequested += DataTransferManager_DataRequested;
+
+
         }
 
         /// <summary>
@@ -190,7 +193,6 @@ namespace Template
             }
 
         }
-
 
         static void DataTransferManager_DataRequested(DataTransferManager sender, DataRequestedEventArgs args)
         {

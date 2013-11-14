@@ -103,6 +103,9 @@
     <Prefer32Bit>true</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="..\MyPluginUnity\Facebook\FacebookPlugin.cs">
+      <Link>Facebook\FacebookPlugin.cs</Link>
+    </Compile>
     <Compile Include="..\MyPluginUnity\WACK\System\IO\DirectoryNative.cs">
       <Link>WACK\System\IO\DirectoryNative.cs</Link>
     </Compile>
@@ -115,6 +118,10 @@
     <Compile Include="..\MyPluginUnity\WindowsPlugin.cs">
       <Link>WindowsPlugin.cs</Link>
     </Compile>
+    <Compile Include="Facebook\EncryptedStore.cs" />
+    <Compile Include="Facebook\Facebook.cs" />
+    <Compile Include="Facebook\FacebookRequest.cs" />
+    <Compile Include="Facebook\NavigationState.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="WACK\System\IO\EncryptedStreamReader.cs" />
     <Compile Include="WACK\System\IO\EncryptedStreamWriter.cs" />
@@ -123,13 +130,18 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Facebook">
+      <HintPath>..\packages\Facebook.6.4.2\lib\win8\Facebook.dll</HintPath>
+    </Reference>
+  </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '12.0' ">
     <VisualStudioVersion>12.0</VisualStudioVersion>
   </PropertyGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\WindowsXaml\v$(VisualStudioVersion)\Microsoft.Windows.UI.Xaml.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
   <PropertyGroup>
-    <PostBuildEvent>if "$(ConfigurationName)" == "Release" (if "$(PlatformName)" == "AnyCPU" (copy /y "$(TargetPath)" "$(SolutionDir)\..\Platformer\Assets\Plugins\Metro"))</PostBuildEvent>
+    <PostBuildEvent>if "$(ConfigurationName)" == "Release" (if "$(PlatformName)" == "AnyCPU" (copy /y "$(TargetDir)*.dll" "$(SolutionDir)\..\Platformer\Assets\Plugins\Metro"))</PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

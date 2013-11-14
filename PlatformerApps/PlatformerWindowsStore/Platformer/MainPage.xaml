@@ -6,6 +6,7 @@
     xmlns:local="using:Template"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    
     mc:Ignorable="d">
 
     <SwapChainBackgroundPanel x:Name="DXSwapChainBackgroundPanel">
@@ -13,6 +14,10 @@
             <Image x:Name="ExtendedSplashImage" Source="Assets/SplashScreen.png"/>
             <!-- set the maximum to a value which is just more than the load time on the slowest device (e.g. Arm) -->
             <ProgressBar x:Name="SplashProgress" Foreground="#FFFFFFFF" Background="#FF333333" Maximum="10000" Width="320" Height="25"/>
+                
+            <!-- facebook  integration for login, logout and friend request support-->
+            <local:FacebookIntegration x:Name="FacebookIntegrationControl" />
+
         </Grid>
     </SwapChainBackgroundPanel>
 </Page>
