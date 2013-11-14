@@ -21,18 +21,18 @@ The prerequisites for working with this repo are...
 Either the Unity free version or Unity Pro will work.  
 The add-ons for publishing to the Windows Store and to Windows Phone are free, for basic and Unity Pro users. 
 
-**Visual Studio .Net 2013**
+**[Visual Studio .Net 2013](http://www.microsoft.com/visualstudio/eng/downloads)**
 
 You can use any Visual Studio 2013 SKU, including the free Visual Studio Express.   
 
 **Windows 8.1**
 
-If you do not own a Windows 8 license, you can get a 90-day evaluation version.  
-If you are running Mac OS X or will install on Apple hardware, check different options for installing using Boot Camp, VMWare, or Parallels.   
+If you do not own a Windows 8 license, you can get a [90-day evaluation version](http://msdn.microsoft.com/en-US/evalcenter/jj554510.aspx?wt.mc_id=MEC_132_1_4).  
+If you are running Mac OS X or will install on Apple hardware, 
+check different options for installing using [Boot Camp](http://msdn.microsoft.com/en-us/library/windows/apps/jj945423.aspx), [VMWare](http://msdn.microsoft.com/en-us/library/windows/apps/jj945426.aspx), or [Parallels](http://msdn.microsoft.com/en-us/library/windows/apps/jj945424.aspx).   
 
-**Microsoft account*
-You will need a Microsoft account to get a developer license.  
-A Microsoft account is free, you can get one at http://signup.live.com 
+**[Microsoft account](http://signup.live.com/)*
+You will need a free Microsoft account to get a developer license.  
 
 To submit your games to the store you will need..
 
