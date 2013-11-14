@@ -8,18 +8,20 @@ porting their games to Windows 8.1 and Windows Phone 8.
 
 It is recommended that you read these whitepapers before delving into the code so you can unde
 
-- Getting Started on Windows Store with Unity http://aka.ms/unityWinStoreStart
-- Porting tips for Windows Store with Unity http://aka.ms/unityWinStoreTips
-- Getting Started on Windows Phone with Unity http://aka.ms/unitywpstart
-- Porting tips for Windows Phone with Unity http://aka.ms/unityWPTips
+- [Getting Started on Windows Store with Unity](http://aka.ms/unityWinStoreStart)
+- [Porting tips for Windows Store with Unity](http://aka.ms/unityWinStoreTips)
+- [Getting Started on Windows Phone with Unity](http://aka.ms/unitywpstart)
+- [Porting tips for Windows Phone with Unity](http://aka.ms/unityWPTips)
 
 **This Repo**
 
-This repo contains the following:
+This repo contains the following folders:
 
--  Platformer - Sample Unity Game freely available on the Unity Store
--  PlatformerApps - Sample Windows Store and Windows Phone Apps along with Plugin Examples
+-  Platformer - Sample Unity 4.3 Game freely available on the Unity Store
+-  PlatformerApps - Vs.net 2013 solution folder with Windows Store and Windows Phone Apps along with Plugin Example
 -  Resources -  Packages to highlight current shader issues on Windows
+
+You will need Unity 4.3
 
 In general terms, this repo adds "light up" features which demonstrate many of the approaches outlined in the above 
 whitepapers. 
