@@ -17,33 +17,33 @@ It is recommended that you read these whitepapers before delving into the code s
 
 This repo contains the following folders:
 
--  Platformer - Sample Unity 4.3 Game freely available on the Unity Store
--  PlatformerApps - Vs.net 2013 solution folder with Windows Store and Windows Phone Apps along with Plugin Example
--  Resources -  Packages to highlight current shader issues on Windows
+-  *Platformer* - Sample Unity 4.3 Game freely available on the Unity Store
+-  *PlatformerApps* - Vs.net 2013 solution folder with Windows Store and Windows Phone Apps along with Plugin Example
+-  *Resources* -  Packages to highlight current shader issues on Windows
 
 You will need Unity 4.3
 
 In general terms, this repo adds "light up" features which demonstrate many of the approaches outlined in the above 
 whitepapers. 
 
-There are current the following examples in the game for both Windows 8.1 and Windows Phone 8
+There are currently the following examples in the game for both Windows 8.1 and Windows Phone 8
 
-- Graceful loading with extended splash and progress bar
-- Sharing support using sample plugin
-- Live tile updates with latest score
-- Complete "MyPlugin" Plugin Development Sample with shared code across both Windows 8.1 and Wndows Phone 8
+- *Graceful loading* with extended splash and progress bar
+- *Sharing* support using sample plugin
+- *Live tile* updates with latest score
+- *Complete Plugin Development Sample* with shared code across both Windows 8.1 and Wndows Phone 8
 
 Current the following examples in the game are just for Windows 8.1
 
-- WACK fixers (Collections, IO, Sockets, Threading, Missing Extensions, with more coming soon)
-- Facebook Integration (Login, Logout, Friend Request) (Windows 8.1 only)
-- Window Resizing sample, pause/resume at 500px (Windows 8.1 only, Windows Phone 8 coming soon)
+- *WACK fixers* (Collections, IO, Sockets, Threading, Missing Extensions, with more coming soon)
+- *Facebook Integration* (Login, Logout, Friend Request) (Windows 8.1 only)
+- *Window Resizing sample*, pause/resume at 500px (Windows 8.1 only, Windows Phone 8 coming soon)
 
 **Sample Unity App - Platformer**
 
 This is the sample Unity game project you can simply open with Unity 4.3.
 
-Here's some guidance as to the most interestin features that have been added
+Here's some guidance as to the most interesting features that have been added
 
 - Windows Store and Windows Phone specific scripts > /Assets/Scripts/Windows
 - Windows specific handlers and direct interop code > /Assets/Scripts/Windows/WindowsGateway.cs
