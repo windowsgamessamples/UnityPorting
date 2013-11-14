@@ -20,39 +20,30 @@ It is recommended that you read these whitepapers before delving into the code.
 Either the Unity free version or Unity Pro will work.  
 The add-ons for publishing to the Windows Store and to Windows Phone are free, for basic and Unity Pro users. 
 
-**[Visual Studio .Net 2013](http://www.microsoft.com/visualstudio/eng/downloads)**
-
+**[Visual Studio .Net 2013](http://www.microsoft.com/visualstudio/eng/downloads)**<br/>
 You can use any Visual Studio 2013 SKU, including the free Visual Studio Express.   
 
-**Windows 8.1**
-
+**Windows 8.1**<br/>
 If you do not own a Windows 8 license, you can get a [90-day evaluation version](http://msdn.microsoft.com/en-US/evalcenter/jj554510.aspx?wt.mc_id=MEC_132_1_4).  
 If you are running Mac OS X or will install on Apple hardware, 
 check different options for installing using [Boot Camp](http://msdn.microsoft.com/en-us/library/windows/apps/jj945423.aspx), [VMWare](http://msdn.microsoft.com/en-us/library/windows/apps/jj945426.aspx), or [Parallels](http://msdn.microsoft.com/en-us/library/windows/apps/jj945424.aspx).   
 
-**[Windows Phone SDK](https://dev.windowsphone.com/en-us/downloadsdk)**
+**[Windows Phone SDK](https://dev.windowsphone.com/en-us/downloadsdk)**<br/>
 The WP8 SDK includes a stand-alone version of Visual Studio Express 2013. If you already have Visual Studio Pro, Premium or Ultimate, the SDK will work as an addin and you can continue to use your version
 
-**Windows Phone 8 device**  
-
-In Unity 4.3, deploying and debugging to the Windows Phone emulator is supported, however a device is recommended.
-
+**Windows Phone 8 device** <br/>
+In Unity 4.3, deploying and debugging to the Windows Phone emulator is supported, however a device is recommended.<br/>
 Once you have a phone, [register your phone for development](http://msdn.microsoft.com/en-us/library/windowsphone/develop/ff769508.aspx) and enable deployment and debugging. 
 
-**[Microsoft account](http://signup.live.com/)**
-
-You will need a free Microsoft account to get a developer license.  
+**[Microsoft account](http://signup.live.com/)**<br/>
+You will need a free Microsoft account to get a developer license.<br/>
 
 ### To submit your games to the store you will need..
 
-**Windows Store and Windows Phone developer account.**
-
-Get an account at the [Windows store](http://dev.windows.com) or [Windows Phone Marketplace](http://dev.windowsphone.com). 
-
-This registration is shared with Windows Phone (one registration submits to both stores). 
-
-During this process you will register and get verified as an individual or as a business who can submit apps and games to the store.  
-
+**Windows Store and Windows Phone developer account.**<br/>
+Get an account at the [Windows store](http://dev.windows.com) or [Windows Phone Marketplace](http://dev.windowsphone.com).<br/>
+This registration is shared with Windows Phone (one registration submits to both stores).<br/> 
+During this process you will register and get verified as an individual or as a business who can submit apps and games to the store.<br/>
 Registration is $19 for individuals
 
 ## What's in the Box?
@@ -115,10 +106,8 @@ Your files will not be overwritten. If you add new plugins, you will need to man
 
 ## The Windows Solution
 
-Open \UnityPorting\PlatformerApps\Platformer.sln with Visual Studio 2013. 
-
-You must have the [NuGet](http://www.nuget.org/) packet manager installed.
-
+Open \UnityPorting\PlatformerApps\Platformer.sln with Visual Studio 2013.<br/>
+You must have the [NuGet](http://www.nuget.org/) packet manager installed.<br/>
 Build the solution to ensure all NuGet packages are available (e.g. Facebook) as the solution is set to automatically restore NuGet packages.
 
 There are 2 app projects for the Windows Store and WP8 apps:
