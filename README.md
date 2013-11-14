@@ -16,8 +16,7 @@ It is recommended that you read these whitepapers before delving into the code.
 
 ### The prerequisites for working with this repo are...
 
-**[Unity 4.3](http://unity3d.com/unity/download)**
-
+**[Unity 4.3](http://unity3d.com/unity/download)** 
 Either the Unity free version or Unity Pro will work.  
 The add-ons for publishing to the Windows Store and to Windows Phone are free, for basic and Unity Pro users. 
 
