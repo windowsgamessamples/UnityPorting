@@ -3,6 +3,7 @@ using System.Collections;
 
 public class SnapModeManager : MonoBehaviour
 {
+#if UNITY_METRO
     private bool _snapped = false;
 
     #region Instance
@@ -50,4 +51,5 @@ public class SnapModeManager : MonoBehaviour
             Hide();
         }
     }
+#endif
 }
