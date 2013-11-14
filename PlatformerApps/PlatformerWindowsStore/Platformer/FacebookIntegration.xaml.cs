@@ -28,13 +28,13 @@ namespace Template
             // facebook overlay integration
             WebPopup.Opened += PopupOpened;
             WebPopup.Closed += PopupClosed;
-            MyPlugin.Facebook.Facebook.Instance.Initialise(FacebookOverlay);
-            MyPlugin.Facebook.Facebook.Instance.StateChanged += FacebookStateChanged;
+            MyPlugin.Facebook.FacebookGateway.Instance.Initialise(FacebookOverlay);
+            MyPlugin.Facebook.FacebookGateway.Instance.StateChanged += FacebookStateChanged;
         }
 
         private void PopupClosed(object sender, object e)
         {
-            MyPlugin.Facebook.Facebook.Instance.Cancel();
+            MyPlugin.Facebook.FacebookGateway.Instance.Cancel();
             WebOverlay.Visibility = Windows.UI.Xaml.Visibility.Collapsed;
         }
 
@@ -76,7 +76,7 @@ namespace Template
 
         private void CancelWeb(object sender, RoutedEventArgs e)
         {
-            MyPlugin.Facebook.Facebook.Instance.Cancel();
+            MyPlugin.Facebook.FacebookGateway.Instance.Cancel();
         }
 
     }
