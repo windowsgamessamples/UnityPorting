@@ -28,10 +28,12 @@ There are current the following examples in the game for both Windows 8.1 and Wi
 
 - Graceful loading with extended splash and progress bar
 - Sharing support using sample plugin
-- Live tile updates with latest score 
+- Live tile updates with latest score
+- Complete "MyPlugin" Plugin Development Sample with shared code across both Windows 8.1 and Wndows Phone 8
 
 Current the following examples in the game are just for Windows 8.1
 
+- WACK fixers (Collections, IO, Sockets, Threading, Missing Extensions, with more coming soon)
 - Facebook Integration (Login, Logout, Friend Request) (Windows 8.1 only)
 - Window Resizing sample, pause/resume at 500px (Windows 8.1 only, Windows Phone 8 coming soon)
 
