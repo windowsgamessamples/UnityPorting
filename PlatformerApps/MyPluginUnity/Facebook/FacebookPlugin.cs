@@ -16,9 +16,9 @@ namespace MyPlugin.Facebook
 #else
         public static async void InviteFriend(string friendName)
         {
-            await WindowsPlugin.CurrentDispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+            await WindowsPlugin.CurrentDispatcher.RunAsync(CoreDispatcherPriority.Normal, async () =>
             {
-                Facebook.Instance.InviteFriendsAsync(friendName);
+                await FacebookGateway.Instance.InviteFriendsAsync(friendName);
             });
 #endif
         }
@@ -29,12 +29,12 @@ namespace MyPlugin.Facebook
 #else
         public static async void Logout(Action callback)
         {
-            await WindowsPlugin.CurrentDispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+            await WindowsPlugin.CurrentDispatcher.RunAsync(CoreDispatcherPriority.Normal, async () =>
             {
-                var task = Facebook.Instance.LogoutAsync();
+                var state = await FacebookGateway.Instance.LogoutAsync();
                 if (callback != null)
                 {
-                    task.ContinueWith(t => callback()); // TODO Invoke On Unity App Thread
+                    callback(); // TODO Invoke On Unity App Thread
                 }
             });
 #endif
@@ -47,17 +47,16 @@ namespace MyPlugin.Facebook
 #else
         public static async void Login(Action<string> callback)
         {
-            await WindowsPlugin.CurrentDispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+            await WindowsPlugin.CurrentDispatcher.RunAsync(CoreDispatcherPriority.Normal, async () =>
             {
-                var task = Facebook.Instance.LoginAsync();
-                task.ContinueWith(
-                    t =>
+                if (callback != null)
+                { 
+                    var state = await FacebookGateway.Instance.LoginAsync();
+                    if (state == NavigationState.Done && callback != null)
                     {
-                        if (t.Result == NavigationState.Done && callback != null)
-                        {
-                            callback(Facebook.Instance.AccessToken); // TODO Invoke on App Thread
-                        }
-                    });
+                        callback(FacebookGateway.Instance.AccessToken); // TODO Invoke on App Thread
+                    }
+                }
             });
 #endif
         }

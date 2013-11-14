@@ -8,29 +8,27 @@ namespace MyPlugin.Facebook
 {
     public delegate void RequestStateChangedHandler(FacebookRequest request, NavigationState state);
 
-    public sealed class Facebook
+    public sealed class FacebookGateway
     {
-        private static Facebook _instance;
-        private static readonly object _sync = new object();
-        public static Facebook Instance
+        // facebook test app id
+        private const string FBAppId = "567159633306681";
+        private static FacebookGateway _instance;
+        private static readonly object _sync = new object();  
+
+        public static FacebookGateway Instance
         {
             get
             {
                 lock (_sync)
                 {
                     if (_instance == null)
-                        _instance = new Facebook();
+                        _instance = new FacebookGateway();
                 }
                 return _instance;
             }
         }
 
         const string PermissionsString = "user_about_me";
-#if DEBUG || QA
-        const string FBAppId = "1375004912734033"; // MQ: Temp ID "MQ Game Test"
-#else
-        const string FBAppId = "287090944731453"; // WOF Production App ID
-#endif
         const string RedirectUrl = "https://www.facebook.com/connect/login_success.html";
         const string ATKey = "ATK";
 
@@ -45,7 +43,7 @@ namespace MyPlugin.Facebook
         public bool IsLoggedIn { get { return _fb != null && !string.IsNullOrWhiteSpace(_fb.AccessToken); } }
         public string AccessToken { get { return _fb.AccessToken; } }
 
-        private Facebook()
+        private FacebookGateway()
         {
             _fb = new FacebookClient();
             _fb.AppId = FBAppId;
@@ -118,7 +116,7 @@ namespace MyPlugin.Facebook
             {
                 to = friendName,
                 redirect_uri = RedirectUrl,
-                message = "Let's spin together in Wheel of Fortune",
+                message = "Checkout this great game!",
                 display = "popup"
             });
             CreateTask();

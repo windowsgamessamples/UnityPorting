@@ -31,7 +31,7 @@ namespace MyPlugin
 
 #elif NETFX_CORE
 
-        // needs to be set via the app so we can invoke onto UI Thread
+        // needs to be set via the app so we can invoke onto UI Thread (see App.xaml.cs)
         public static CoreDispatcher CurrentDispatcher 
         {get;set;}
 
