@@ -11,7 +11,8 @@ This is the sample Unity game project you can simply open with Unity 4.3.
 
 Here's some guidance as to the most interestin features that have been added
 
-- Windows Store and Windows Phone specific scripts are kept here:
+Windows Store and Windows Phone specific scripts are kept here:
+
 /Assets/Scripts/Windows
 
 - Windows specific handlers and direct interop code (no plugins)
