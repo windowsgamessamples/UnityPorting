@@ -36,7 +36,22 @@ namespace Template
 		{
 			this.InitializeComponent();
 			appCallbacks = new AppCallbacks(false);
+            appCallbacks.Initialized += appCallbacks_Initialized;
 		}
+
+        void appCallbacks_Initialized()
+        {
+            MyPlugin.Dispatcher.AppDispatcher = InvokeOnAppThread;
+            MyPlugin.Dispatcher.UIDispatcher = Window.Current.Dispatcher;
+        }
+
+        public void InvokeOnAppThread(Action callback)
+        {
+            appCallbacks.InvokeOnAppThread(() =>
+                {
+                    callback();
+                }, false);
+        }
 
 		/// <summary>
 		/// Invoked when the application is launched normally by the end user.  Other entry points
@@ -65,9 +80,6 @@ namespace Template
 
 
 				appCallbacks.SetCoreWindowEvents(Window.Current.CoreWindow);
-
-                // ensure we set the dispatcher so we can invoke onto UI thread in our plugin
-                MyPlugin.WindowsPlugin.UIDispatcher = Window.Current.Dispatcher;
 
 				appCallbacks.InitializeD3DXAML();
 			}

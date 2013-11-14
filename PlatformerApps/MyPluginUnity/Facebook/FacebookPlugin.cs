@@ -16,7 +16,7 @@ namespace MyPlugin.Facebook
 #else
         public static async void InviteFriend(string friendName)
         {
-            await WindowsPlugin.UIDispatcher.RunAsync(CoreDispatcherPriority.Normal, async () =>
+            await Dispatcher.UIDispatcher.RunAsync(CoreDispatcherPriority.Normal, async () =>
             {
                 await FacebookGateway.Instance.InviteFriendsAsync(friendName);
             });
@@ -29,13 +29,13 @@ namespace MyPlugin.Facebook
 #else
         public static async void Logout(Action callback)
         {
-            await WindowsPlugin.UIDispatcher.RunAsync(CoreDispatcherPriority.Normal, async () =>
+            await Dispatcher.UIDispatcher.RunAsync(CoreDispatcherPriority.Normal, async () =>
             {
                 var state = await FacebookGateway.Instance.LogoutAsync();
                 if (callback != null)
                 {
-                    callback(); // TODO Invoke On Unity App Thread
-                }
+                    Dispatcher.AppDispatcher(callback);
+                    }
             });
 #endif
         }
@@ -47,14 +47,14 @@ namespace MyPlugin.Facebook
 #else
         public static async void Login(Action<string> callback)
         {
-            await WindowsPlugin.UIDispatcher.RunAsync(CoreDispatcherPriority.Normal, async () =>
+            await Dispatcher.UIDispatcher.RunAsync(CoreDispatcherPriority.Normal, async () =>
             {
                 if (callback != null)
                 { 
                     var state = await FacebookGateway.Instance.LoginAsync();
                     if (state == NavigationState.Done && callback != null)
                     {
-                        callback(FacebookGateway.Instance.AccessToken); // TODO Invoke on App Thread
+                        Dispatcher.AppDispatcher(() => callback(FacebookGateway.Instance.AccessToken));
                     }
                 }
             });
