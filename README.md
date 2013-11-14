@@ -9,20 +9,22 @@ Unity Porting Code Samples
 
 This is the sample Unity game project you can simply open with Unity 4.3.
 
+Here's some guidance as to the most interestin features that have been added
+
 Windows Store and Windows Phone specific scripts are kept here:
 /Assets/Scripts/Windows
 
-The WindowsGateway.cs class holds most of the samples integration to/from Windows platforms
+Windows specific handlers and direct interop code (no plugins)
 /Assets/Scripts/Windows/WindowsGateway.cs
 
-Some important WACK overrides have been included at:
+WACK overrides (with some plugin usage)
 /Assets/Scripts/Windows/WACK
 
-Facebook Management:
+Facebook Management (using plugin):
 /Assets/Scripts/FacebookManager.cs
 
-
-Additionally, any platform specific code will be available via a plugin as required (such as File above).
+Sharing (using plugin):
+/Assets/Scripts/ShareManager.cs
 
 This approach means you don't have to change ANY game code which relies on these unsupported APIs.
 
