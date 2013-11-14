@@ -1,9 +1,39 @@
 Unity Porting Code Samples
 ==========================
 
--  Platformer - Sample Unity Game
+**The Whitepapers**
+This repo has been created as reference code samples for a set of whitepapers produced to help developers in 
+porting their games to Windows 8.1 and Windows Phone 8.
+
+It is recommended that you read these whitepapers before delving into the code so you can unde
+
+- Getting Started on Windows Phone with Unity http://aka.ms/unitywpstart
+- Porting tips for Windows Phone with Unity
+- Getting Started on Windows Store with Unity
+- Porting tips for Windows Store with Unity
+
+
+** This Repo**
+
+This repo contains the following:
+
+-  Platformer - Sample Unity Game freely available on the Unity Store
 -  PlatformerApps - Sample Windows Store and Windows Phone Apps along with Plugin Examples
--  Resources -  Classes to help overcome .Net Core compilation errors in Unity for Windows Store, along with a package to highlight shader issues on Windows
+-  Resources -  Packages to highlight current shader issues on Windows
+
+In general terms, this repo adds "light up" features which demonstrate many of the approaches outlined in the above 
+whitepapers. 
+
+There are current the following examples in the game for both Windows 8.1 and Windows Phone 8
+
+- Graceful loading with extended splash and progress bar
+- Sharing support using sample plugin
+- Live tile updates with latest score 
+
+Current the following examples in the game are just for Windows 8.1
+
+- Facebook Integration (Login, Logout, Friend Request) (Windows 8.1 only)
+- Window Resizing sample, pause/resume at 500px (Windows 8.1 only, Windows Phone 8 coming soon)
 
 **Sample Unity App - Platformer**
 
@@ -11,25 +41,13 @@ This is the sample Unity game project you can simply open with Unity 4.3.
 
 Here's some guidance as to the most interestin features that have been added
 
-Windows Store and Windows Phone specific scripts are kept here:
+- Windows Store and Windows Phone specific scripts > /Assets/Scripts/Windows
+- Windows specific handlers and direct interop code > /Assets/Scripts/Windows/WindowsGateway.cs
+- WACK overrides > /Assets/Scripts/Windows/WACK
+- Facebook Management > /Assets/Scripts/FacebookManager.cs
+- Sharing > /Assets/Scripts/ShareManager.cs
 
-/Assets/Scripts/Windows
-
-Windows specific handlers and direct interop code (no plugins)
-/Assets/Scripts/Windows/WindowsGateway.cs
-
-WACK overrides (with some plugin usage)
-
-/Assets/Scripts/Windows/WACK
-
-Facebook Management (using plugin):
-
-/Assets/Scripts/FacebookManager.cs
-
-Sharing (using plugin):
-/Assets/Scripts/ShareManager.cs
-
-This approach means you don't have to change ANY game code which relies on these unsupported APIs.
+You will find that the sample "MyPlugin" plugin is used a lot within the Unity project, more on this below
 
 **Building to Windows Store App from Unity**
 
