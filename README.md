@@ -32,6 +32,7 @@ If you are running Mac OS X or will install on Apple hardware,
 check different options for installing using [Boot Camp](http://msdn.microsoft.com/en-us/library/windows/apps/jj945423.aspx), [VMWare](http://msdn.microsoft.com/en-us/library/windows/apps/jj945426.aspx), or [Parallels](http://msdn.microsoft.com/en-us/library/windows/apps/jj945424.aspx).   
 
 **[Microsoft account](http://signup.live.com/)**
+
 You will need a free Microsoft account to get a developer license.  
 
 To submit your games to the store you will need..
