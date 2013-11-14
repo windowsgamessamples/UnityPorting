@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class ShareButton : MonoBehaviour 
+public class ShareManager : MonoBehaviour 
 {
     void OnGUI()
     {
