@@ -3,9 +3,9 @@
 ## Read the Whitepapers
 
 This repo has been created as reference code samples for a set of whitepapers produced to help developers in 
-porting their games to Windows 8.1 and Windows Phone 8.
+porting their Unity games to Windows 8.1 and Windows Phone 8.
 
-It is recommended that you read these whitepapers before delving into the code so you can unde
+It is recommended that you read these whitepapers before delving into the code.
 
 - [Getting Started on Windows Store with Unity](http://aka.ms/unityWinStoreStart)
 - [Porting tips for Windows Store with Unity](http://aka.ms/unityWinStoreTips)
