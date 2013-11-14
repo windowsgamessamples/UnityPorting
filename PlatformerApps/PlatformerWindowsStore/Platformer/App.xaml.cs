@@ -41,6 +41,7 @@ namespace Template
 
         void appCallbacks_Initialized()
         {
+            // wire up dispatcher for plugin
             MyPlugin.Dispatcher.InvokeOnAppThread = InvokeOnAppThread;
             MyPlugin.Dispatcher.InvokeOnUIThread = InvokeOnUIThread;
         }

@@ -1,38 +1,79 @@
 ﻿using UnityEngine;
 
+/// <summary>
+/// Handles Facebook integration
+/// </summary>
 public class FacebookManager : MonoBehaviour
 {
     private bool _loggedIn = false;
+    private const string FacebookAuthTokenKey = "FacebookAuthToken";
 
-#if UNITY_WINRT
     void OnGUI()
     {
+
         if (_loggedIn)
         {
             if (GUI.Button(new Rect(Screen.width - 150, 50, 130, 20), "Facebook logout"))
             {
-                WindowsGateway.FacebookLogout();
-                _loggedIn = false;
+                Logout();
             }
 
             if (GUI.Button(new Rect(Screen.width - 150, 80, 130, 20), "Invite friend"))
             {
-                WindowsGateway.FacebookInviteFriend("damian.karzon");
+                ShowFriends();
             }
         }
         else
         {
             if (GUI.Button(new Rect(Screen.width - 150, 50, 130, 20), "Facebook login"))
-                WindowsGateway.FacebookLogin(gameObject.name, "LoginSuccessful");
+            {
+                Login();
+            }
         }
     }
 
-    /// <summary>
-    /// This is our callback method that is called when the facebook login is a success 
-    /// </summary>
-    public void LoginSuccessful()
+    private void ShowFriends()
     {
-        _loggedIn = true;
-    }
+#if UNITY_WINRT
+        // TODO display a list of friends, and then when one is pressed call InviteFriend("friendid");
+        InviteFriend("TestUser");
 #endif
+    }
+
+    private void Login()
+    {
+#if UNITY_WINRT
+        MyPlugin.Facebook.FacebookPlugin.Login(result =>
+        {
+            if (!string.IsNullOrEmpty(result))
+            {
+                PlayerPrefs.SetString(FacebookAuthTokenKey, result);
+                PlayerPrefs.Save();
+            }
+        });
+#endif
+    }
+
+    private void Logout()
+    {
+#if UNITY_WINRT
+        MyPlugin.Facebook.FacebookPlugin.Logout(() =>
+        {
+            if (PlayerPrefs.HasKey(FacebookAuthTokenKey))
+            {
+                PlayerPrefs.DeleteKey(FacebookAuthTokenKey);
+                PlayerPrefs.Save();
+            }
+            _loggedIn = false;
+        });
+#endif
+    }
+
+    private void InviteFriend(string friend)
+    {
+#if UNITY_WINRT
+        MyPlugin.Facebook.FacebookPlugin.InviteFriend(friend);
+#endif
+    }
+
 }

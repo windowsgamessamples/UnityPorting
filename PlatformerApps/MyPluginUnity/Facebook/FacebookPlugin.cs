@@ -42,7 +42,7 @@ namespace MyPlugin.Facebook
                 if (callback != null)
                 { 
                     var state = await FacebookGateway.Instance.LoginAsync();
-                    if (state == NavigationState.Done && callback != null)
+                    if (state == NavigationState.Done)
                     {
                         Dispatcher.InvokeOnAppThread(() => callback(FacebookGateway.Instance.AccessToken));
                     }
