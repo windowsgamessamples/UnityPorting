@@ -84,7 +84,7 @@ Here's some guidance as to where new Windows features have been added
 
 You will find that the sample "MyPlugin" plugin is used a lot within the Unity project, more on this below
 
-## Building to Windows Store App from Unity
+### Building to Windows Store App from Unity
 
 **You must do this before the Windows Store app will work and after every change in Unity!**
 
@@ -94,7 +94,7 @@ You will find that the sample "MyPlugin" plugin is used a lot within the Unity p
 
 Your files will not be overwritten. If you add new plugins, you will need to manually update the project file.
 
-## Building Windows Phone App from Unity
+### Building Windows Phone App from Unity
 
 **You must do this before the Windows Phone app will work and afer every change in Unity!**
 
