@@ -14,7 +14,7 @@ It is recommended that you read these whitepapers before delving into the code s
 
 ## How do I open the Box?
 
-The prerequisites for working with this repo are...
+### The prerequisites for working with this repo are...
 
 **[Unity 4.3](http://unity3d.com/unity/download)**
 
@@ -35,7 +35,7 @@ check different options for installing using [Boot Camp](http://msdn.microsoft.c
 
 You will need a free Microsoft account to get a developer license.  
 
-To submit your games to the store you will need..
+### To submit your games to the store you will need..
 
 **Windows Store and Windows Phone developer account.**
 
