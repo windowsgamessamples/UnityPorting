@@ -31,12 +31,13 @@ If you do not own a Windows 8 license, you can get a [90-day evaluation version]
 If you are running Mac OS X or will install on Apple hardware, 
 check different options for installing using [Boot Camp](http://msdn.microsoft.com/en-us/library/windows/apps/jj945423.aspx), [VMWare](http://msdn.microsoft.com/en-us/library/windows/apps/jj945426.aspx), or [Parallels](http://msdn.microsoft.com/en-us/library/windows/apps/jj945424.aspx).   
 
-**[Microsoft account](http://signup.live.com/)*
+**[Microsoft account](http://signup.live.com/)**
 You will need a free Microsoft account to get a developer license.  
 
 To submit your games to the store you will need..
 
 **Windows Store and Windows Phone developer account.**
+
 Get an account at the [Windows store](http://dev.windows.com) or [Windows Phone Marketplace](http://dev.windowsphone.com). 
 
 This registration is shared with Windows Phone (one registration submits to both stores). 
