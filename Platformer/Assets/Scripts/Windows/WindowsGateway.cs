@@ -60,6 +60,17 @@ public static class WindowsGateway
 #endif
     }
 
+    /// <summary>
+    /// Invite a friend to play
+    /// </summary>
+    /// <param name="friendName"></param>
+    public static void FacebookInviteFriend(string friendName)
+    {
+#if UNITY_METRO && !UNITY_EDITOR
+        MyPlugin.Facebook.FacebookPlugin.InviteFriend(friendName);
+#endif
+    }
+
 
     /// <summary>
     /// Called from Unity when the app is responsive and ready for play

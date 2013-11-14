@@ -14,6 +14,11 @@ public class FacebookManager : MonoBehaviour
                 WindowsGateway.FacebookLogout();
                 _loggedIn = false;
             }
+
+            if (GUI.Button(new Rect(Screen.width - 150, 80, 130, 20), "Invite friend"))
+            {
+                WindowsGateway.FacebookInviteFriend("damian.karzon");
+            }
         }
         else
         {
