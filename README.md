@@ -1,47 +1,114 @@
-Unity Porting Code Samples
-====================
+# Unity Porting Code Samples
 
--  Platformer - Sample Unity Game
--  PlatformerApps - Sample Windows Store and Windows Phone Apps along with Plugin Examples
--  Resources -  Classes to help overcome .Net Core compilation errors in Unity for Windows Store, along with a package to highlight shader issues on Windows
+## Read the Whitepapers
 
-**Sample Unity App - Platformer**
+This repo has been created as reference code samples for a set of whitepapers produced to help developers in 
+porting their Unity games to Windows 8.1 and Windows Phone 8.
 
-This is the sample Unity game project you can simply open with Unity 4.3.
+It is recommended that you read these whitepapers before delving into the code.
 
-Windows Store and Windows Phone specific scripts are kept here:
-/Assets/Scripts/Windows
+- [Getting Started on Windows Store with Unity](http://aka.ms/unityWinStoreStart)
+- [Porting tips for Windows Store with Unity](http://aka.ms/unityWinStoreTips)
+- [Getting Started on Windows Phone with Unity](http://aka.ms/unitywpstart)
+- [Porting tips for Windows Phone with Unity](http://aka.ms/unityWPTips)
 
-The WindowsGateway.cs class holds most of the samples integration to/from Windows platforms
-/Assets/Scripts/Windows/WindowsGateway.cs
+## How do I open the Box?
 
-Some important WACK overrides have been included at:
-/Assets/Scripts/Windows/WACK
+### The prerequisites for working with this repo are...
 
-For example, the File WACK override for System.IO.File is here:
-/Assets/Scripts/Windows/WACK/System/IO/File.cs
+**[Unity 4.3](http://unity3d.com/unity/download)**<br/>
+Either the Unity free version or Unity Pro will work.  
+The add-ons for publishing to the Windows Store and to Windows Phone are free, for basic and Unity Pro users. 
 
-Additionally, any platform specific code will be available via a plugin as required (such as File above).
+**[Visual Studio .Net 2013](http://www.microsoft.com/visualstudio/eng/downloads)**<br/>
+You can use any Visual Studio 2013 SKU, including the free Visual Studio Express.   
 
-This approach means you don't have to change ANY game code which relies on these unsupported APIs.
+**Windows 8.1**<br/>
+If you do not own a Windows 8 license, you can get a [90-day evaluation version](http://msdn.microsoft.com/en-US/evalcenter/jj554510.aspx?wt.mc_id=MEC_132_1_4).  
+If you are running Mac OS X or will install on Apple hardware, 
+check different options for installing using [Boot Camp](http://msdn.microsoft.com/en-us/library/windows/apps/jj945423.aspx), [VMWare](http://msdn.microsoft.com/en-us/library/windows/apps/jj945426.aspx), or [Parallels](http://msdn.microsoft.com/en-us/library/windows/apps/jj945424.aspx).   
 
-**Building to Windows Store App from Unity**
+**[Windows Phone SDK](https://dev.windowsphone.com/en-us/downloadsdk)**<br/>
+The WP8 SDK includes a stand-alone version of Visual Studio Express 2013. If you already have Visual Studio Pro, Premium or Ultimate, the SDK will work as an addin and you can continue to use your version
 
-You must do this before the Windows Store  app will work.
+**Windows Phone 8 device** <br/>
+In Unity 4.3, deploying and debugging to the Windows Phone emulator is supported, however a device is recommended.<br/>
+Once you have a phone, [register your phone for development](http://msdn.microsoft.com/en-us/library/windowsphone/develop/ff769508.aspx) and enable deployment and debugging. 
+
+**[Microsoft account](http://signup.live.com/)**<br/>
+You will need a free Microsoft account to get a developer license.<br/>
+
+### To submit your games to the store you will need..
+
+**Windows Store and Windows Phone developer account.**<br/>
+Get an account at the [Windows store](http://dev.windows.com) or [Windows Phone Marketplace](http://dev.windowsphone.com).<br/>
+This registration is shared with Windows Phone (one registration submits to both stores).<br/> 
+During this process you will register and get verified as an individual or as a business who can submit apps and games to the store.<br/>
+Registration is $19 for individuals
+
+## What's in the Box?
+
+This repo contains the following folders:
+
+-  **Platformer** - Sample Unity 4.3 Game freely available on the Unity Store
+-  **PlatformerApps** - Vs.net 2013 solution folder with Windows Store and Windows Phone Apps along with Plugin Example
+-  **Resources** -  Packages to highlight current shader issues on Windows
+
+In general terms, this repo adds "light up" features which demonstrate many of the approaches outlined in the above 
+whitepapers. 
+
+There are currently the following examples in the game for both Windows 8.1 and Windows Phone 8
+
+- **Graceful loading** with extended splash and progress bar
+- **Sharing** support using sample plugin
+- **Live tile** updates with latest score
+- **Complete Plugin Development Sample** with shared code across both Windows 8.1 and Wndows Phone 8
+
+Current the following examples in the game are just for Windows 8.1
+
+- **WACK fixers** (Collections, IO, Sockets, Threading, Missing Extensions, with more coming soon)
+- **Facebook Integration** (Login, Logout, Friend Request) (Windows 8.1 only)
+- **Window Resizing sample**, pause/resume at 500px (Windows 8.1 only, Windows Phone 8 coming soon)
+
+## The Sample Unity App - Platformer
+
+This is the sample Unity game project you can simply open with Unity 4.3 and run to see what's going on.
+
+Here's some guidance as to where new Windows features have been added
+
+- Windows Store and Windows Phone specific scripts > /Assets/Scripts/Windows
+- Windows specific handlers and direct interop code > /Assets/Scripts/Windows/WindowsGateway.cs
+- WACK overrides > /Assets/Scripts/Windows/WACK
+- Facebook Management > /Assets/Scripts/FacebookManager.cs
+- Sharing > /Assets/Scripts/ShareManager.cs
+
+You will find that the sample "MyPlugin" plugin is used a lot within the Unity project, more on this below
+
+### Building to Windows Store App from Unity
+
+**You must do this before the Windows Store app will work and after every change in Unity!**
+
 - File > Build Settings > Windows Store. 
 - Select Xaml/C# and 8.1
 - Build out on top of \PlatformerApps\PlatformerWindowsStore folder
 
-**Building Windows Phone App from Unity**
+Your files will not be overwritten. If you add new plugins, you will need to manually update the project file.
 
-You must do this before the Windows Phone app will work.
+### Building Windows Phone App from Unity
+
+**You must do this before the Windows Phone app will work and afer every change in Unity!**
+
 - File > Build Settings > Windows Phone
 - Select Xaml/C# 
 - Build out on top of \PlatformerApps\PlatformerWindowsPhone folder
 
-**The Windows Solution**
+Your files will not be overwritten. If you add new plugins, you will need to manually update the project file.
 
-Open \UnityPorting\PlatformerApps\Platformer.sln with Visual Studio 2013. 
+## The Windows Solution
+
+Open \UnityPorting\PlatformerApps\Platformer.sln with Visual Studio 2013.<br/>
+You must have the [NuGet](http://www.nuget.org/) packet manager installed.<br/>
+Build the solution to ensure all NuGet packages are available (e.g. Facebook) as the solution is set to automatically restore NuGet packages.
 
 There are 2 app projects for the Windows Store and WP8 apps:
 
@@ -54,25 +121,36 @@ In addition, there are 3 projets for the sample "MyPlugin" plugin.
 - MyPluginWindows - Windows 8.1 plugin project
 - MyPluginWP8 - WP8 plugin project
 
-**Running the Windows Store App**
+### Running the Windows Store App
 
 - Make sure you build out from Unity as above "Building to Windows Store App from Unity"
 - Ensure PlatfomerWindows is set as the startup project
+- Ensure that configuration for the build matches your target device (e.g. Master | x86)
 - Then simply F5 the solution and it shoudl run!
 
-**Running the Windows Store App**
+### Running the Windows Phone App
 
 - Make sure you build out from Unity as above "Building to Windows Phone App from Unity"
 - Ensure PlatfomerWP8 is set as the startup project
 - Then simply F5 the solution and it should run!
 
-**Updating the Sample Windows Plugin**
+## Sample Plugin
 
-The MyPlugin plugin is already include in the Unity project source. 
+The whitepapers referenced at the top of this readme have sections specifically dedicated to explaining 
+plugin usage, see [Windows Store](http://aka.ms/unityWinStoreTips) and [Windows Phone](http://aka.ms/unityWPTips).
+
+In summary, there are 3 projects that represent the plugin, they all output "MyPlugin.dll". 
+
+One library is for Unity Editor (MyPluginUnity), one is for the generated Windows Store build (MyPluginWindows) 
+and one is for the Windows Phone app (MyPluginWP8). 
+
+The outputs from these plugin projects are already in the Unity project in source control by default.
+
+### Updating the Sample Plugin
 
 When updating the source of any of the plugin projects (MyPluginUnity, MyPluginWindows or MyPluginWP8), if you ensure 
 that you set the build configuration for "Release" and "Any CPU", there is a post build event that will automatically 
-copy the resulting MyPlugin.dll to the correct locations in the Unity project automatically as follows:
+copy the resulting MyPlugin.dll (and any adjacent dlls in the target directory) to the correct locations in the Unity project automatically as follows:
 
 - MyPluginUnity Project > /Assets/Plugins/MyPlugin.dll 
 - MyPluginWindows Project > /Assets/Plugins/Metro/MyPlugin.dll
