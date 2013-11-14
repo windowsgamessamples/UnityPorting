@@ -15,13 +15,15 @@ Windows Store and Windows Phone specific scripts are kept here:
 
 /Assets/Scripts/Windows
 
-- Windows specific handlers and direct interop code (no plugins)
+Windows specific handlers and direct interop code (no plugins)
 /Assets/Scripts/Windows/WindowsGateway.cs
 
 WACK overrides (with some plugin usage)
+
 /Assets/Scripts/Windows/WACK
 
 Facebook Management (using plugin):
+
 /Assets/Scripts/FacebookManager.cs
 
 Sharing (using plugin):
