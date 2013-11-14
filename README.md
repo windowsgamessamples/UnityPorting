@@ -2,18 +2,18 @@ Unity Porting Code Samples
 ==========================
 
 **The Whitepapers**
+
 This repo has been created as reference code samples for a set of whitepapers produced to help developers in 
 porting their games to Windows 8.1 and Windows Phone 8.
 
 It is recommended that you read these whitepapers before delving into the code so you can unde
 
+- Getting Started on Windows Store with Unity http://aka.ms/unityWinStoreStart
+- Porting tips for Windows Store with Unity http://aka.ms/unityWinStoreTips
 - Getting Started on Windows Phone with Unity http://aka.ms/unitywpstart
-- Porting tips for Windows Phone with Unity
-- Getting Started on Windows Store with Unity
-- Porting tips for Windows Store with Unity
+- Porting tips for Windows Phone with Unity http://aka.ms/unityWPTips
 
-
-** This Repo**
+**This Repo**
 
 This repo contains the following:
 
