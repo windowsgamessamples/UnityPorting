@@ -1,14 +1,31 @@
 ﻿using MyPlugin;
 using System;
+using System.Collections.Generic;
+
 #if NETFX_CORE
 using Windows.UI.Core;
 #endif
+
 
 namespace MyPlugin.Facebook
 {
 
     public static class FacebookPlugin
     {
+
+        public static void GetFriends(Action<List<FacebookUser>> callback)
+        {
+#if NETFX_CORE
+            Dispatcher.InvokeOnUIThread(async () =>
+            {
+                var friends = await FacebookGateway.Instance.GetFriends();
+                if (callback != null)
+                {
+                    Dispatcher.InvokeOnAppThread(() => callback(friends));
+                }
+            });
+#endif
+        }
 
         public static void InviteFriend(string friendName)
         {

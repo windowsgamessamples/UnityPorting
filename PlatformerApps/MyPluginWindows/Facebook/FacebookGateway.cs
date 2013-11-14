@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using Facebook;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
+using System.Collections.Generic;
 
 namespace MyPlugin.Facebook
 {
@@ -67,6 +68,27 @@ namespace MyPlugin.Facebook
                 _web.NavigationFailed += NavigationFailed;
             }
         }
+
+        public async Task<List<FacebookUser>> GetFriends()
+        {
+            List<FacebookUser> fbUsers = new List<FacebookUser>();
+            if (!IsLoggedIn)
+            { 
+                return fbUsers;
+            }
+            // Make the friends list Open Graph API request
+            var friendsTaskResult = await _fb.GetTaskAsync("/me/friends");
+            var result = (IDictionary<string, object>)friendsTaskResult;
+            var data = (IEnumerable<object>)result["data"];
+            foreach (var item in data)
+            {
+                var friend = (IDictionary<string, object>)item;
+                // Pick out the properties from the dictionary without the need for writing deserializing classes
+                fbUsers.Add(new FacebookUser((string)friend["id"], (string)friend["name"]));
+            }
+            return fbUsers;
+        }
+
 
         public Task<NavigationState> LoginAsync()
         {
