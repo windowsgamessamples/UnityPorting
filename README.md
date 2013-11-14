@@ -118,6 +118,10 @@ Your files will not be overwritten. If you add new plugins, you will need to man
 
 Open \UnityPorting\PlatformerApps\Platformer.sln with Visual Studio 2013. 
 
+You must have the [NuGet](http://www.nuget.org/) packet manager installed.
+
+Build the solution to ensure all NuGet packages are available (e.g. Facebook) as the solution is set to automatically restore NuGet packages.
+
 There are 2 app projects for the Windows Store and WP8 apps:
 
 - PlatfomerWindows - The Windows 8.1 App
@@ -133,6 +137,7 @@ In addition, there are 3 projets for the sample "MyPlugin" plugin.
 
 - Make sure you build out from Unity as above "Building to Windows Store App from Unity"
 - Ensure PlatfomerWindows is set as the startup project
+- Ensure that configuration for the build matches your target device (e.g. Master | x86)
 - Then simply F5 the solution and it shoudl run!
 
 ### Running the Windows Phone App
