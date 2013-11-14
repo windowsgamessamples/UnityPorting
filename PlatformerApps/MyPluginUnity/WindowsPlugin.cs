@@ -18,6 +18,14 @@ namespace MyPlugin
     public class WindowsPlugin
     {
 
+#if NETFX_CORE
+
+        // needs to be set via the app so we can invoke onto UI Thread (see App.xaml.cs)
+        public static CoreDispatcher UIDispatcher 
+        {get;set;}
+
+#endif
+
         /// <summary>
         /// Show the Share UI
         /// </summary>
@@ -31,13 +39,9 @@ namespace MyPlugin
 
 #elif NETFX_CORE
 
-        // needs to be set via the app so we can invoke onto UI Thread (see App.xaml.cs)
-        public static CoreDispatcher CurrentDispatcher 
-        {get;set;}
-
         public static async void ShowShareUI()
         {
-            await CurrentDispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+            await UIDispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
             {
                 DataTransferManager.ShowShareUI();
             });

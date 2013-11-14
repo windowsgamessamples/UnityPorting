@@ -27,6 +27,7 @@ namespace Template
 	{
 		private WinRTBridge.WinRTBridge _bridge;
 		private AppCallbacks appCallbacks;
+
 		/// <summary>
 		/// Initializes the singleton application object.  This is the first line of authored code
 		/// executed, and as such is the logical equivalent of main() or WinMain().
@@ -66,7 +67,7 @@ namespace Template
 				appCallbacks.SetCoreWindowEvents(Window.Current.CoreWindow);
 
                 // ensure we set the dispatcher so we can invoke onto UI thread in our plugin
-                MyPlugin.WindowsPlugin.CurrentDispatcher = Window.Current.Dispatcher;
+                MyPlugin.WindowsPlugin.UIDispatcher = Window.Current.Dispatcher;
 
 				appCallbacks.InitializeD3DXAML();
 			}

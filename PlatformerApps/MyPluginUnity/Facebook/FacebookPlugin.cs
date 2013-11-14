@@ -16,7 +16,7 @@ namespace MyPlugin.Facebook
 #else
         public static async void InviteFriend(string friendName)
         {
-            await WindowsPlugin.CurrentDispatcher.RunAsync(CoreDispatcherPriority.Normal, async () =>
+            await WindowsPlugin.UIDispatcher.RunAsync(CoreDispatcherPriority.Normal, async () =>
             {
                 await FacebookGateway.Instance.InviteFriendsAsync(friendName);
             });
@@ -29,7 +29,7 @@ namespace MyPlugin.Facebook
 #else
         public static async void Logout(Action callback)
         {
-            await WindowsPlugin.CurrentDispatcher.RunAsync(CoreDispatcherPriority.Normal, async () =>
+            await WindowsPlugin.UIDispatcher.RunAsync(CoreDispatcherPriority.Normal, async () =>
             {
                 var state = await FacebookGateway.Instance.LogoutAsync();
                 if (callback != null)
@@ -47,7 +47,7 @@ namespace MyPlugin.Facebook
 #else
         public static async void Login(Action<string> callback)
         {
-            await WindowsPlugin.CurrentDispatcher.RunAsync(CoreDispatcherPriority.Normal, async () =>
+            await WindowsPlugin.UIDispatcher.RunAsync(CoreDispatcherPriority.Normal, async () =>
             {
                 if (callback != null)
                 { 

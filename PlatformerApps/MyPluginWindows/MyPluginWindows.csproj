@@ -119,7 +119,7 @@
       <Link>WindowsPlugin.cs</Link>
     </Compile>
     <Compile Include="Facebook\EncryptedStore.cs" />
-    <Compile Include="Facebook\Facebook.cs" />
+    <Compile Include="Facebook\FacebookGateway.cs" />
     <Compile Include="Facebook\FacebookRequest.cs" />
     <Compile Include="Facebook\NavigationState.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
