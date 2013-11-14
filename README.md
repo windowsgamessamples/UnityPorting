@@ -51,31 +51,31 @@ Registration is $19 for individuals
 
 This repo contains the following folders:
 
--  *Platformer* - Sample Unity 4.3 Game freely available on the Unity Store
--  *PlatformerApps* - Vs.net 2013 solution folder with Windows Store and Windows Phone Apps along with Plugin Example
--  *Resources* -  Packages to highlight current shader issues on Windows
+-  **Platformer** - Sample Unity 4.3 Game freely available on the Unity Store
+-  **PlatformerApps** - Vs.net 2013 solution folder with Windows Store and Windows Phone Apps along with Plugin Example
+-  **Resources** -  Packages to highlight current shader issues on Windows
 
 In general terms, this repo adds "light up" features which demonstrate many of the approaches outlined in the above 
 whitepapers. 
 
 There are currently the following examples in the game for both Windows 8.1 and Windows Phone 8
 
-- *Graceful loading* with extended splash and progress bar
-- *Sharing* support using sample plugin
-- *Live tile* updates with latest score
-- *Complete Plugin Development Sample* with shared code across both Windows 8.1 and Wndows Phone 8
+- **Graceful loading** with extended splash and progress bar
+- **Sharing** support using sample plugin
+- **Live tile** updates with latest score
+- **Complete Plugin Development Sample** with shared code across both Windows 8.1 and Wndows Phone 8
 
 Current the following examples in the game are just for Windows 8.1
 
-- *WACK fixers* (Collections, IO, Sockets, Threading, Missing Extensions, with more coming soon)
-- *Facebook Integration* (Login, Logout, Friend Request) (Windows 8.1 only)
-- *Window Resizing sample*, pause/resume at 500px (Windows 8.1 only, Windows Phone 8 coming soon)
+- **WACK fixers** (Collections, IO, Sockets, Threading, Missing Extensions, with more coming soon)
+- **Facebook Integration** (Login, Logout, Friend Request) (Windows 8.1 only)
+- **Window Resizing sample**, pause/resume at 500px (Windows 8.1 only, Windows Phone 8 coming soon)
 
-## Sample Unity App - Platformer
+## The Sample Unity App - Platformer
 
-This is the sample Unity game project you can simply open with Unity 4.3.
+This is the sample Unity game project you can simply open with Unity 4.3 and run to see what's going on.
 
-Here's some guidance as to the most interesting features that have been added
+Here's some guidance as to where new Windows features have been added
 
 - Windows Store and Windows Phone specific scripts > /Assets/Scripts/Windows
 - Windows specific handlers and direct interop code > /Assets/Scripts/Windows/WindowsGateway.cs
@@ -87,19 +87,23 @@ You will find that the sample "MyPlugin" plugin is used a lot within the Unity p
 
 ## Building to Windows Store App from Unity
 
-You must do this before the Windows Store app will work.
+**You must do this before the Windows Store app will work and after every change in Unity!**
 
 - File > Build Settings > Windows Store. 
 - Select Xaml/C# and 8.1
 - Build out on top of \PlatformerApps\PlatformerWindowsStore folder
 
+Your files will not be overwritten. If you add new plugins, you will need to manually update the project file.
+
 ## Building Windows Phone App from Unity
 
-You must do this before the Windows Phone app will work.
+**You must do this before the Windows Phone app will work and afer every change in Unity!**
 
 - File > Build Settings > Windows Phone
 - Select Xaml/C# 
 - Build out on top of \PlatformerApps\PlatformerWindowsPhone folder
+
+Your files will not be overwritten. If you add new plugins, you will need to manually update the project file.
 
 ## The Windows Solution
 
@@ -116,25 +120,35 @@ In addition, there are 3 projets for the sample "MyPlugin" plugin.
 - MyPluginWindows - Windows 8.1 plugin project
 - MyPluginWP8 - WP8 plugin project
 
-## Running the Windows Store App
+### Running the Windows Store App
 
 - Make sure you build out from Unity as above "Building to Windows Store App from Unity"
 - Ensure PlatfomerWindows is set as the startup project
 - Then simply F5 the solution and it shoudl run!
 
-## Running the Windows Phone App
+### Running the Windows Phone App
 
 - Make sure you build out from Unity as above "Building to Windows Phone App from Unity"
 - Ensure PlatfomerWP8 is set as the startup project
 - Then simply F5 the solution and it should run!
 
-## Updating the Sample Windows Plugin
+## Sample Plugin
 
-The MyPlugin plugin is already include in the Unity project source. 
+The whitepapers referenced at the top of this readme have sections specifically dedicated to explaining 
+plugin usage, see [Windows Store](http://aka.ms/unityWinStoreTips) and [Windows Phone](http://aka.ms/unityWPTips).
+
+In summary, there are 3 projects that represent the plugin, they all output "MyPlugin.dll". 
+
+One library is for Unity Editor (MyPluginUnity), one is for the generated Windows Store build (MyPluginWindows) 
+and one is for the Windows Phone app (MyPluginWP8). 
+
+The outputs from these plugin projects are already in the Unity project in source control by default.
+
+### Updating the Sample Plugin
 
 When updating the source of any of the plugin projects (MyPluginUnity, MyPluginWindows or MyPluginWP8), if you ensure 
 that you set the build configuration for "Release" and "Any CPU", there is a post build event that will automatically 
-copy the resulting MyPlugin.dll to the correct locations in the Unity project automatically as follows:
+copy the resulting MyPlugin.dll (and any adjacent dlls in the target directory) to the correct locations in the Unity project automatically as follows:
 
 - MyPluginUnity Project > /Assets/Plugins/MyPlugin.dll 
 - MyPluginWindows Project > /Assets/Plugins/Metro/MyPlugin.dll
