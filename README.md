@@ -1,5 +1,5 @@
 Unity Porting Code Samples
-====================
+==========================
 
 -  Platformer - Sample Unity Game
 -  PlatformerApps - Sample Windows Store and Windows Phone Apps along with Plugin Examples
@@ -18,8 +18,9 @@ The WindowsGateway.cs class holds most of the samples integration to/from Window
 Some important WACK overrides have been included at:
 /Assets/Scripts/Windows/WACK
 
-For example, the File WACK override for System.IO.File is here:
-/Assets/Scripts/Windows/WACK/System/IO/File.cs
+Facebook Management:
+/Assets/Scripts/FacebookManager.cs
+
 
 Additionally, any platform specific code will be available via a plugin as required (such as File above).
 
@@ -27,7 +28,8 @@ This approach means you don't have to change ANY game code which relies on these
 
 **Building to Windows Store App from Unity**
 
-You must do this before the Windows Store  app will work.
+You must do this before the Windows Store app will work.
+
 - File > Build Settings > Windows Store. 
 - Select Xaml/C# and 8.1
 - Build out on top of \PlatformerApps\PlatformerWindowsStore folder
@@ -35,6 +37,7 @@ You must do this before the Windows Store  app will work.
 **Building Windows Phone App from Unity**
 
 You must do this before the Windows Phone app will work.
+
 - File > Build Settings > Windows Phone
 - Select Xaml/C# 
 - Build out on top of \PlatformerApps\PlatformerWindowsPhone folder
@@ -60,7 +63,7 @@ In addition, there are 3 projets for the sample "MyPlugin" plugin.
 - Ensure PlatfomerWindows is set as the startup project
 - Then simply F5 the solution and it shoudl run!
 
-**Running the Windows Store App**
+**Running the Windows Phone App**
 
 - Make sure you build out from Unity as above "Building to Windows Phone App from Unity"
 - Ensure PlatfomerWP8 is set as the startup project
