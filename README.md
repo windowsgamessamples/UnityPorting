@@ -38,7 +38,7 @@ The WP8 SDK includes a stand-alone version of Visual Studio Express 2013. If you
 
 In Unity 4.3, deploying and debugging to the Windows Phone emulator is supported, however a device is recommended.
 
-Once you have a phone, [register your phone for development](http://msdn.microsoft.com/en-us/library/windowsphone/develop/ff769508(v=vs.105).aspx) and enable deployment and debugging. 
+Once you have a phone, [register your phone for development](http://msdn.microsoft.com/en-us/library/windowsphone/develop/ff769508.aspx) and enable deployment and debugging. 
 
 **[Microsoft account](http://signup.live.com/)**
 
