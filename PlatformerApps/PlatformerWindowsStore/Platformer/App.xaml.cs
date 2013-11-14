@@ -41,16 +41,18 @@ namespace Template
 
         void appCallbacks_Initialized()
         {
-            MyPlugin.Dispatcher.AppDispatcher = InvokeOnAppThread;
-            MyPlugin.Dispatcher.UIDispatcher = Window.Current.Dispatcher;
+            MyPlugin.Dispatcher.InvokeOnAppThread = InvokeOnAppThread;
+            MyPlugin.Dispatcher.InvokeOnUIThread = InvokeOnUIThread;
         }
 
         public void InvokeOnAppThread(Action callback)
         {
-            appCallbacks.InvokeOnAppThread(() =>
-                {
-                    callback();
-                }, false);
+            appCallbacks.InvokeOnAppThread(() => callback(), false);
+        }
+
+        public void InvokeOnUIThread(Action callback)
+        {
+            appCallbacks.InvokeOnUIThread(() => callback(), false);
         }
 
 		/// <summary>

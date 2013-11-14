@@ -10,51 +10,41 @@ namespace MyPlugin.Facebook
     public static class FacebookPlugin
     {
 
-#if !NETFX_CORE
         public static void InviteFriend(string friendName)
         {
-#else
-        public static async void InviteFriend(string friendName)
-        {
-            await Dispatcher.UIDispatcher.RunAsync(CoreDispatcherPriority.Normal, async () =>
+#if NETFX_CORE
+            Dispatcher.InvokeOnUIThread(async () =>
             {
                 await FacebookGateway.Instance.InviteFriendsAsync(friendName);
             });
 #endif
         }
 
-#if !NETFX_CORE
         public static void Logout(Action callback)
         {
-#else
-        public static async void Logout(Action callback)
-        {
-            await Dispatcher.UIDispatcher.RunAsync(CoreDispatcherPriority.Normal, async () =>
+#if NETFX_CORE
+            Dispatcher.InvokeOnUIThread(async () =>
             {
                 var state = await FacebookGateway.Instance.LogoutAsync();
                 if (callback != null)
                 {
-                    Dispatcher.AppDispatcher(callback);
-                    }
+                    Dispatcher.InvokeOnAppThread(callback);
+                }
             });
 #endif
         }
 
-
-#if !NETFX_CORE
         public static void Login(Action<string> callback)
         {
-#else
-        public static async void Login(Action<string> callback)
-        {
-            await Dispatcher.UIDispatcher.RunAsync(CoreDispatcherPriority.Normal, async () =>
+#if NETFX_CORE
+            Dispatcher.InvokeOnUIThread(async () =>
             {
                 if (callback != null)
                 { 
                     var state = await FacebookGateway.Instance.LoginAsync();
                     if (state == NavigationState.Done && callback != null)
                     {
-                        Dispatcher.AppDispatcher(() => callback(FacebookGateway.Instance.AccessToken));
+                        Dispatcher.InvokeOnAppThread(() => callback(FacebookGateway.Instance.AccessToken));
                     }
                 }
             });

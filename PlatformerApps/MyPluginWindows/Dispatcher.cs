@@ -12,13 +12,12 @@ namespace MyPlugin
     /// </summary>
     public static class Dispatcher
     {
-
         // needs to be set via the app so we can invoke onto App Thread (see App.xaml.cs)
-        public static Action<Action> AppDispatcher 
+        public static Action<Action> InvokeOnAppThread
         { get; set; }
 
         // needs to be set via the app so we can invoke onto UI Thread (see App.xaml.cs)
-        public static CoreDispatcher UIDispatcher
+        public static Action<Action> InvokeOnUIThread
         { get; set; }
     }
 }
