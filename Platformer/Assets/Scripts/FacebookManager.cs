@@ -3,7 +3,7 @@
 /// <summary>
 /// Handles Facebook integration
 /// </summary>
-public class FacebookHandler : MonoBehaviour
+public class FacebookManager : MonoBehaviour
 {
     private bool _loggedIn = false;
     private const string FacebookAuthTokenKey = "FacebookAuthToken";
@@ -71,7 +71,6 @@ public class FacebookHandler : MonoBehaviour
     {
 
 #if UNITY_WINRT
-        Debug.LogError("Trying to login");
         MyPlugin.Facebook.FacebookPlugin.Login(result =>
         {
             if (!string.IsNullOrEmpty(result))

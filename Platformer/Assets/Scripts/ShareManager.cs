@@ -3,7 +3,7 @@
 /// <summary>
 /// Handles Share Integration
 /// </summary>
-public class ShareHandler : MonoBehaviour
+public class ShareManager : MonoBehaviour
 {
     void OnGUI()
     {
