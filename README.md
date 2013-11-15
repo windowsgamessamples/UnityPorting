@@ -70,6 +70,7 @@ Current the following examples in the game are just for Windows 8.1
 - **Facebook Integration** (Login, Logout, Friend Request) (Windows 8.1 only)
 - **Window Resizing sample**, pause/resume at 500px (Windows 8.1 only, Windows Phone 8 coming soon)
 - **Orientation Change Support** Via the sample plugin, Unity can respond to orientation changes
+- **Xaml Textbox Overlay** Via the sample plugin, Unity can show, hide and read the text from a xaml textbox
 
 ## The Sample Unity App - Platformer
 
