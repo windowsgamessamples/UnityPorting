@@ -48,6 +48,7 @@ public class FacebookManager : MonoBehaviour
 
     void OnGUI()
     {
+#if UNITY_METRO
         if(_showInviteFriendsDialog)
             inviteFriendsDialog = GUI.Window(0, new Rect(Screen.width / 2 - 200, Screen.height / 2 - 200, 400, 400), RenderInviteFriendsDialog, "Invite friends");
 
@@ -67,6 +68,7 @@ public class FacebookManager : MonoBehaviour
             if (GUI.Button(new Rect(Screen.width - 150, 50, 130, 20), "Facebook login"))
                 Login();
         }
+#endif
     }
 
     
