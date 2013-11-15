@@ -39,6 +39,9 @@ public class FacebookManager : MonoBehaviour
         if (GUI.Button(new Rect(280, 350, 100, 20), "Send invite"))
             InviteFriend(_comboBoxControl.SelectedText);
 
+        if (GUI.Button(new Rect(20, 350, 100, 20), "Cancel"))
+            _showInviteFriendsDialog = false;
+
         GUI.DragWindow(new Rect(0, 0, 10000, 10000));
 #endif
     }
