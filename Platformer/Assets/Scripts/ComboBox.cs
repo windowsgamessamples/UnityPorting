@@ -94,7 +94,7 @@ public class ComboBox
         return selectedItemIndex;
     }
 
-    public string ButtonContent
+    public string SelectedText
     {
         get
         {

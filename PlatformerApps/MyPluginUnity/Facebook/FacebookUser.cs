@@ -13,7 +13,7 @@ namespace MyPlugin.Facebook
             Name = name;
         }
 
-        String Id { set; get; }
-        String Name { set; get; }
+        public String Id { set; get; }
+        public String Name { set; get; }
     }
 }
