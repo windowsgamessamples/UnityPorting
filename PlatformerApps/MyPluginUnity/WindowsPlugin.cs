@@ -16,13 +16,14 @@ using Microsoft.Phone.Tasks;
 namespace MyPlugin
 {
 
+    /// <summary>
+    /// Allows for some common windows integration scenarops
+    /// </summary>
     public class WindowsPlugin : IDisposable
     {
 
         private static WindowsPlugin _instance;
         private static readonly object _sync = new object();
-
-        public EventHandler OrientationChanged; 
 
         public static WindowsPlugin Instance
         {
@@ -44,8 +45,15 @@ namespace MyPlugin
 #endif 
         }
 
+        /// <summary>
+        /// Will allow Unity to respond to orientation changes
+        /// </summary>
+        public EventHandler OrientationChanged; 
 
-        void SetPreferences ( int value )
+        /// <summary>
+        /// Allows Unity to set auto rotation preferences
+        /// </summary>
+        void SetOrientationPreferences ( int value )
         {
 #if NETFX_CORE 
             Windows.Graphics.Display.DisplayProperties.AutoRotationPreferences =
