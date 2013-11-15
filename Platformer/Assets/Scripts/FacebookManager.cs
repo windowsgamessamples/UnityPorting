@@ -36,7 +36,7 @@ public class FacebookManager : MonoBehaviour
 
         GUI.Label(new Rect(20, 50, 150, 20), "Select friend to invite : " + _comboBoxControl.SelectedText);
     
-        if (GUI.Button(new Rect(280, 250, 100, 20), "Send invite"))
+        if (GUI.Button(new Rect(280, 350, 100, 20), "Send invite"))
             InviteFriend(_comboBoxControl.SelectedText);
 
         GUI.DragWindow(new Rect(0, 0, 10000, 10000));
@@ -46,7 +46,7 @@ public class FacebookManager : MonoBehaviour
     void OnGUI()
     {
         if(_showInviteFriendsDialog)
-            inviteFriendsDialog = GUI.Window(0, new Rect(Screen.width / 2 - 200, Screen.height / 2 - 150, 400, 300), RenderInviteFriendsDialog, "Invite friends");
+            inviteFriendsDialog = GUI.Window(0, new Rect(Screen.width / 2 - 200, Screen.height / 2 - 200, 400, 400), RenderInviteFriendsDialog, "Invite friends");
 
         if (_loggedIn)
         {
@@ -100,6 +100,7 @@ public class FacebookManager : MonoBehaviour
                 PlayerPrefs.Save();
             }
             _loggedIn = false;
+            _showInviteFriendsDialog = false;
         });
 #endif
     }
@@ -114,6 +115,7 @@ public class FacebookManager : MonoBehaviour
     private void InitialiseFriendsListComboBox(List<FacebookUser> friends)
     {
 #if UNITY_WINRT
+        friends = friends.OrderBy(f => f.Name).Take(10).ToList();
         _friendsList = friends;
         _friendsListGUIContent = new GUIContent[friends.Count];
 
