@@ -59,9 +59,11 @@ namespace MyPlugin
         void SetOrientationPreferences ( int value )
         {
 #if NETFX_CORE 
-            Windows.Graphics.Display.DisplayProperties.AutoRotationPreferences =
-                (Windows.Graphics.Display.DisplayOrientations)value; 
-#endif 
+            Dispatcher.InvokeOnUIThread(() =>
+            {
+                Windows.Graphics.Display.DisplayProperties.AutoRotationPreferences = (Windows.Graphics.Display.DisplayOrientations)value; 
+            });
+#endif
         }
 
         public void Dispose()
@@ -80,7 +82,10 @@ namespace MyPlugin
             var eh = OrientationChanged;
             if (eh != null)
             {
-              eh(this, null);
+                Dispatcher.InvokeOnAppThread(() =>
+                {
+                    eh(this, null);
+                });
             }
         }
 #endif
