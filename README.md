@@ -69,6 +69,7 @@ Current the following examples in the game are just for Windows 8.1
 - **WACK fixers** (Collections, IO, Sockets, Threading, Missing Extensions, with more coming soon)
 - **Facebook Integration** (Login, Logout, Friend Request) (Windows 8.1 only)
 - **Window Resizing sample**, pause/resume at 500px (Windows 8.1 only, Windows Phone 8 coming soon)
+- **Orientation Change Support** Via the sample plugin, Unity can respond to orientation changes
 
 ## The Sample Unity App - Platformer
 
