@@ -41,7 +41,10 @@ namespace MyPlugin
         public WindowsPlugin()
         {
 #if NETFX_CORE 
-            DisplayInformation.GetForCurrentView().OrientationChanged += WindowsPlugin_OrientationChanged;
+            Dispatcher.InvokeOnUIThread(() =>
+            {
+                DisplayInformation.GetForCurrentView().OrientationChanged += WindowsPlugin_OrientationChanged;
+            });
 #endif 
         }
 
@@ -64,7 +67,10 @@ namespace MyPlugin
         public void Dispose()
         {
 #if NETFX_CORE 
-            DisplayInformation.GetForCurrentView().OrientationChanged -= WindowsPlugin_OrientationChanged;
+            Dispatcher.InvokeOnUIThread(() =>
+            {
+                DisplayInformation.GetForCurrentView().OrientationChanged -= WindowsPlugin_OrientationChanged;
+            });
 #endif 
         }
 
