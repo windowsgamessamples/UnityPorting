@@ -109,6 +109,9 @@
     <Compile Include="..\MyPluginUnity\Facebook\FacebookUser.cs">
       <Link>Facebook\FacebookUser.cs</Link>
     </Compile>
+    <Compile Include="..\MyPluginUnity\TextBoxOverlayPlugin.cs">
+      <Link>TextBoxOverlayPlugin.cs</Link>
+    </Compile>
     <Compile Include="..\MyPluginUnity\WACK\System\IO\DirectoryNative.cs">
       <Link>WACK\System\IO\DirectoryNative.cs</Link>
     </Compile>
