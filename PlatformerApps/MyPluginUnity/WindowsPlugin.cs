@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Windows.ApplicationModel.DataTransfer;
 using Windows.UI.Core;
+using Windows.Graphics.Display;
 #elif WINDOWS_PHONE
 using Microsoft.Phone.Tasks;
 #endif
@@ -15,13 +16,65 @@ using Microsoft.Phone.Tasks;
 namespace MyPlugin
 {
 
-    public class WindowsPlugin
+    public class WindowsPlugin : IDisposable
     {
+
+        private static WindowsPlugin _instance;
+        private static readonly object _sync = new object();
+
+        public EventHandler OrientationChanged; 
+
+        public static WindowsPlugin Instance
+        {
+            get
+            {
+                lock (_sync)
+                {
+                    if (_instance == null)
+                        _instance = new WindowsPlugin();
+                }
+                return _instance;
+            }
+        }
+
+        public WindowsPlugin()
+        {
+#if NETFX_CORE 
+            DisplayInformation.GetForCurrentView().OrientationChanged += WindowsPlugin_OrientationChanged;
+#endif 
+        }
+
+
+        void SetPreferences ( int value )
+        {
+#if NETFX_CORE 
+            Windows.Graphics.Display.DisplayProperties.AutoRotationPreferences =
+                (Windows.Graphics.Display.DisplayOrientations)value; 
+#endif 
+        }
+
+        public void Dispose()
+        {
+#if NETFX_CORE 
+            DisplayInformation.GetForCurrentView().OrientationChanged -= WindowsPlugin_OrientationChanged;
+#endif 
+        }
+
+#if NETFX_CORE 
+        void WindowsPlugin_OrientationChanged(DisplayInformation sender, object args)
+        {
+            var eh = OrientationChanged;
+            if (eh != null)
+            {
+              eh(this, null);
+            }
+        }
+#endif
 
         /// <summary>
         /// Show the Share UI
         /// </summary>
-        public static void ShowShareUI()
+        public void ShowShareUI()
         {
 #if NETFX_CORE
             Dispatcher.InvokeOnUIThread(() => DataTransferManager.ShowShareUI());
@@ -33,7 +86,6 @@ namespace MyPlugin
             shareLinkTask.Show();
 #endif
         }
-
 
     }
 }
