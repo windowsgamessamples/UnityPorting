@@ -6954,12 +6954,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4dfad0f61bab75c489163dbf8175a7cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  windowRect0:
+  inviteFriendsDialog:
     serializedVersion: 2
-    x: 20
-    y: 20
-    width: 120
-    height: 50
+    x: 500
+    y: 500
+    width: 500
+    height: 300
 --- !u!1 &1459810741
 GameObject:
   m_ObjectHideFlags: 0
