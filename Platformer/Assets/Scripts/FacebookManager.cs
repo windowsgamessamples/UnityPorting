@@ -14,6 +14,15 @@ public class FacebookManager : MonoBehaviour
 
     void Start()
     {
+        // If a facebook authenticaton token has been previously saved, try to login to Facebook automatically
+        if (!string.IsNullOrEmpty(PlayerPrefs.GetString(FacebookAuthTokenKey)))
+            Login();
+
+        //InitialiseFriendsListComboBox();
+    }
+
+    private void InitialiseFriendsListComboBox()
+    {
         comboBoxList = new GUIContent[5];
         comboBoxList[0] = new GUIContent("Friend 1");
         comboBoxList[1] = new GUIContent("Friend 2");
@@ -29,18 +38,27 @@ public class FacebookManager : MonoBehaviour
         listStyle.padding.top =
         listStyle.padding.bottom = 4;
 
-        comboBoxControl = new ComboBox(new Rect(160, 20, 100, 20), comboBoxList[0], comboBoxList, "button", "box", listStyle);
+        comboBoxControl = new ComboBox(new Rect(160, 50, 200, 20), comboBoxList[0], comboBoxList, "button", "box", listStyle);
+    }
+
+    public Rect windowRect0 = new Rect(500, 500, 500, 300);
+
+    void RenderInviteFriendsWindow(int windowID)
+    {
+        comboBoxControl.Show();
+
+        GUI.Label(new Rect(20, 50, 150, 20), "Select friend to invite : " + comboBoxControl.ButtonContent);
+        if (GUI.Button(new Rect(280, 250, 100, 20), "Send invite"))
+        {
+            ShowFriends();
+        }
+
+        GUI.DragWindow(new Rect(0, 0, 10000, 10000));
     }
 
     void OnGUI()
     {
-        comboBoxControl.Show();
-
-        GUI.Label(new Rect(20, 20, 150, 20), "Select friend to invite : " + comboBoxControl.ButtonContent);
-        if (GUI.Button(new Rect(280, 20, 100, 20), "Send invite"))
-        {
-            ShowFriends();
-        }
+        //windowRect0 = GUI.Window(0, new Rect(Screen.width / 2 - 200, Screen.height / 2 - 150, 400, 300), RenderInviteFriendsWindow, "Invite friends");
 
         if (_loggedIn)
         {
@@ -77,6 +95,8 @@ public class FacebookManager : MonoBehaviour
             {
                 PlayerPrefs.SetString(FacebookAuthTokenKey, result);
                 PlayerPrefs.Save();
+
+                _loggedIn = true;
             }
         });
 #endif
