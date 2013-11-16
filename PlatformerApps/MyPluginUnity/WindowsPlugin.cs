@@ -9,8 +9,10 @@ using System.Threading.Tasks;
 using Windows.ApplicationModel.DataTransfer;
 using Windows.UI.Core;
 using Windows.Graphics.Display;
+using Windows.ApplicationModel;
 #elif WINDOWS_PHONE
 using Microsoft.Phone.Tasks;
+using System.Xml.Linq;
 #endif
 
 namespace MyPlugin
@@ -46,6 +48,26 @@ namespace MyPlugin
                 DisplayInformation.GetForCurrentView().OrientationChanged += WindowsPlugin_OrientationChanged;
             });
 #endif 
+        }
+
+        /// <summary>
+        /// Returns the application package version 
+        /// </summary>
+        /// <returns></returns>
+        public string GetAppVersion()
+        {
+#if NETFX_CORE
+            var major = Package.Current.Id.Version.Major;
+            var minor = Package.Current.Id.Version.Minor.ToString();
+            var revision = Package.Current.Id.Version.Revision.ToString();
+            var build = Package.Current.Id.Version.Build.ToString();
+            var version = String.Format("{0}.{1}.{2}.{3}", major, minor, build, revision);
+            return version;
+#elif WINDOWS_PHONE
+            return XDocument.Load("WMAppManifest.xml").Root.Element("App").Attribute("Version").Value;
+#else
+            return String.Empty;
+#endif
         }
 
         /// <summary>

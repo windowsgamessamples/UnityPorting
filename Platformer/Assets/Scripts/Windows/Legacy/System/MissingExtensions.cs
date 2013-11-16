@@ -46,6 +46,8 @@ namespace System
         {
             return type.GetTypeInfo().IsAssignableFrom(other.GetTypeInfo());
         }
+
+
     }
 }
 
