@@ -7,7 +7,7 @@ using Windows.Storage;
 using Windows.Storage.Streams;
 #endif
 
-namespace MyPlugin.WACK.System.IO
+namespace MyPlugin.Legacy.System.IO
 {
 
     public static class FileNative

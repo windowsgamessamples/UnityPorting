@@ -6,7 +6,7 @@ using Windows.ApplicationModel;
 using Windows.Storage;
 #endif
 
-namespace MyPlugin.WACK.System.IO
+namespace MyPlugin.Legacy.System.IO
 {
     public static class DirectoryNative
     {

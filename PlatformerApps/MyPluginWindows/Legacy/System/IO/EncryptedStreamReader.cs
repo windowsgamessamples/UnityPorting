@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using Windows.ApplicationModel.Store;
 
-namespace MyPlugin.WACK.System.IO
+namespace MyPlugin.Legacy.System.IO
 {
     internal class EncryptedStreamReader : StreamReader
     {

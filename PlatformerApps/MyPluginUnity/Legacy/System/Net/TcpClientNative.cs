@@ -15,7 +15,7 @@ using System.Net.Sockets;
 #endif
 
 
-namespace MyPlugin.WACK.System.Net
+namespace MyPlugin.Legacy.System.Net
 {
 
     public class TcpClientNative

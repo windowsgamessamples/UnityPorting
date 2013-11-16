@@ -3,7 +3,7 @@ using Windows.Security.Cryptography;
 using Windows.Security.Cryptography.Core;
 using Windows.Storage.Streams;
 
-namespace MyPlugin.WACK.System.IO
+namespace MyPlugin.Legacy.System.IO
 {
     internal static class EncryptionProvider
     {

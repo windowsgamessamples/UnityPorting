@@ -2879,7 +2879,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 788231127}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 783046d8c143e054785e4edea80ba410, type: 3}
+  m_Script: {fileID: 11500000, guid: 9f6cc75ca5965cd479aab1e2bd752094, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!4 &788231129
@@ -6951,7 +6951,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1423860326}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7f0217408a676684dbb337433b5368e2, type: 3}
+  m_Script: {fileID: 11500000, guid: 77627f2ea1af97947bd6b2c76636dcff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   inviteFriendsDialog:
