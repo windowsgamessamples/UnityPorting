@@ -78,7 +78,7 @@ This is the sample Unity game project you can simply open with Unity 4.3 and run
 
 Note: After cloning this repository you will need to manually reassociate scripts with 2 game objects before getting started:
 
-- UI/Facebook > FacebookManager.cs script
+- UI/Facebook > FacebookManager.cs
 - UI/Share > ShareManager.cs
 
 Here's some guidance as to where new Windows features have been added
