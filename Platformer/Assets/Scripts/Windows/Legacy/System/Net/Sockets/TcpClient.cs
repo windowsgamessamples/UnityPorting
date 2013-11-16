@@ -3,7 +3,7 @@
 using System;
 using System.IO;
 using System.Net;
-using MyPlugin.WACK.System.Net;
+using MyPlugin.Legacy.System.Net;
 
 namespace System.Net.Sockets
 {
