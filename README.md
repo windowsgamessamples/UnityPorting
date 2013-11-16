@@ -76,6 +76,11 @@ Current the following examples in the game are just for Windows 8.1
 
 This is the sample Unity game project you can simply open with Unity 4.3 and run to see what's going on.
 
+Note: After cloning this repository you will need to manually reassociate scripts with 2 game objects before getting started:
+
+- UI/Facebook > FacebookManager.cs
+- UI/Share > ShareManager.cs
+
 Here's some guidance as to where new Windows features have been added
 
 - Windows Store and Windows Phone specific scripts > /Assets/Scripts/Windows
