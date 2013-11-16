@@ -42,6 +42,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Dispatcher.cs" />
     <Compile Include="Facebook\FacebookPlugin.cs" />
     <Compile Include="Facebook\FacebookUser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

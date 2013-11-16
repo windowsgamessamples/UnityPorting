@@ -26,6 +26,7 @@ namespace Platformer
 		// Constructor
 		public MainPage()
 		{
+
 			var bridge = new UnityBridge();
 			UnityApp.SetBridge(bridge);
 			InitializeComponent();
@@ -39,7 +40,21 @@ namespace Platformer
             // ensure we listen to when unity tells us game is ready
             WindowsGateway.UnityLoaded = OnUnityLoaded;
 
+            // wire up dispatcher for plugin
+            MyPlugin.Dispatcher.InvokeOnAppThread = InvokeOnAppThread;
+            MyPlugin.Dispatcher.InvokeOnUIThread = InvokeOnUIThread;
+
 		}
+
+        public void InvokeOnAppThread(Action callback)
+        {
+            UnityApp.BeginInvoke(() => callback());
+        }
+
+        public void InvokeOnUIThread(Action callback)
+        {
+            Dispatcher.BeginInvoke(() => callback());
+        }
 
         async void ExtendedSplashTimer_Tick(object sender, EventArgs e)
         {
