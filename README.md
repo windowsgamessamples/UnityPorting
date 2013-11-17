@@ -13,7 +13,7 @@ It is recommended that you read these whitepapers before delving into the code.
 - [Porting tips for Windows Phone with Unity](http://aka.ms/unityWPTips)
 
 
-### The prerequisites for working with these samples are in either of the Getting Started documents above. 
+The prerequisites for working with these samples are in either of the Getting Started documents above. 
 
 ## What's in the repo?
 
@@ -110,10 +110,10 @@ If you  add new plugins or change the player preferences, you will need to merge
 
 
 # Upcoming features  #
-We are just getting started. Today, it is a sample and lots of useful snippets you can copy and paste into your projects.  We plan to:
-
+We are just getting started. Today, it is a sample and lots of useful snippets you can copy and paste into your projects.  We need  to: 
 - Refactor into something more reusable outside of the sample; we will also provide more explanations.   
-- create guidance papers on getting ready for certification, performance and troubleshooting.  
- 
-#Known issues # 
+- Create guidance papers on getting ready for certification, performance and troubleshooting.  
+
+# Known issues #
+
 With Unity 4.3, we are seeing a windowing focus problem. If you have multiple monitors and the game is not getting focus, drag it as if you were going to move the window or close the game so focus is restored.  
