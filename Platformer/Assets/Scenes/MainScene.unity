@@ -2342,6 +2342,8 @@ GameObject:
   - 4: {fileID: 515681187}
   - 114: {fileID: 515681186}
   - 114: {fileID: 515681188}
+  - 114: {fileID: 515681190}
+  - 114: {fileID: 515681189}
   m_Layer: 0
   m_Name: _GameManager
   m_TagString: Untagged
@@ -2380,6 +2382,28 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3571d79afdc7e1b459aba335f8fdfabc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &515681189
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 515681185}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e352c5294bff9a34dafa2be8c40885bc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &515681190
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 515681185}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4dfad0f61bab75c489163dbf8175a7cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &599057490
@@ -2855,44 +2879,6 @@ Animator:
   m_ApplyRootMotion: 0
   m_AnimatePhysics: 1
   m_HasTransformHierarchy: 1
---- !u!1 &788231127
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 788231129}
-  - 114: {fileID: 788231128}
-  m_Layer: 0
-  m_Name: Share
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &788231128
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 788231127}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9f6cc75ca5965cd479aab1e2bd752094, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!4 &788231129
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 788231127}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4.76306868, y: 7.39870882, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 2033762903}
 --- !u!1 &811719299
 GameObject:
   m_ObjectHideFlags: 0
@@ -8359,50 +8345,6 @@ Transform:
   - {fileID: 1047631306}
   - {fileID: 669626878}
   m_Father: {fileID: 0}
---- !u!1 &1758641750
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 1758641751}
-  - 114: {fileID: 1758641752}
-  m_Layer: 0
-  m_Name: Facebook
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1758641751
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1758641750}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4.76306915, y: 7.39870882, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 2033762903}
---- !u!114 &1758641752
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1758641750}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7f7f88d549c018140afbf0e6e44a39b1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  inviteFriendsDialog:
-    serializedVersion: 2
-    x: 500
-    y: 500
-    width: 500
-    height: 300
 --- !u!1 &1774251796
 GameObject:
   m_ObjectHideFlags: 0
@@ -8791,8 +8733,6 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 1758641751}
-  - {fileID: 788231129}
   - {fileID: 335855071}
   - {fileID: 604767756}
   - {fileID: 881603615}
