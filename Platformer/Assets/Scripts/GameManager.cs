@@ -9,6 +9,10 @@ public class GameManager : MonoBehaviour {
     private bool _showConfirmQuit = false;
     private bool _showResume = false;
 
+    [SerializeField] private GameObject _facebookObject;
+    [SerializeField] private GameObject _shareObject ;
+
+
     #region Instance
     static GameManager _instance;
     public static GameManager Instance
@@ -27,11 +31,18 @@ public class GameManager : MonoBehaviour {
     {
         _score = GameObject.Find("Score").GetComponent<Score>();
 
+        if (_facebookObject != null)
+            _facebookObject.AddComponent<FacebookManager>();
+
+        if (_shareObject != null)
+            _shareObject.AddComponent<ShareManager>();
+
+
 #if UNITY_WINRT && !UNITY_EDITOR  
         WindowsGateway.UnityLoaded();
 #endif
 
-	}
+    }
 
     void Update()
     {
