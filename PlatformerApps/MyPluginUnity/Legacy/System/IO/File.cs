@@ -1,17 +1,34 @@
-﻿using System;
-using System.IO;
+﻿
 
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Text;
 #if NETFX_CORE
-using System.Threading.Tasks;
 using Windows.Storage;
+using System.Threading.Tasks;
 using Windows.Storage.Streams;
 #endif
 
-namespace MyPlugin.Legacy.System.IO
-{
 
-    public static class FileNative
+namespace LegacySystem.IO
+{
+    public class File
     {
+
+        public static void Move(string source, string destination)
+        {
+#if NETFX_CORE
+            source = FixPath(source);
+            destination = FixPath(destination);
+
+            var thread = MoveAsync(source, destination);
+            thread.Wait();
+#else
+            throw new NotImplementedException();
+#endif
+        }
 
         public static bool Exists(string path)
         {
@@ -90,25 +107,28 @@ namespace MyPlugin.Legacy.System.IO
 #endif
         }
 
-        public static void Move(string source, string destination)
-        {
-#if NETFX_CORE
-            source = FixPath(source);
-            destination = FixPath(destination);
-
-            var thread = MoveAsync(source, destination);
-            thread.Wait();
-#else
-            throw new NotImplementedException();
-#endif
-        }
-
         public static void Delete(string path)
         {
 #if NETFX_CORE
             path = FixPath(path);
             var thread = DeleteAsync(path);
             thread.Wait();
+#else
+            throw new NotImplementedException();
+#endif
+        }
+
+        public static Stream Open(string path)
+        {
+#if NETFX_CORE
+            path = FixPath(path);
+            var thread = OpenAsync(path);
+            thread.Wait();
+
+            if (thread.IsCompleted)
+                return thread.Result;
+
+            throw thread.Exception;
 #else
             throw new NotImplementedException();
 #endif
@@ -135,22 +155,6 @@ namespace MyPlugin.Legacy.System.IO
 #if NETFX_CORE
             path = FixPath(path);
             var thread = CreateTextAsync(path);
-            thread.Wait();
-
-            if (thread.IsCompleted)
-                return thread.Result;
-
-            throw thread.Exception;
-#else
-            throw new NotImplementedException();
-#endif
-        }
-
-        public static Stream Open(string path)
-        {
-#if NETFX_CORE
-            path = FixPath(path);
-            var thread = OpenAsync(path);
             thread.Wait();
 
             if (thread.IsCompleted)
@@ -343,5 +347,6 @@ namespace MyPlugin.Legacy.System.IO
 #endif
 
     }
-
 }
+
+

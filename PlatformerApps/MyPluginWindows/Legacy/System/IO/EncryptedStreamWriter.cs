@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Windows.ApplicationModel.Store;
 
-namespace MyPlugin.Legacy.System.IO
+namespace LegacySystem.IO
 {
     internal class EncryptedStreamWriter : StreamWriter
     {

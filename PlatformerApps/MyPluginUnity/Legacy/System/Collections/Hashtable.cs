@@ -1,4 +1,4 @@
-﻿#if UNITY_WINRT && !UNITY_EDITOR
+﻿
 
 using System.Collections.Generic;
 using System.Collections;
@@ -8,7 +8,7 @@ using System.Reflection;
 using System;
 using System.Runtime.InteropServices;
 
-namespace System.Collections
+namespace LegacySystem.Collections
 {
     /**
      * Implement Hashtable like it exists in .NET 2.0... or at least the part I'm using
@@ -26,7 +26,9 @@ namespace System.Collections
          * I'm mostly doing this to show it CAN be done, rather than encouraging it -- it's probably easier
          * to rewrite the code that uses the enumerator
          */
+#if !NETFX_CORE
         [System.Serializable]
+#endif
         public struct HashtableEnumerator : IDictionaryEnumerator, IEnumerator<DictionaryEntry>
         {
             private Dictionary<object, object>.Enumerator CurrentImpl;
@@ -184,6 +186,3 @@ namespace System.Collections
         }
     }
 }
-
-
-#endif

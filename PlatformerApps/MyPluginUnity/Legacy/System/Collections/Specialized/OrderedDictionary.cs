@@ -1,6 +1,4 @@
-﻿#if UNITY_METRO && !UNITY_EDITOR
-
-using System;
+﻿using System;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Collections;
@@ -12,7 +10,7 @@ using System.Linq;
 /**
  * Modified code from http://stackoverflow.com/questions/2629027/no-generic-implementation-of-ordereddictionary
  */
-namespace System.Collections.Specialized {
+namespace LegacySystem.Collections.Specialized {
 
     public interface IOrderedDictionary<TKey, TValue> : IDictionary<TKey, TValue>, IOrderedDictionary {
         new TValue this[int index] { get; set; }
@@ -508,5 +506,3 @@ namespace System.Collections.Specialized {
         public object Current { get { return Entry; } }
     }
 }
-
-#endif

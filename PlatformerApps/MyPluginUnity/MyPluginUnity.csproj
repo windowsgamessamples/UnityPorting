@@ -45,11 +45,17 @@
     <Compile Include="Dispatcher.cs" />
     <Compile Include="Facebook\FacebookPlugin.cs" />
     <Compile Include="Facebook\FacebookUser.cs" />
+    <Compile Include="Legacy\System\Collections\ArrayList.cs" />
+    <Compile Include="Legacy\System\Collections\Hashtable.cs" />
+    <Compile Include="Legacy\System\Collections\Specialized\IOrderedDictionary.cs" />
+    <Compile Include="Legacy\System\Collections\Specialized\OrderedDictionary.cs" />
+    <Compile Include="Legacy\System\IO\Directory.cs" />
+    <Compile Include="Legacy\System\IO\File.cs" />
+    <Compile Include="Legacy\System\MissingExtensions.cs" />
+    <Compile Include="Legacy\System\Net\Sockets\TcpClient.cs" />
+    <Compile Include="Legacy\System\Threading\Thread.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TextBoxOverlayPlugin.cs" />
-    <Compile Include="Legacy\System\IO\DirectoryNative.cs" />
-    <Compile Include="Legacy\System\IO\FileNative.cs" />
-    <Compile Include="Legacy\System\Net\TcpClientNative.cs" />
     <Compile Include="WindowsPlugin.cs" />
   </ItemGroup>
   <ItemGroup />

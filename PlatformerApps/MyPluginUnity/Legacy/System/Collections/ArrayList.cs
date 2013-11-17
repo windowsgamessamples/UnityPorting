@@ -1,4 +1,4 @@
-﻿#if UNITY_WINRT && !UNITY_EDITOR
+﻿
 using System.Collections.Generic;
 using System.Collections;
 using System.Linq;
@@ -7,7 +7,7 @@ using System.Reflection;
 using System;
 using System.Runtime.InteropServices;
 
-namespace System.Collections
+namespace LegacySystem.Collections
 {
     /**
      * An ArrayList is just a dynamic array of generic objects... very close to List<> which is supported in Metro
@@ -27,4 +27,4 @@ namespace System.Collections
     }
 }
 
-#endif
+

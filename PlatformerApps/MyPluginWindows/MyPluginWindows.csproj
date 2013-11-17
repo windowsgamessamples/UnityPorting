@@ -112,14 +112,32 @@
     <Compile Include="..\MyPluginUnity\Facebook\FacebookUser.cs">
       <Link>Facebook\FacebookUser.cs</Link>
     </Compile>
-    <Compile Include="..\MyPluginUnity\Legacy\System\IO\DirectoryNative.cs">
-      <Link>Legacy\System\IO\DirectoryNative.cs</Link>
+    <Compile Include="..\MyPluginUnity\Legacy\System\Collections\ArrayList.cs">
+      <Link>Legacy\System\Collections\ArrayList.cs</Link>
     </Compile>
-    <Compile Include="..\MyPluginUnity\Legacy\System\IO\FileNative.cs">
-      <Link>Legacy\System\IO\FileNative.cs</Link>
+    <Compile Include="..\MyPluginUnity\Legacy\System\Collections\Hashtable.cs">
+      <Link>Legacy\System\Collections\Hashtable.cs</Link>
     </Compile>
-    <Compile Include="..\MyPluginUnity\Legacy\System\Net\TcpClientNative.cs">
-      <Link>Legacy\System\Net\TcpClientNative.cs</Link>
+    <Compile Include="..\MyPluginUnity\Legacy\System\Collections\Specialized\IOrderedDictionary.cs">
+      <Link>Legacy\System\Collections\Specialized\IOrderedDictionary.cs</Link>
+    </Compile>
+    <Compile Include="..\MyPluginUnity\Legacy\System\Collections\Specialized\OrderedDictionary.cs">
+      <Link>Legacy\System\Collections\Specialized\OrderedDictionary.cs</Link>
+    </Compile>
+    <Compile Include="..\MyPluginUnity\Legacy\System\IO\Directory.cs">
+      <Link>Legacy\System\IO\Directory.cs</Link>
+    </Compile>
+    <Compile Include="..\MyPluginUnity\Legacy\System\IO\File.cs">
+      <Link>Legacy\System\IO\File.cs</Link>
+    </Compile>
+    <Compile Include="..\MyPluginUnity\Legacy\System\MissingExtensions.cs">
+      <Link>Legacy\System\MissingExtensions.cs</Link>
+    </Compile>
+    <Compile Include="..\MyPluginUnity\Legacy\System\Net\Sockets\TcpClient.cs">
+      <Link>Legacy\System\Net\Sockets\TcpClient.cs</Link>
+    </Compile>
+    <Compile Include="..\MyPluginUnity\Legacy\System\Threading\Thread.cs">
+      <Link>Legacy\System\Threading\Thread.cs</Link>
     </Compile>
     <Compile Include="..\MyPluginUnity\TextBoxOverlayPlugin.cs">
       <Link>TextBoxOverlayPlugin.cs</Link>

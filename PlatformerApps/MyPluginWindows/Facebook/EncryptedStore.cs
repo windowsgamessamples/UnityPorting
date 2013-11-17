@@ -1,4 +1,4 @@
-﻿using MyPlugin.Legacy.System.IO;
+﻿using LegacySystem.IO;
 using Windows.ApplicationModel.Store;
 using Windows.Storage;
 

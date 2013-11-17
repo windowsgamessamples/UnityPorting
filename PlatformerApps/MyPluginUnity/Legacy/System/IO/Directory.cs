@@ -1,24 +1,18 @@
 ﻿using System;
-using System.IO;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
 #if NETFX_CORE
 using System.Threading.Tasks;
-using Windows.ApplicationModel;
 using Windows.Storage;
+using Windows.ApplicationModel;
+using System.IO;
 #endif
 
-namespace MyPlugin.Legacy.System.IO
+namespace LegacySystem.IO
 {
-    public static class DirectoryNative
+    public class Directory
     {
-
-        public static string GetAppDirectory()
-        {
-#if NETFX_CORE
-            return Package.Current.InstalledLocation.Path;
-#else
-            throw new NotImplementedException();
-#endif
-        }
 
         public static string[] GetFiles(string path)
         {
@@ -30,21 +24,6 @@ namespace MyPlugin.Legacy.System.IO
             throw new NotImplementedException();
 #endif
         }
-
-        public static bool CreateDirectory(string folderName)
-        {
-#if NETFX_CORE
-            var t = CreateDirectoryAsync(folderName);
-            t.Wait();
-            if (t.IsCompleted)
-                return t.Result;
-            else
-                return false;
-#else
-            throw new NotImplementedException();
-#endif
-        }
-
 
         public static bool Exists(string path)
         {
@@ -60,6 +39,28 @@ namespace MyPlugin.Legacy.System.IO
 #endif
         }
 
+        public static bool CreateDirectory(string path)
+        {
+#if NETFX_CORE
+            var t = CreateDirectoryAsync(path);
+            t.Wait();
+            if (t.IsCompleted)
+                return t.Result;
+            else
+                return false;
+#else
+            throw new NotImplementedException();
+#endif
+        }
+
+        public static string GetCurrentDirectory()
+        {
+#if NETFX_CORE
+            return Package.Current.InstalledLocation.Path;
+#else
+            throw new NotImplementedException();
+#endif
+        }
 
 #if NETFX_CORE
 
@@ -113,5 +114,6 @@ namespace MyPlugin.Legacy.System.IO
         }
 
 #endif
+
     }
 }

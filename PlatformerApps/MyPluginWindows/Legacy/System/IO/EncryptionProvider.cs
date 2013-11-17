@@ -3,7 +3,7 @@ using Windows.Security.Cryptography;
 using Windows.Security.Cryptography.Core;
 using Windows.Storage.Streams;
 
-namespace MyPlugin.Legacy.System.IO
+namespace LegacySystem.IO
 {
     internal static class EncryptionProvider
     {

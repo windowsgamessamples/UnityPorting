@@ -1,6 +1,4 @@
-﻿#if UNITY_METRO && !UNITY_EDITOR
-
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Collections;
 using System.Linq;
 using System.Text;
@@ -8,11 +6,11 @@ using System.Reflection;
 using System;
 using System.Runtime.InteropServices;
 
-namespace System
+namespace LegacySystem
 {
     /**
-       * Helpers for missing functions of classes, turned into extensions instead...
-       */
+     * Helpers for missing functions of classes, turned into extensions instead...
+    */
     public static class MissingExtensions
     {
         /**
@@ -36,7 +34,11 @@ namespace System
          */
         public static bool IsSubclassOf(this System.Type type, System.Type parent)
         {
+#if NETFX_CORE
             return parent.GetTypeInfo().IsAssignableFrom(type.GetTypeInfo());
+#else
+            return type.IsSubclassOf(parent);
+#endif
         }
 
         /**
@@ -44,11 +46,14 @@ namespace System
          */
         public static bool IsAssignableFrom(this System.Type type, System.Type other)
         {
+#if NETFX_CORE
             return type.GetTypeInfo().IsAssignableFrom(other.GetTypeInfo());
+#else
+            return type.IsAssignableFrom(other);
+#endif
         }
 
 
     }
 }
 
-#endif

@@ -15,10 +15,10 @@ using System.Net.Sockets;
 #endif
 
 
-namespace MyPlugin.Legacy.System.Net
+namespace LegacySystem.Net.Sockets
 {
 
-    public class TcpClientNative
+    public class TcpClient
     {
 #if NETFX_CORE
         private StreamSocket _socket = null;

@@ -1,6 +1,4 @@
-﻿#if UNITY_METRO && !UNITY_EDITOR
-
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Collections;
 using System.Linq;
 using System.Text;
@@ -8,7 +6,7 @@ using System.Reflection;
 using System;
 using System.Runtime.InteropServices;
 
-namespace System.Collections.Specialized {
+namespace LegacySystem.Collections.Specialized {
 
 	public interface IOrderedDictionary : IDictionary, ICollection, IEnumerable {
 		
@@ -19,4 +17,3 @@ namespace System.Collections.Specialized {
 		void RemoveAt(int index);
 	}
 }
-#endif

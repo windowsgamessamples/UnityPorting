@@ -1,6 +1,6 @@
-﻿#if UNITY_METRO && !UNITY_EDITOR
+﻿
 
-namespace System.Threading
+namespace LegacySystem.Threading
 {
     public class Thread
     {
@@ -11,4 +11,3 @@ namespace System.Threading
     }
 }
 
-#endif
