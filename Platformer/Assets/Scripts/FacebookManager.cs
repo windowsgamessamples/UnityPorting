@@ -24,7 +24,7 @@ public class FacebookManager : MonoBehaviour
             Login();
     }
 
-    public Rect inviteFriendsDialog = new Rect(500, 500, 500, 300);
+    private Rect inviteFriendsDialog = new Rect(500, 500, 500, 300);
 
     void RenderInviteFriendsDialog(int windowID)
     {
