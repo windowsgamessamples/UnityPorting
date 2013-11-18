@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour {
     private Score _score;
     private bool _showConfirmQuit = false;
     private bool _showResume = false;
+    private string _version;
 
     [SerializeField] private GameObject _facebookObject;
     [SerializeField] private GameObject _shareObject ;
@@ -27,8 +28,9 @@ public class GameManager : MonoBehaviour {
     }
     #endregion
 
-    void Start () 
+    void Start ()
     {
+        _version = MyPlugin.WindowsPlugin.Instance.GetAppVersion();
         _score = GameObject.Find("Score").GetComponent<Score>();
 
         if (_facebookObject != null)
@@ -74,6 +76,9 @@ public class GameManager : MonoBehaviour {
                 Resume();
             }
         }
+
+        // Show version number of app
+        GUI.Label(new Rect(20, Screen.height - 30, 100, 20), "Version : " + _version);
     }
 
     public void ShowResume()
