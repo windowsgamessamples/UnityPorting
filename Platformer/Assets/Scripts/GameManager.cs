@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using System.Collections;
 
 public class GameManager : MonoBehaviour {
@@ -12,7 +13,7 @@ public class GameManager : MonoBehaviour {
 
     [SerializeField] private GameObject _facebookObject;
     [SerializeField] private GameObject _shareObject ;
-
+    [SerializeField] private GameObject _musicObject;
 
     #region Instance
     static GameManager _instance;
@@ -32,7 +33,7 @@ public class GameManager : MonoBehaviour {
     {
         _version = MyPlugin.WindowsPlugin.Instance.GetAppVersion();
         _score = GameObject.Find("Score").GetComponent<Score>();
-
+        
         if (_facebookObject != null)
             _facebookObject.AddComponent<FacebookManager>();
 
@@ -40,10 +41,55 @@ public class GameManager : MonoBehaviour {
             _shareObject.AddComponent<ShareManager>();
 
 
+        InitialiseSound();
+
 #if UNITY_WINRT && !UNITY_EDITOR  
         WindowsGateway.UnityLoaded();
 #endif
 
+    }
+
+    public void InitialiseSound()
+    {
+        // Enable/disable the sound based on how it was previously set in game settings
+        string soundEnabled = PlayerPrefs.GetString("soundenabled");
+
+        if (soundEnabled == "")
+            EnableSound(true);
+        else
+            EnableSound(soundEnabled == "True");
+    }
+
+    public void EnableSound(bool on)
+    {
+        if (on)
+        {
+            _musicObject.GetComponent<AudioSource>().Play();
+            AudioListener.pause = false;
+        }
+        else
+        {
+            _musicObject.GetComponent<AudioSource>().Stop();
+            AudioListener.pause = true;
+            
+        }
+
+        PlayerPrefs.SetString("soundenabled", on.ToString());
+        PlayerPrefs.Save();
+    }
+
+    public bool IsSoundEnabled()
+    {
+        string soundEnabled = PlayerPrefs.GetString("soundenabled");
+
+        if (soundEnabled == "")
+        {
+            PlayerPrefs.SetString("soundenabled", "True");
+            PlayerPrefs.Save();
+            return true;
+        }
+        else
+            return Convert.ToBoolean(soundEnabled);
     }
 
     void Update()

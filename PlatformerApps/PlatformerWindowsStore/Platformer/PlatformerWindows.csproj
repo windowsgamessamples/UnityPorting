@@ -94,6 +94,9 @@
     <Compile Include="FacebookIntegration.xaml.cs">
       <DependentUpon>FacebookIntegration.xaml</DependentUpon>
     </Compile>
+    <Compile Include="GameSettingsFlyout.xaml.cs">
+      <DependentUpon>GameSettingsFlyout.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -163,6 +166,10 @@
       <HintPath>.\		</HintPath>
     </Reference>
     <Page Include="FacebookIntegration.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GameSettingsFlyout.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

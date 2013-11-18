@@ -110,7 +110,10 @@ namespace Template
             if (e.Visible)
             {
                 if (AppCallbacks.Instance.IsInitialized())
+                {
                     AppCallbacks.Instance.UnityPause(0);
+                    WindowsGateway.InitialiseSound();
+                }
                 return;
             }
             else
@@ -118,6 +121,7 @@ namespace Template
                 if (AppCallbacks.Instance.IsInitialized())
                 {
                     AppCallbacks.Instance.UnityPause(1);
+                    WindowsGateway.InitialiseSound();
 
                     var wideContent = TileContentFactory.CreateTileWidePeekImage06();
                     var tileContent = TileContentFactory.CreateTileSquarePeekImageAndText04();
@@ -222,6 +226,7 @@ namespace Template
 
         private static void OnSettingsCommandsRequested(SettingsPane sender, SettingsPaneCommandsRequestedEventArgs args)
         {
+            args.Request.ApplicationCommands.Add(new SettingsCommand("gamesettings", "Game Settings", h => OnViewGameSettings()));
             args.Request.ApplicationCommands.Add(new SettingsCommand("privacy", "Privacy Policy", h => OnViewPrivacyPolicy()));
             args.Request.ApplicationCommands.Add(new SettingsCommand("termsofuse", "Terms of Use", h => OnViewTermsOfUse()));
             args.Request.ApplicationCommands.Add(new SettingsCommand("gamesource", "Original platformer game source", h => OnViewGameSource()));
@@ -249,6 +254,13 @@ namespace Template
             {
                 await Launcher.LaunchUriAsync(new Uri("https://www.assetstore.unity3d.com/#/content/11228", UriKind.Absolute));
             }, false);
+        }
+
+        private static void OnViewGameSettings()
+        {
+            var sf = new GameSettingsFlyout();
+            sf.SetSwitchToggleState();
+            sf.Show();
         }
         
         public SwapChainBackgroundPanel GetSwapChainBackgroundPanel()

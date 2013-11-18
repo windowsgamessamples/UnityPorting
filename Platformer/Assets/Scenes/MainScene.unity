@@ -2362,6 +2362,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _facebookObject: {fileID: 1758641750}
   _shareObject: {fileID: 788231127}
+  _musicObject: {fileID: 983741512}
 --- !u!4 &515681187
 Transform:
   m_ObjectHideFlags: 0
@@ -4642,7 +4643,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 3
   m_audioClip: {fileID: 8300000, guid: 317552566dd1ff9488d5d34e0c3ba4f4, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: .100000001
   m_Pitch: 1
   Loop: 1
