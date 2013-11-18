@@ -31,32 +31,6 @@ public static class WindowsGateway
     /// </summary>
     public static Action UnityLoaded;
 
-    /// <summary>
-    /// Used when the game window becomes available again, and based on the settings determined whether to play sound or not
-    /// </summary>
-    public static void InitialiseSound()
-    {
-        GameManager.Instance.InitialiseSound();
-    }
-
-    /// <summary>
-    /// Toggle sound on/off based on parameter
-    /// </summary>
-    /// <param name="on"></param>
-    public static void EnableSound(bool on)
-    {
-        GameManager.Instance.EnableSound(on);
-    }
-
-    /// <summary>
-    /// Called from the Win 8 solution to determine if sound is enabled or not
-    /// </summary>
-    /// <returns></returns>
-    public static bool IsSoundEnabled()
-    {
-        return GameManager.Instance.IsSoundEnabled();
-    }
-
 #if UNITY_METRO
 
     /// <summary>

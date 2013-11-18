@@ -16,19 +16,26 @@ namespace Template
 
         public void SetSwitchToggleState()
         {
-            AppCallbacks.Instance.InvokeOnUIThread(async () =>
+            AppCallbacks.Instance.InvokeOnAppThread(() =>
             {
-                SoundToggleSwitch.IsOn = WindowsGateway.IsSoundEnabled();
-            }, false);
-            
+                var isSoundEnabled = GameManager.Instance.IsSoundEnabled();
+                AppCallbacks.Instance.InvokeOnUIThread(() =>
+                {
+                    SoundToggleSwitch.IsOn = isSoundEnabled;
+                }, false);
+            }, false);  
         }
 
         private void SoundToggleSwitch_OnToggled(object sender, RoutedEventArgs e)
         {
-            AppCallbacks.Instance.InvokeOnUIThread(async () =>
+            AppCallbacks.Instance.InvokeOnUIThread(() =>
             {
-                WindowsGateway.EnableSound(SoundToggleSwitch.IsOn);
-            }, false);
+                var isSoundEnabled = SoundToggleSwitch.IsOn;
+                AppCallbacks.Instance.InvokeOnAppThread(() =>
+                {
+                    GameManager.Instance.EnableSound(isSoundEnabled);
+                }, false);
+            }, false);  
         }
     }
 }

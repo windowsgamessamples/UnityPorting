@@ -107,43 +107,38 @@ namespace Template
 
         private void OnWindowVisibilityChanged(object sender, VisibilityChangedEventArgs e)
         {
+            if (!AppCallbacks.Instance.IsInitialized()) return;
+
+            GameManager.Instance.InitialiseSound();
+
             if (e.Visible)
             {
-                if (AppCallbacks.Instance.IsInitialized())
-                {
-                    AppCallbacks.Instance.UnityPause(0);
-                    WindowsGateway.InitialiseSound();
-                }
+                AppCallbacks.Instance.UnityPause(0);
                 return;
             }
             else
             {
-                if (AppCallbacks.Instance.IsInitialized())
-                {
-                    AppCallbacks.Instance.UnityPause(1);
-                    WindowsGateway.InitialiseSound();
+                AppCallbacks.Instance.UnityPause(1);
+                var wideContent = TileContentFactory.CreateTileWidePeekImage06();
+                var tileContent = TileContentFactory.CreateTileSquarePeekImageAndText04();
 
-                    var wideContent = TileContentFactory.CreateTileWidePeekImage06();
-                    var tileContent = TileContentFactory.CreateTileSquarePeekImageAndText04();
+                var score = GameManager.Instance.GetScore();
 
-                    var score = GameManager.Instance.GetScore();
+                wideContent.Branding = TileBranding.None; // Set this to TileBranding.Name if you wish to display your game name on the tile.
+                wideContent.TextHeadingWrap.Text = "Score : " + score.ToString();
 
-                    wideContent.Branding = TileBranding.None; // Set this to TileBranding.Name if you wish to display your game name on the tile.
-                    wideContent.TextHeadingWrap.Text = "Score : " + score.ToString();
+                wideContent.ImageMain.Src = "ms-appx:///Assets/WideLogo.png";
+                wideContent.ImageSecondary.Src = "ms-appx:///Assets/SquareTile_70.png";
 
-                    wideContent.ImageMain.Src = "ms-appx:///Assets/WideLogo.png";
-                    wideContent.ImageSecondary.Src = "ms-appx:///Assets/SquareTile_70.png";
+                tileContent.Branding = TileBranding.None;
+                tileContent.TextBodyWrap.Text = "Score : " + score.ToString();
+                tileContent.Image.Src = "ms-appx:///Assets/SquareTile.png";
 
-                    tileContent.Branding = TileBranding.None;
-                    tileContent.TextBodyWrap.Text = "Score : " + score.ToString();
-                    tileContent.Image.Src = "ms-appx:///Assets/SquareTile.png";
+                wideContent.SquareContent = tileContent;
 
-                    wideContent.SquareContent = tileContent;
+                var updater = TileUpdateManager.CreateTileUpdaterForApplication();
 
-                    var updater = TileUpdateManager.CreateTileUpdaterForApplication();
-
-                    updater.Update(wideContent.CreateNotification());
-                }
+                updater.Update(wideContent.CreateNotification());
             }
 
         }

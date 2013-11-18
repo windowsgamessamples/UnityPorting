@@ -17,7 +17,7 @@
 
         <!-- Content Section 1-->
         <StackPanel Style="{StaticResource SettingsFlyoutSectionStyle}">
-            <ToggleSwitch x:Name="SoundToggleSwitch" Header="Sound enabled" Toggled="SoundToggleSwitch_OnToggled" ></ToggleSwitch>
+            <ToggleSwitch x:Name="SoundToggleSwitch" Header="Music enabled" Toggled="SoundToggleSwitch_OnToggled" ></ToggleSwitch>
         </StackPanel>
 
         <!-- Define more Content Sections below as necessary -->
