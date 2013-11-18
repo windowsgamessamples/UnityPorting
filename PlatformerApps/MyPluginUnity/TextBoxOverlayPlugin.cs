@@ -13,32 +13,15 @@ using Windows.UI.Xaml;
 namespace MyPlugin
 {
 
-    public class TextBoxOverlayPlugin
+    public class XamlTextBoxOverlay
     {
-
-        private static TextBoxOverlayPlugin _instance;
-        private static readonly object _sync = new object();
 
 #if NETFX_CORE
 
         private SwapChainBackgroundPanel panel;
         private TextBox textBox;
 
-#endif
-
-        public static TextBoxOverlayPlugin Instance
-        {
-            get
-            {
-                lock (_sync)
-                {
-                    if (_instance == null)
-                        _instance = new TextBoxOverlayPlugin();
-                }
-                return _instance;
-            }
-        }
-
+#endif        
         /// <summary>
         /// Show a text box
         /// </summary>
@@ -47,29 +30,32 @@ namespace MyPlugin
         {
 
 #if NETFX_CORE
+            if ( textBox != null ) 
+              throw new InvalidOperationException ("A UIElement has already been assigned to this instance"); 
+            System.Diagnostics.Debug.Assert (Dispatcher.InvokeOnUIThread != null); 
             Dispatcher.InvokeOnUIThread(() =>            
             {
-                textBox = new TextBox();
-                textBox.Background = new SolidColorBrush(ColorFromARGBString(backgroundColor));
-                textBox.BorderBrush = new SolidColorBrush(ColorFromARGBString(borderColor));
-                float scaleFactor = GetScaleFactor();
-                float originalTextSize = 72.0f;
+                textBox = new TextBox();        
+                textBox.Background = new SolidColorBrush( ColorFromARGBString(backgroundColor));
+                textBox.BorderBrush = new SolidColorBrush( ColorFromARGBString(borderColor));
+                float scaleFactor =  GetScaleFactor();
+                float originalTextSize = fontSize;
 
                 if (scaleFactor != 1.0)
                 {
-                    //these fudge is because TextBox template has padding of 4 pixels.. 
-                    // as you scale the factor, it might be noticeable in small screens.. 
-                    // it is best to avoid very small text :) 
-                    originalTextSize *= ((originalTextSize - (4 * scaleFactor)) / originalTextSize);
+                  //these fudge is because TextBox template has padding of 4 pixels.. 
+                  // as you scale the factor, it might be noticeable in small screens.. 
+                  // it is best to avoid very small text :) 
+                  originalTextSize *= ((originalTextSize - (4 * scaleFactor)) / originalTextSize);
                 }
 
                 textBox.FontSize = originalTextSize / (scaleFactor);
-                textBox.Foreground = new SolidColorBrush(ColorFromARGBString(fontColor));
+                textBox.Foreground = new SolidColorBrush( ColorFromARGBString(fontColor));
                 textBox.Margin = new Thickness(x / scaleFactor, y / scaleFactor, 0, 0);
                 textBox.Width = width / scaleFactor;
                 textBox.Height = height / scaleFactor;
                 textBox.FontFamily = new FontFamily(fontFamily);
-                textBox.Text = Window.Current.Bounds.Width.ToString("F2") + "," + Window.Current.Bounds.Height.ToString("F2");
+            //    textBox.Text = Window.Current.Bounds.Width.ToString("F2") + "," + Window.Current.Bounds.Height.ToString("F2");
                 textBox.VerticalAlignment = Windows.UI.Xaml.VerticalAlignment.Top;
                 textBox.HorizontalAlignment = Windows.UI.Xaml.HorizontalAlignment.Left;
                 this.DXSwapChainPanel.Children.Add(textBox);
@@ -87,7 +73,7 @@ namespace MyPlugin
             {
                 foreach (UIElement e in DXSwapChainPanel.Children)
                 {
-                    if (e is TextBox)
+                    if (e == this.textBox )
                         DXSwapChainPanel.Children.Remove(e);
                 }
             }); 
@@ -97,20 +83,17 @@ namespace MyPlugin
         /// <summary>
         /// retrieve the text from the text box
         /// </summary>
-        public void GetText(Action<string> callback)
+         
+        public string Text
         {
-#if NETFX_CORE
-            Dispatcher.InvokeOnUIThread(() =>
-            {
-                if (textBox != null && callback != null)
-                {
-                    Dispatcher.InvokeOnAppThread(() =>
-                    {
-                        callback(textBox.Text);
-                    });
-                }
-            });
+          get
+          {
+#if !UNITY_EDITOR && NETFX_CORE 
+        return GetTextWithWait();
+#else
+            return "Design-time data";
 #endif
+          }
         }
 
 #if NETFX_CORE
@@ -191,6 +174,19 @@ namespace MyPlugin
             return 1.0f;
         }
 
+      private string GetTextWithWait()
+    {
+      string result = "";
+      
+      Windows.ApplicationModel.Core.CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal,
+        delegate()
+        {
+          if ( textBox != null )
+          result = textBox.Text;
+        }).AsTask().Wait();
+
+      return result;
+    }
 #endif
 
     }
