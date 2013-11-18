@@ -54,9 +54,7 @@ The first time you build, you need to follow specific order:
 
 See below for tips on each step:  
 
-## Building the Windows Store Player in Unity 
-
-In Unity, build the Player 
+## Building the Windows Store Player fromUnity 
 
 - File > Build Settings > Windows Store. 
 - Select Xaml/C# and 8.1
@@ -78,19 +76,18 @@ If you  add new plugins or change the player preferences, you will need to merge
 
 - Open \UnityPorting\PlatformerApps\Platformer.sln with Visual Studio 2013. 
 - You must have the [NuGet](http://www.nuget.org/) packet manager installed.<br/>
-- Build the solution to ensure all NuGet packages are available (e.g. Facebook) as the solution is set to automatically restore NuGet packages.
+- First Time: Build the solution to ensure all NuGet packages are available (e.g. Facebook) as the solution is set to automatically restore NuGet packages.
 - Ensure PlatfomerWindows is set as the startup project
 - Ensure that configuration for the build matches your target device (e.g. Master | x86)
 - Then simply F5 the solution and it will run!
 
 ## Building and running for Windows Phone
 
-
 - Open \UnityPorting\PlatformerApps\Platformer.sln with Visual Studio 2013. 
 - You must have the [NuGet](http://www.nuget.org/) packet manager installed.<br/>
-- Build the solution to ensure all NuGet packages are available (e.g. Facebook) as the solution is set to automatically restore NuGet packages.
-- Make sure you build out from Unity as above "Building to Windows Phone App from Unity"
+- First Time: Build the solution to ensure all NuGet packages are available (e.g. Facebook) as the solution is set to automatically restore NuGet packages.
 - Ensure PlatfomerWP8 is set as the startup project
+- Ensure that configuration for the build matches your target device (e.g. Master | Arm)
 - Then simply F5 the solution and it should run!
 
 ## Updating the Sample Plugin
