@@ -44,7 +44,7 @@ For Windows 8.1, there are a couple of extra snippets
 - **Xaml Textbox Overlay** Via the sample plugin, Unity can show a XAML textbox as an overlay to get keyboard input from soft (aka touch) keyboard.  
 
 
-# Building the solution #
+## Building the solution ##
 
 The first time you build, you need to follow specific order:
 
@@ -73,7 +73,6 @@ If you  add new plugins or change the player preferences, you will need to merge
 
 Note: If you make changes to Unity scripts and game, you can just keep building to PlatformerWindowsPhone project and it won't override your Visual studio project. 
 If you  add new plugins or change the player preferences, you will need to merge these manually.  
-
 
 ## Building and running for Windows Store
 
@@ -107,11 +106,11 @@ and set the build configuration for "Release" and "Any CPU", there is a post bui
 
 Note: If you make changes to the plugins later, every time you update the plugin, you should rebuild in Unity and Visual Studio. 
 
-### Upcoming features  ###
+## Upcoming features  ##
 We are just getting started. Today, it is a sample and lots of useful snippets you can copy and paste into your projects.  We need  to: 
 - Refactor into something more reusable outside of the sample; we will also provide more explanations.   
 - Create guidance papers on getting ready for certification, performance and troubleshooting.  
 
-### Known issues ###
+## Known issues ##
 
 With Unity 4.3, we are seeing a windowing focus problem. If you have multiple monitors and the game is not getting focus, drag it as if you were going to move the window or close the game so focus is restored.  
