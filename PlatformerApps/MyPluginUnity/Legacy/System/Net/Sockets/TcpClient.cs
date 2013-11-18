@@ -5,7 +5,7 @@ using System.Linq;
 using System.Net;
 using System.Text;
 
-#if NETFX_CORE
+#if NETFX_CORE || WINDOWS_PHONE
 using System.Threading.Tasks;
 using Windows.Networking;
 using Windows.Networking.Sockets;
@@ -20,7 +20,7 @@ namespace LegacySystem.Net.Sockets
 
     public class TcpClient
     {
-#if NETFX_CORE
+#if NETFX_CORE || WINDOWS_PHONE
         private StreamSocket _socket = null;
         DataWriter _writer;
 
@@ -87,7 +87,7 @@ namespace LegacySystem.Net.Sockets
 
         public Stream GetStream()
         {
-#if NETFX_CORE
+#if NETFX_CORE || WINDOWS_PHONE
             if (_socket == null) return null;
             return _socket.InputStream.AsStreamForRead();
 #else
@@ -97,7 +97,7 @@ namespace LegacySystem.Net.Sockets
 
         public Stream GetOutputStream()
         {
-#if NETFX_CORE
+#if NETFX_CORE || WINDOWS_PHONE
             if (_socket == null) return null;
             return _socket.OutputStream.AsStreamForWrite();
 #else
@@ -107,7 +107,7 @@ namespace LegacySystem.Net.Sockets
 
         public void Close()
         {
-#if NETFX_CORE
+#if NETFX_CORE || WINDOWS_PHONE
             if (_socket != null)
             {
                 _socket.Dispose();
@@ -119,7 +119,7 @@ namespace LegacySystem.Net.Sockets
 
         public void WriteToOutputStream(byte[] bytes)
         {
-#if NETFX_CORE
+#if NETFX_CORE || WINDOWS_PHONE
             var thread = WriteToOutputStreamAsync(bytes);
             thread.Wait();
 #else
