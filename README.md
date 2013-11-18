@@ -48,26 +48,13 @@ For Windows 8.1, there are a couple of extra snippets
 
 The first time you build, you need to follow specific order:
 
-1. Build the plugins using the  \UnityPorting\PlatformerApps\Platformer.sln
-2. Build the player in Unity 
-3. Build the Windows Store/App that hosts the Unity player in Visual studio. 
+1. Build to Windows Store and Windows Phone in Unity 4.3 (over top of projects in the Windows solution folder)
+2. Build the Windows Solution (which will automatically add Nuget dependencies)
+3. Run the Windows Store or Windows Phone App!
 
 See below for tips on each step:  
 
-
-### Building and Updating the Sample Plugin
-
-To build the plugin, open the \UnityPorting\PlatformerApps\Platformer.sln with Visual Studio 2013 and set the build configuration for "Release" and "Any CPU", there is a post build event that will automatically copy the resulting MyPlugin.dll (and any adjacent dlls in the target directory) to the correct locations in the Unity project automatically as follows:
-
-- MyPluginUnity Project > /Assets/Plugins/MyPlugin.dll 
-- MyPluginWindows Project > /Assets/Plugins/Metro/MyPlugin.dll
-- MyPluginWP8 Project > /Assets/Plugins/WP8/MyPlugin.dll
- 
-Once you have set it to Release, build the solution. The first time, when you have not yet build the players, you might get errors in the app projects, this is OK, just ensure that MyPluginUnity, MyPluginWindows and MyPluginWP8 build correctly.
-
-Note: If you make changes to the plugins later, every time you update the plugin, you should rebuild in Unity and Visual Studio. 
-
-### Building the Windows Store Player in Unity 
+## Building the Windows Store Player in Unity 
 
 In Unity, build the Player 
 
@@ -78,8 +65,7 @@ In Unity, build the Player
 Note: If you make changes to Unity scripts and game, you can just keep building to PlatformerWindowsStore project and it won't override your Visual studio project. 
 If you  add new plugins or change the player preferences, you will need to merge these manually.    
 
-
-### Building Windows Phone App from Unity
+## Building Windows Phone App from Unity
 
 - File > Build Settings > Windows Phone
 - Select Xaml/C# 
@@ -108,12 +94,24 @@ If you  add new plugins or change the player preferences, you will need to merge
 - Ensure PlatfomerWP8 is set as the startup project
 - Then simply F5 the solution and it should run!
 
+## Updating the Sample Plugin
 
-# Upcoming features  #
+The plugin binary outputs are included in the Unity project automatically, but you can update and easily have Unity get the updated plugins.
+
+To build the plugin, open the \UnityPorting\PlatformerApps\Platformer.sln with Visual Studio 2013 
+and set the build configuration for "Release" and "Any CPU", there is a post build event that will automatically copy the resulting MyPlugin.dll (and any adjacent dlls in the target directory) to the correct locations in the Unity project automatically as follows:
+
+- MyPluginUnity Project > /Assets/Plugins/MyPlugin.dll 
+- MyPluginWindows Project > /Assets/Plugins/Metro/MyPlugin.dll
+- MyPluginWP8 Project > /Assets/Plugins/WP8/MyPlugin.dll
+
+Note: If you make changes to the plugins later, every time you update the plugin, you should rebuild in Unity and Visual Studio. 
+
+### Upcoming features  ###
 We are just getting started. Today, it is a sample and lots of useful snippets you can copy and paste into your projects.  We need  to: 
 - Refactor into something more reusable outside of the sample; we will also provide more explanations.   
 - Create guidance papers on getting ready for certification, performance and troubleshooting.  
 
-# Known issues #
+### Known issues ###
 
 With Unity 4.3, we are seeing a windowing focus problem. If you have multiple monitors and the game is not getting focus, drag it as if you were going to move the window or close the game so focus is restored.  
