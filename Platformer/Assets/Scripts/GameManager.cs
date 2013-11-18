@@ -78,7 +78,7 @@ public class GameManager : MonoBehaviour {
         }
 
         // Show version number of app
-        GUI.Label(new Rect(20, Screen.height - 30, 100, 20), "Version : " + _version);
+        GUI.Label(new Rect(Screen.width - 120, 20, 100, 20), "Version : " + _version);
     }
 
     public void ShowResume()
