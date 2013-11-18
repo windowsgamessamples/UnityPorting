@@ -198,8 +198,7 @@ namespace Template
         {
             DataRequest request = args.Request;
 
-            // TODO retrieve the player's score from Unity!
-            var score = 500;
+            var score = GameManager.Instance.GetScore();
 
             if (score <= 0)
             {
