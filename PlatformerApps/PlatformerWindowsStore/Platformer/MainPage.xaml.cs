@@ -225,6 +225,7 @@ namespace Template
         {
             args.Request.ApplicationCommands.Add(new SettingsCommand("privacy", "Privacy Policy", h => OnViewPrivacyPolicy()));
             args.Request.ApplicationCommands.Add(new SettingsCommand("termsofuse", "Terms of Use", h => OnViewTermsOfUse()));
+            args.Request.ApplicationCommands.Add(new SettingsCommand("gamesource", "Original platformer game source", h => OnViewGameSource()));
         }
 
         private static void OnViewTermsOfUse()
@@ -243,6 +244,14 @@ namespace Template
             }, false);
         }
 
+        private static void OnViewGameSource()
+        {
+            AppCallbacks.Instance.InvokeOnUIThread(async () =>
+            {
+                await Launcher.LaunchUriAsync(new Uri("https://www.assetstore.unity3d.com/#/content/11228", UriKind.Absolute));
+            }, false);
+        }
+        
         public SwapChainBackgroundPanel GetSwapChainBackgroundPanel()
         {
             return DXSwapChainBackgroundPanel;
