@@ -24,7 +24,7 @@ public class FacebookManager : MonoBehaviour
             Login();
     }
 
-    private Rect inviteFriendsDialog = new Rect(500, 500, 500, 300);
+    private Rect inviteFriendsDialog = new Rect(500, 500, 500, 500);
 
     void RenderInviteFriendsDialog(int windowID)
     {
@@ -34,12 +34,12 @@ public class FacebookManager : MonoBehaviour
 
         _comboBoxControl.Show();
 
-        GUI.Label(new Rect(20, 50, 150, 20), "Select friend to invite : " + _comboBoxControl.SelectedText);
+        GUI.Label(new Rect(20, 50, 200, 40), "Select friend to invite : "); // : " + _comboBoxControl.SelectedText);
     
-        if (GUI.Button(new Rect(20, 350, 100, 20), "Send invite"))
+        if (GUI.Button(new Rect(20, 350, 200, 40), "Send invite"))
             InviteFriend(_comboBoxControl.SelectedText);
 
-        if (GUI.Button(new Rect(280, 350, 100, 20), "Cancel"))
+        if (GUI.Button(new Rect(280, 350, 200, 40), "Cancel"))
             _showInviteFriendsDialog = false;
 
         GUI.DragWindow(new Rect(0, 0, 10000, 10000));
@@ -50,14 +50,14 @@ public class FacebookManager : MonoBehaviour
     {
 #if UNITY_METRO
         if(_showInviteFriendsDialog)
-            inviteFriendsDialog = GUI.Window(0, new Rect(Screen.width / 2 - 200, Screen.height / 2 - 200, 400, 400), RenderInviteFriendsDialog, "Invite friends");
+            inviteFriendsDialog = GUI.Window(0, new Rect(Screen.width / 2 - 300, Screen.height / 2 - 200, 500, 400), RenderInviteFriendsDialog, "Invite friends");
 
         if (_loggedIn)
         {
-            if (GUI.Button(new Rect(Screen.width - 150, 50, 130, 20), "Facebook logout"))
+            if (GUI.Button(new Rect(20, 70, 200, 40), "Facebook logout"))
                 Logout();
 
-            if (GUI.Button(new Rect(Screen.width - 150, 80, 130, 20), "Invite friends"))
+            if (GUI.Button(new Rect(20, 120, 200, 40), "Invite friends"))
             {
                 _showInviteFriendsDialog = true;
                 GetFriends();
@@ -65,7 +65,7 @@ public class FacebookManager : MonoBehaviour
         }
         else
         {
-            if (GUI.Button(new Rect(Screen.width - 150, 50, 130, 20), "Facebook login"))
+            if (GUI.Button(new Rect(20, 70, 200, 40), "Facebook login"))
                 Login();
         }
 #endif
