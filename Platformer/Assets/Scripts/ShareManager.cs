@@ -7,7 +7,7 @@ public class ShareManager : MonoBehaviour
 {
     void OnGUI()
     {
-        if (GUI.Button(new Rect(Screen.width - 120, 20, 100, 20), "Share"))
+        if (GUI.Button(new Rect(20, 20, 200, 40), "Share"))
         {
 #if UNITY_WINRT
             MyPlugin.WindowsPlugin.Instance.ShowShareUI();
