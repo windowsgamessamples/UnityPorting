@@ -26,8 +26,7 @@ public static class WindowsGateway
         // unity now supports handling size changed in 4.3
         UnityEngine.WSA.Application.windowSizeChanged += WindowSizeChanged;
 
-        // unity now supports tracking window activation/deactivation in 4.3 
-        // appears to map closely to window visibilitychanged
+        // unity supports tracking window activation/deactivation in 4.3 (not app activation!)
         UnityEngine.WSA.Application.windowActivated += Application_windowActivated;
 
 #endif
@@ -42,8 +41,7 @@ public static class WindowsGateway
 #if UNITY_METRO 
 
     /// <summary>
-    /// Handler for window activation/deactivation
-    /// appears to map closely to window visibilitychanged
+    /// Handler for window activation/deactivation (not app activation!)
     /// </summary>
     private static void Application_windowActivated(UnityEngine.WSA.WindowActivationState state)
     {
@@ -54,9 +52,12 @@ public static class WindowsGateway
         }
     }
 
+    /// <summary>
+    /// Allows handling of orientation changed event
+    /// </summary>
     private static void OrientationChanged(object sender, EventArgs eventArgs)
-    {
-        // TODO display message to say orientation changed so it's clear handler is active
+    { 
+        
     }
 
     /// <summary>
