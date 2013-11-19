@@ -9,11 +9,16 @@ public class GameManager : MonoBehaviour {
     private Score _score;
     private bool _showConfirmQuit = false;
     private bool _showResume = false;
+    private bool _showOrientationChanged = true;
+    private float _showOrientationChangedTime = 2.0f;
+    private float _showOrientationChangedTimer = 0;
     private string _version;
+    
 
     [SerializeField] private GameObject _facebookObject;
     [SerializeField] private GameObject _shareObject ;
     [SerializeField] private GameObject _musicObject;
+    [SerializeField] private GUIStyle _orientationChangedGuiStyle;
 
     #region Instance
     static GameManager _instance;
@@ -32,7 +37,7 @@ public class GameManager : MonoBehaviour {
     void Start ()
     {
         _version = MyPlugin.WindowsPlugin.Instance.GetAppVersion();
-        _score = GameObject.Find("Score").GetComponent<Score>();
+        _score = GameObject.Find("Score").GetComponent<Score>();        
         
         if (_facebookObject != null)
             _facebookObject.AddComponent<FacebookManager>();
@@ -99,6 +104,15 @@ public class GameManager : MonoBehaviour {
             Pause();
             _showConfirmQuit = true;
         }
+
+        // Show the orientation changed message for the duration of _showOrientationChangedTime, then hide it
+        if (_showOrientationChanged)
+        {
+            _showOrientationChangedTimer += Time.deltaTime;
+
+            if (_showOrientationChangedTimer >= _showOrientationChangedTime)
+                _showOrientationChanged = false;
+        }
     }
 
     void OnGUI()
@@ -125,6 +139,10 @@ public class GameManager : MonoBehaviour {
 
         // Show version number of app
         GUI.Label(new Rect(Screen.width - 120, 20, 100, 20), "Version : " + _version);
+
+        // Show the orienation change notification
+        if(_showOrientationChanged && _orientationChangedGuiStyle != null)
+            GUI.Label(new Rect(Screen.width / 2 - 100, Screen.height / 2 - 100, 200, 200), "Orientation changed...", _orientationChangedGuiStyle);
     }
 
     public void ShowResume()
@@ -160,5 +178,12 @@ public class GameManager : MonoBehaviour {
     public int GetScore()
     {
         return _score.GetScore();
+    }
+
+    // Notify the user when the orientation of the device has been changed
+    public void ShowOrientationChanged()
+    {
+        _showOrientationChanged = true;
+        _showOrientationChangedTimer = 0; 
     }
 }

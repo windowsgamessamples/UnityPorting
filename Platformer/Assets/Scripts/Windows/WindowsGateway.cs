@@ -57,7 +57,7 @@ public static class WindowsGateway
     /// </summary>
     private static void OrientationChanged(object sender, EventArgs eventArgs)
     { 
-        
+        GameManager.Instance.ShowOrientationChanged();
     }
 
     /// <summary>
