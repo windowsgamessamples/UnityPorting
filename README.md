@@ -31,6 +31,7 @@ There are currently the following tasks in the game for both Windows 8.1 and Win
 - **Graceful loading** is an extended splash and progress bar
 - **Sharing** support using sample plugin
 - **Live tile** updates with latest score
+- **Dynamic App Version** the app version is displayed from the windows app package dynamically using a plugin
 - **Complete Plugin Development Sample** with shared code across both Windows 8.1 and Windows Phone 8
 
 For Windows 8.1, there are a couple of extra snippets 
