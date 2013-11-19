@@ -40,10 +40,10 @@ public class GameManager : MonoBehaviour {
         if (_shareObject != null)
             _shareObject.AddComponent<ShareManager>();
 
-
         InitialiseSound();
 
 #if UNITY_WINRT && !UNITY_EDITOR  
+        WindowsGateway.Initialize();
         WindowsGateway.UnityLoaded();
 #endif
 

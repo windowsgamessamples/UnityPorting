@@ -14,31 +14,56 @@ public static class WindowsGateway
     static WindowsGateway()
     {
 
+        // create blank implementations to avoid errors within editor
+        UnityLoaded = delegate {};
+    }
+
+    internal static void Initialize()
+    {
+
 #if UNITY_METRO
 
         // unity now supports handling size changed in 4.3
         UnityEngine.WSA.Application.windowSizeChanged += WindowSizeChanged;
 
-#endif
+        // unity now supports tracking window activation/deactivation in 4.3 
+        // appears to map closely to window visibilitychanged
+        UnityEngine.WSA.Application.windowActivated += Application_windowActivated;
 
-        // create blank implementations to avoid errors within editor
-        UnityLoaded = delegate {};
+#endif
 
     }
 
     /// <summary>
-    /// Called from Unity when the app is responsive and ready for play
+    /// Called from Unity when the app is responsive and ready for play, picked up by the app
     /// </summary>
     public static Action UnityLoaded;
 
-#if UNITY_METRO
+#if UNITY_METRO 
+
+    /// <summary>
+    /// Handler for window activation/deactivation
+    /// appears to map closely to window visibilitychanged
+    /// </summary>
+    private static void Application_windowActivated(UnityEngine.WSA.WindowActivationState state)
+    {
+        if (state == UnityEngine.WSA.WindowActivationState.CodeActivated && MyPlugin.WindowsPlugin.Instance.OrientationChanged == null)
+        {
+            // our plugin allows us to handle orientation change events
+            MyPlugin.WindowsPlugin.Instance.OrientationChanged = OrientationChanged;
+        }
+    }
+
+    private static void OrientationChanged(object sender, EventArgs eventArgs)
+    {
+        // TODO display message to say orientation changed so it's clear handler is active
+    }
 
     /// <summary>
     /// Deal with windows resizing
     /// </summary>
     public static void WindowSizeChanged(int width, int height) 
     {
-	    // TODO deal with window resizing. e.g. if <= 500 implement pause screen
         if (width <= 500)
         {
             SnapModeManager.Instance.Show();

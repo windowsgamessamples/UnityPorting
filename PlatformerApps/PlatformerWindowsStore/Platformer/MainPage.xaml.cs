@@ -59,7 +59,6 @@ namespace Template
             var dataTransferManager = DataTransferManager.GetForCurrentView();
             dataTransferManager.DataRequested += DataTransferManager_DataRequested;
 
-
         }
 
         /// <summary>
@@ -109,36 +108,49 @@ namespace Template
         {
             if (!AppCallbacks.Instance.IsInitialized()) return;
 
-            GameManager.Instance.InitialiseSound();
-
             if (e.Visible)
             {
+                AppCallbacks.Instance.InvokeOnAppThread(() =>
+                {
+                    GameManager.Instance.InitialiseSound();
+                }, false);
                 AppCallbacks.Instance.UnityPause(0);
                 return;
             }
             else
             {
                 AppCallbacks.Instance.UnityPause(1);
+
                 var wideContent = TileContentFactory.CreateTileWidePeekImage06();
                 var tileContent = TileContentFactory.CreateTileSquarePeekImageAndText04();
 
-                var score = GameManager.Instance.GetScore();
+                AppCallbacks.Instance.InvokeOnAppThread(() =>
+                {
+                    var score = GameManager.Instance.GetScore();
 
-                wideContent.Branding = TileBranding.None; // Set this to TileBranding.Name if you wish to display your game name on the tile.
-                wideContent.TextHeadingWrap.Text = "Score : " + score.ToString();
+                    AppCallbacks.Instance.InvokeOnUIThread(() =>
+                    {
 
-                wideContent.ImageMain.Src = "ms-appx:///Assets/WideLogo.png";
-                wideContent.ImageSecondary.Src = "ms-appx:///Assets/SquareTile_70.png";
+                        wideContent.Branding = TileBranding.None; // Set this to TileBranding.Name if you wish to display your game name on the tile.
+                        wideContent.TextHeadingWrap.Text = "Score : " + score.ToString();
 
-                tileContent.Branding = TileBranding.None;
-                tileContent.TextBodyWrap.Text = "Score : " + score.ToString();
-                tileContent.Image.Src = "ms-appx:///Assets/SquareTile.png";
+                        wideContent.ImageMain.Src = "ms-appx:///Assets/WideLogo.png";
+                        wideContent.ImageSecondary.Src = "ms-appx:///Assets/SquareTile_70.png";
 
-                wideContent.SquareContent = tileContent;
+                        tileContent.Branding = TileBranding.None;
+                        tileContent.TextBodyWrap.Text = "Score : " + score.ToString();
+                        tileContent.Image.Src = "ms-appx:///Assets/SquareTile.png";
 
-                var updater = TileUpdateManager.CreateTileUpdaterForApplication();
+                        wideContent.SquareContent = tileContent;
 
-                updater.Update(wideContent.CreateNotification());
+                        var updater = TileUpdateManager.CreateTileUpdaterForApplication();
+
+                        updater.Update(wideContent.CreateNotification());
+
+                    }, false);
+
+                }, false);
+               
             }
 
         }
