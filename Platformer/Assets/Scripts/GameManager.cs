@@ -9,14 +9,12 @@ public class GameManager : MonoBehaviour {
     private Score _score;
     private bool _showConfirmQuit = false;
     private bool _showResume = false;
-    private bool _showOrientationChanged = true;
+    private bool _showOrientationChanged = false;
     private float _showOrientationChangedTime = 2.0f;
     private float _showOrientationChangedTimer = 0;
     private string _version;
     
 
-    [SerializeField] private GameObject _facebookObject;
-    [SerializeField] private GameObject _shareObject ;
     [SerializeField] private GameObject _musicObject;
     [SerializeField] private GUIStyle _orientationChangedGuiStyle;
 
@@ -38,12 +36,6 @@ public class GameManager : MonoBehaviour {
     {
         _version = MyPlugin.WindowsPlugin.Instance.GetAppVersion();
         _score = GameObject.Find("Score").GetComponent<Score>();        
-        
-        if (_facebookObject != null)
-            _facebookObject.AddComponent<FacebookManager>();
-
-        if (_shareObject != null)
-            _shareObject.AddComponent<ShareManager>();
 
         InitialiseSound();
 

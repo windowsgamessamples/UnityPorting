@@ -2925,6 +2925,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 788231129}
+  - 114: {fileID: 788231128}
   m_Layer: 0
   m_Name: Share
   m_TagString: Untagged
@@ -2932,6 +2933,17 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &788231128
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 788231127}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ebd42a78765d28f4d80c20846e680031, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &788231129
 Transform:
   m_ObjectHideFlags: 0
@@ -8417,6 +8429,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 1758641751}
+  - 114: {fileID: 1758641752}
   m_Layer: 0
   m_Name: Facebook
   m_TagString: Untagged
@@ -8435,6 +8448,17 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2033762903}
+--- !u!114 &1758641752
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1758641750}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 41aadf80baaa5574398063022c4038ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1774251796
 GameObject:
   m_ObjectHideFlags: 0
