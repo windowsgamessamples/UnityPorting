@@ -126,8 +126,8 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>.\MyPlugin.dll</HintPath>
     </Reference>
-    <Reference Include="NotificationsExtensions.WinRT">
-      <HintPath>..\..\packages\NotificationsExtensions.WinRT.1.0.1\lib\netcore45\NotificationsExtensions.WinRT.dll</HintPath>
+    <Reference Include="NotificationsExtensions">
+      <HintPath>E:\Unity Packages\NotificationsExtensions\NotificationsExtensions.winmd</HintPath>
     </Reference>
     <Reference Include="UnityEngine">
       <HintPath>.\UnityEngine.dll</HintPath>
