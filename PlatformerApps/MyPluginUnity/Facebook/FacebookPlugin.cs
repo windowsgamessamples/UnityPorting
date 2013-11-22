@@ -2,7 +2,7 @@
 using System;
 using System.Collections.Generic;
 
-#if NETFX_CORE
+#if NETFX_CORE || WINDOWS_PHONE
 using Windows.UI.Core;
 #endif
 
@@ -15,7 +15,7 @@ namespace MyPlugin.Facebook
 
         public static void GetFriends(Action<List<FacebookUser>> callback)
         {
-#if NETFX_CORE
+#if NETFX_CORE || WINDOWS_PHONE
             Dispatcher.InvokeOnUIThread(async () =>
             {
                 var friends = await FacebookGateway.Instance.GetFriends();
@@ -29,7 +29,7 @@ namespace MyPlugin.Facebook
 
         public static void InviteFriend(string friendName)
         {
-#if NETFX_CORE
+#if NETFX_CORE || WINDOWS_PHONE
             Dispatcher.InvokeOnUIThread(async () =>
             {
                 await FacebookGateway.Instance.InviteFriendsAsync(friendName);
@@ -39,7 +39,7 @@ namespace MyPlugin.Facebook
 
         public static void Logout(Action callback)
         {
-#if NETFX_CORE
+#if NETFX_CORE || WINDOWS_PHONE
             Dispatcher.InvokeOnUIThread(async () =>
             {
                 var state = await FacebookGateway.Instance.LogoutAsync();
@@ -53,7 +53,7 @@ namespace MyPlugin.Facebook
 
         public static void Login(Action<string> callback)
         {
-#if NETFX_CORE
+#if NETFX_CORE || WINDOWS_PHONE
             Dispatcher.InvokeOnUIThread(async () =>
             {
                 if (callback != null)
