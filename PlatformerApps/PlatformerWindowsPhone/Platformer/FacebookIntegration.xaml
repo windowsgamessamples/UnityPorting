@@ -1,0 +1,17 @@
+﻿<UserControl x:Class="Platformer.FacebookIntegration"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    mc:Ignorable="d"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    d:DesignHeight="480" d:DesignWidth="480">
+
+    <!-- web overlay for facebook integration-->
+    <Grid x:Name="WebOverlay" Visibility="Visible" Background="#AA000000" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                <phone:WebBrowser x:Name="FacebookOverlay" HorizontalAlignment="Stretch" Margin="10,10,0,0" />
+    </Grid>
+</UserControl>

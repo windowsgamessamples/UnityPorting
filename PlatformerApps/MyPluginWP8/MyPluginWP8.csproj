@@ -18,6 +18,8 @@
     <ValidateXaml>true</ValidateXaml>
     <MinimumVisualStudioVersion>11.0</MinimumVisualStudioVersion>
     <ThrowErrorsInValidation>true</ThrowErrorsInValidation>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -92,6 +94,12 @@
     <Compile Include="..\MyPluginUnity\Facebook\FacebookUser.cs">
       <Link>Facebook\FacebookUser.cs</Link>
     </Compile>
+    <Compile Include="..\mypluginunity\legacy\system\io\Directory.cs">
+      <Link>Legacy\System\IO\Directory.cs</Link>
+    </Compile>
+    <Compile Include="..\mypluginunity\legacy\system\io\File.cs">
+      <Link>Legacy\System\IO\File.cs</Link>
+    </Compile>
     <Compile Include="..\MyPluginUnity\Legacy\System\Net\Sockets\TcpClient.cs">
       <Link>Legacy\System\Net\Sockets\TcpClient.cs</Link>
     </Compile>
@@ -101,7 +109,24 @@
     <Compile Include="..\MyPluginUnity\WindowsPlugin.cs">
       <Link>WindowsPlugin.cs</Link>
     </Compile>
+    <Compile Include="Facebook\EncryptedStore.cs" />
+    <Compile Include="Facebook\FacebookGateway.cs" />
+    <Compile Include="Facebook\FacebookRequest.cs" />
+    <Compile Include="Facebook\NavigationState.cs" />
+    <Compile Include="Legacy\Encryption\DESCryptography.cs" />
+    <Compile Include="Legacy\Encryption\EncyptionProvider.cs" />
+    <Compile Include="Legacy\Encryption\MD5.cs" />
+    <Compile Include="Legacy\Encryption\MD5Managed.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Facebook">
+      <HintPath>..\packages\Facebook.6.4.2\lib\wp8\Facebook.dll</HintPath>
+      <EmbedInteropTypes>False</EmbedInteropTypes>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\$(TargetFrameworkIdentifier)\$(TargetFrameworkVersion)\Microsoft.$(TargetFrameworkIdentifier).$(TargetFrameworkVersion).Overrides.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\$(TargetFrameworkIdentifier)\$(TargetFrameworkVersion)\Microsoft.$(TargetFrameworkIdentifier).CSharp.targets" />
@@ -109,6 +134,7 @@
   <PropertyGroup>
     <PostBuildEvent>if "$(ConfigurationName)" == "Release" (if "$(PlatformName)" == "AnyCPU" (copy /y "$(TargetDir)*.dll" "$(SolutionDir)\..\Platformer\Assets\Plugins\WP8"))</PostBuildEvent>
   </PropertyGroup>
+  <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

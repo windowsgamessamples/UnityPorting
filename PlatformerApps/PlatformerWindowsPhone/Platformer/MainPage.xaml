@@ -6,6 +6,7 @@
     xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:platformer="clr-namespace:Platformer"
     mc:Ignorable="d"
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
@@ -18,6 +19,8 @@
             <Image x:Name="ExtendedSplashImage" Source="SplashScreenImageLandScapeLeft.jpg"  />
             <!-- set the maximum to a value which is just more than the load time on the slowest device (e.g. Arm) -->
             <ProgressBar x:Name="SplashProgress" Foreground="#FFFFFFFF" Background="#FF333333" Maximum="10000" Width="320" Height="25" RenderTransformOrigin="0.5,0.5"/>
+            <!-- facebook  integration for login, logout and friend request support-->
+            <platformer:FacebookIntegration x:Name="FacebookIntegrationControl" />
         </Grid>
     </DrawingSurfaceBackgroundGrid>
 

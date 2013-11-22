@@ -13,6 +13,7 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using MyPlugin.Facebook;
+using UnityPlayer;
 
 namespace Template
 {
@@ -36,11 +37,17 @@ namespace Template
         {
             MyPlugin.Facebook.FacebookGateway.Instance.Cancel();
             WebOverlay.Visibility = Windows.UI.Xaml.Visibility.Collapsed;
+
+            // Enable Unity input when popup has closed
+            AppCallbacks.Instance.UnitySetInput(true);
         }
 
         private void PopupOpened(object sender, object e)
-        {
+        {                        
             WebOverlay.Visibility = Windows.UI.Xaml.Visibility.Visible;
+
+            // Disable Unity input when popup has opened, this prevents known keypress issues 
+            AppCallbacks.Instance.UnitySetInput(false);
         }
 
         private void FacebookStateChanged(FacebookRequest request, NavigationState state)
