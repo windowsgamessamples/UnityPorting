@@ -12,6 +12,6 @@
 
     <!-- web overlay for facebook integration-->
     <Grid x:Name="WebOverlay" Visibility="Visible" Background="#AA000000" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-                <phone:WebBrowser x:Name="FacebookOverlay" HorizontalAlignment="Stretch" Margin="10,10,0,0" />
-    </Grid>
+        <phone:WebBrowser x:Name="FacebookOverlay" Visibility="Visible" Margin="10,10,0,0" />
+    </Grid>    
 </UserControl>

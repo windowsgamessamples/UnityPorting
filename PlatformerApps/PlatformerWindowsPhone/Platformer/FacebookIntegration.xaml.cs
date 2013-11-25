@@ -40,6 +40,8 @@ namespace Platformer
             switch (state)
             {
                 case NavigationState.Done:
+                    MainPage.Current.FacebookGrid.Visibility = Visibility.Collapsed;
+                    break;
                 case NavigationState.Error:
                     //WebOverlay.Visibility = Visibility.Collapsed;
                     //WebPopup.IsOpen = false;
@@ -50,13 +52,21 @@ namespace Platformer
                     switch (request)
                     {
                         case FacebookRequest.Logout:
-                            FacebookOverlay.Visibility = Visibility.Collapsed;
+                            //FacebookOverlay.Visibility = Visibility.Collapsed;
                             //CancelButton.Visibility = Visibility.Collapsed;
+                            MainPage.Current.FacebookGrid.Visibility = Visibility.Collapsed;
                             break;
 
                         case FacebookRequest.Login:
+                            //WebOverlay.Visibility = Visibility.Visible;
+                            //FacebookOverlay.Visibility = Visibility.Visible;
+                            //var mainPage = MainPage.Current;
+                            MainPage.Current.FacebookGrid.Visibility = Visibility.Visible;
+                            //mainPage.FacebookIntegrationControl.Visibility = Visibility.Visible;
+                            break;
                         case FacebookRequest.InviteRequest:
-                            FacebookOverlay.Visibility = Visibility.Visible;
+                            //FacebookOverlay.Visibility = Visibility.Visible;
+                            MainPage.Current.FacebookGrid.Visibility = Visibility.Visible;
                             //CancelButton.Visibility = Visibility.Visible;
                             break;
                     }

@@ -4,6 +4,7 @@ using System.IO.IsolatedStorage;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media;
 using System.Windows.Threading;
 using Windows.ApplicationModel.Activation;
 using Microsoft.Phone.Controls;
@@ -21,12 +22,12 @@ namespace Platformer
 		private bool _useLocation;
 	    public static bool IsUnityLoaded { get; set; }
         private DispatcherTimer _extendedSplashTimer;
-
+        public static MainPage Current;
 
 		// Constructor
 		public MainPage()
 		{
-
+		    Current = this;
 			var bridge = new UnityBridge();
 			UnityApp.SetBridge(bridge);
 			InitializeComponent();
