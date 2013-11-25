@@ -177,7 +177,7 @@
     </Reference>
     <Reference Include="MyPlugin, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>.\MyPlugin.dll</HintPath>
+      <HintPath>Bin\ARM\Debug\MyPlugin.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine">
       <HintPath>UnityEngine.dll</HintPath>
