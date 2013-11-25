@@ -113,10 +113,7 @@
     <Compile Include="Facebook\FacebookGateway.cs" />
     <Compile Include="Facebook\FacebookRequest.cs" />
     <Compile Include="Facebook\NavigationState.cs" />
-    <Compile Include="Legacy\Encryption\DESCryptography.cs" />
-    <Compile Include="Legacy\Encryption\EncyptionProvider.cs" />
-    <Compile Include="Legacy\Encryption\MD5.cs" />
-    <Compile Include="Legacy\Encryption\MD5Managed.cs" />
+    <Compile Include="Legacy\System\Encryption\EncryptionProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -128,6 +125,7 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\$(TargetFrameworkIdentifier)\$(TargetFrameworkVersion)\Microsoft.$(TargetFrameworkIdentifier).$(TargetFrameworkVersion).Overrides.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\$(TargetFrameworkIdentifier)\$(TargetFrameworkVersion)\Microsoft.$(TargetFrameworkIdentifier).CSharp.targets" />
   <ProjectExtensions />
