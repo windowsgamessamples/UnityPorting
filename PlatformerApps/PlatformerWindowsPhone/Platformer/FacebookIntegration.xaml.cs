@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Net;
 using System.Windows;
@@ -8,6 +9,7 @@ using System.Windows.Navigation;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
 using MyPlugin.Facebook;
+using UnityPlayer;
 
 namespace Platformer
 {
@@ -24,15 +26,13 @@ namespace Platformer
             MyPlugin.Facebook.FacebookGateway.Instance.StateChanged += FacebookStateChanged;
         }
 
-        private void PopupClosed(object sender, object e)
+        public void HideFacebookOverlay()
         {
-            MyPlugin.Facebook.FacebookGateway.Instance.Cancel();
-            WebOverlay.Visibility = Visibility.Collapsed;
-        }
 
-        private void PopupOpened(object sender, object e)
-        {
-            WebOverlay.Visibility = Visibility.Visible;
+            if (MainPage.Current.FacebookGrid.Visibility == Visibility.Visible)
+            {
+                MainPage.Current.FacebookGrid.Visibility = Visibility.Collapsed;
+            }
         }
 
         private void FacebookStateChanged(FacebookRequest request, NavigationState state)
@@ -43,35 +43,24 @@ namespace Platformer
                     MainPage.Current.FacebookGrid.Visibility = Visibility.Collapsed;
                     break;
                 case NavigationState.Error:
-                    //WebOverlay.Visibility = Visibility.Collapsed;
-                    //WebPopup.IsOpen = false;
-                    FacebookOverlay.NavigateToString("");
+                    MainPage.Current.FacebookGrid.Visibility = Visibility.Visible;
+                    //FacebookOverlay.NavigateToString("");
                     break;
 
                 case NavigationState.Navigating:
                     switch (request)
                     {
                         case FacebookRequest.Logout:
-                            //FacebookOverlay.Visibility = Visibility.Collapsed;
-                            //CancelButton.Visibility = Visibility.Collapsed;
                             MainPage.Current.FacebookGrid.Visibility = Visibility.Collapsed;
                             break;
 
                         case FacebookRequest.Login:
-                            //WebOverlay.Visibility = Visibility.Visible;
-                            //FacebookOverlay.Visibility = Visibility.Visible;
-                            //var mainPage = MainPage.Current;
                             MainPage.Current.FacebookGrid.Visibility = Visibility.Visible;
-                            //mainPage.FacebookIntegrationControl.Visibility = Visibility.Visible;
                             break;
                         case FacebookRequest.InviteRequest:
-                            //FacebookOverlay.Visibility = Visibility.Visible;
                             MainPage.Current.FacebookGrid.Visibility = Visibility.Visible;
-                            //CancelButton.Visibility = Visibility.Visible;
                             break;
                     }
-                    //WebOverlay.Visibility = Visibility.Visible;
-                    //WebPopup.IsOpen = true;
                     break;
             }
         }
