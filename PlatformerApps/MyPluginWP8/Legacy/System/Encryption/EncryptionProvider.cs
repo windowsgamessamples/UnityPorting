@@ -47,7 +47,7 @@ namespace Legacy.Encryption
         public static void RemoveKey(string key)
         {
             var file = IsolatedStorageFile.GetUserStoreForApplication();
-            if (!file.FileExists(key))
+            if (file.FileExists(key))
                 file.DeleteFile(key);
         }
     }
