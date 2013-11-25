@@ -42,7 +42,13 @@ namespace Legacy.Encryption
 
             byte[] unprotectedBytes = ProtectedData.Unprotect(protectedBytes, null);
             return Encoding.UTF8.GetString(unprotectedBytes, 0, unprotectedBytes.Length);
+        }
 
+        public static void RemoveKey(string key)
+        {
+            var file = IsolatedStorageFile.GetUserStoreForApplication();
+            if (!file.FileExists(key))
+                file.DeleteFile(key);
         }
     }
 }

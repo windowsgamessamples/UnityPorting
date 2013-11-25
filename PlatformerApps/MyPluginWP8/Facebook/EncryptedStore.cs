@@ -12,16 +12,12 @@ namespace MyPlugin.Facebook
 
         public static string LoadSetting(string key)
         {
-            //if (!IsolatedStorageSettings.ApplicationSettings.Contains(key))
-              //  return null;
-            
             return EncryptionProvider.DecryptString(key);
         }
 
-        //public static void Remove(string key)
-        //{
-        //    IsolatedStorageSettings.ApplicationSettings[key] = null;
-        //    IsolatedStorageSettings.ApplicationSettings.Remove(key);
-        //}
+        public static void Remove(string key)
+        {
+            EncryptionProvider.RemoveKey(key);
+        }
     }
 }
