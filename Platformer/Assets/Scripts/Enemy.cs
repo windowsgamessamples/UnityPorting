@@ -32,19 +32,22 @@ public class Enemy : MonoBehaviour
 		// Create an array of all the colliders in front of the enemy.
 		Collider2D[] frontHits = Physics2D.OverlapPointAll(frontCheck.position, 1);
 
-		// Check each of the colliders.
-		foreach(Collider2D c in frontHits)
-		{
-			// If any of the colliders is an Obstacle...
-			if(c.tag == "Obstacle")
-			{
-				// ... Flip the enemy and stop checking the other colliders.
-				Flip ();
-				break;
-			}
-		}
+	    if (frontHits != null)
+	    {
+	        // Check each of the colliders.
+	        foreach (Collider2D c in frontHits)
+	        {
+	            // If any of the colliders is an Obstacle...
+	            if (c.tag == "Obstacle")
+	            {
+	                // ... Flip the enemy and stop checking the other colliders.
+	                Flip();
+	                break;
+	            }
+	        }
+	    }
 
-		// Set the enemy's velocity to moveSpeed in the x direction.
+	    // Set the enemy's velocity to moveSpeed in the x direction.
 		rigidbody2D.velocity = new Vector2(transform.localScale.x * moveSpeed, rigidbody2D.velocity.y);	
 
 		// If the enemy has one hit point left and has a damagedEnemy sprite...
