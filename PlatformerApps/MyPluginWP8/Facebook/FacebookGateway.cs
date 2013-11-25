@@ -95,7 +95,12 @@ namespace MyPlugin.Facebook
         public Task<NavigationState> LoginAsync()
         {
             CurrentRequest = FacebookRequest.Login;
-            if (_callbackHook != null || _fb == null) return Task.FromResult<NavigationState>(NavigationState.Error);
+
+            if (_callbackHook != null || _fb == null)
+            {
+                ChangeNavigationState(NavigationState.Error);
+                return Task.FromResult<NavigationState>(NavigationState.Error);
+            }
             if (IsLoggedIn) return Task.FromResult<NavigationState>(NavigationState.Done);
 
             // Perform a proper login
@@ -134,7 +139,13 @@ namespace MyPlugin.Facebook
         public Task<NavigationState> InviteFriendsAsync(string friendName)
         {
             CurrentRequest = FacebookRequest.InviteRequest;
-            if (_callbackHook != null || !IsLoggedIn) return Task.FromResult<NavigationState>(NavigationState.Error);
+
+            if (_callbackHook != null || !IsLoggedIn)
+            {
+                ChangeNavigationState(NavigationState.Error);
+                return Task.FromResult<NavigationState>(NavigationState.Error);
+            }
+        
 
             var uri = _fb.GetDialogUrl("apprequests", new
             {
