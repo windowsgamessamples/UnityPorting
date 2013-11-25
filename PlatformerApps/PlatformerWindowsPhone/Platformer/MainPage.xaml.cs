@@ -112,7 +112,14 @@ namespace Platformer
 
 		private void PhoneApplicationPage_BackKeyPress(object sender, CancelEventArgs e)
 		{
-			e.Cancel = UnityApp.BackButtonPressed();
+            // If the Facebook overlay is visible, hide it
+		    if (MainPage.Current.FacebookGrid.Visibility == Visibility.Visible)
+		    {
+		        MainPage.Current.FacebookGrid.Visibility = Visibility.Collapsed;
+		        e.Cancel = true;
+		    }
+            else
+		        e.Cancel = UnityApp.BackButtonPressed();
 		}
 
 		private void PhoneApplicationPage_OrientationChanged(object sender, OrientationChangedEventArgs e)
