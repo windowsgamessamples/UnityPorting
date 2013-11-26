@@ -218,7 +218,7 @@ namespace MyPlugin.Facebook
                         var response = _fb.ParseDialogCallbackUrl(e.Uri) as dynamic;
                         if (response.request != null)
                             ChangeNavigationState(NavigationState.Done);
-                        else if (e.Uri.PathAndQuery.Contains("/login_success"))
+                        else if (e.Uri.PathAndQuery.Contains("login_success"))
                             ChangeNavigationState(NavigationState.Error);
                     }
                     break;
