@@ -39,15 +39,24 @@ namespace Platformer
         {
             switch (state)
             {
+                case NavigationState.UserInput:
+                    MainPage.Current.FacebookLoading.Visibility = Visibility.Collapsed;
+                    break;
+
                 case NavigationState.Done:
                     MainPage.Current.FacebookGrid.Visibility = Visibility.Collapsed;
+                    MainPage.Current.FacebookLoading.Visibility = Visibility.Collapsed;
                     break;
+
                 case NavigationState.Error:
                     MainPage.Current.FacebookGrid.Visibility = Visibility.Visible;
-                    //FacebookOverlay.NavigateToString("");
+                    MainPage.Current.FacebookLoading.Visibility = Visibility.Collapsed;
+                    //FacebookOverlay.NavigateToString(""); // Why is this here? Doesn't make sense to show an empty page if there is an error
                     break;
 
                 case NavigationState.Navigating:
+                    MainPage.Current.FacebookLoading.Visibility = Visibility.Visible;;
+
                     switch (request)
                     {
                         case FacebookRequest.Logout:

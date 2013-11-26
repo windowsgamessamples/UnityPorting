@@ -25,6 +25,10 @@
         <Grid x:Name="FacebookGrid" Visibility="Collapsed" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
             <platformer:FacebookIntegration x:Name="FacebookIntegrationControl" ></platformer:FacebookIntegration>
         </Grid>
+        <Grid x:Name="FacebookLoading" Background="#BF000000" Visibility="Collapsed">
+            <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="#BFFFFFFF" Margin="0,24,0,0">loading...</TextBlock>
+            <ProgressBar IsIndeterminate="True"></ProgressBar>
+        </Grid>
     </DrawingSurfaceBackgroundGrid>
 
 </phone:PhoneApplicationPage>
