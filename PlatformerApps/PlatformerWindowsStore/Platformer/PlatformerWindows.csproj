@@ -105,6 +105,7 @@
     </AppxManifest>
     <None Include="MetroTestCertificate.pfx" />
     <None Include="packages.config" />
+    <None Include="References\NotificationsExtensions.winmd" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Assets\SquareTile.png" />
@@ -126,8 +127,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>.\MyPlugin.dll</HintPath>
     </Reference>
-    <Reference Include="NotificationsExtensions">
-      <HintPath>E:\Unity Packages\NotificationsExtensions\NotificationsExtensions.winmd</HintPath>
+    <Reference Include="NotificationsExtensions, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>References\NotificationsExtensions.winmd</HintPath>
     </Reference>
     <Reference Include="UnityEngine">
       <HintPath>.\UnityEngine.dll</HintPath>
