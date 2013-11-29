@@ -113,3 +113,7 @@ We are just getting started. Today, it is a sample and lots of useful snippets y
 
 With Unity 4.3.0, we are seeing a windowing focus problem. If you have multiple monitors and the game is not getting focus, drag it as if you were going to move the window or close the game so focus is restored.  
 This issue was fixed in 4.3.1 which was released on 29 Nov 2013, please update your editor to that version.
+
+Facebook plugin issue on Windows Phone 8 - 
+The web page that appears after selecting a friend to invite has intermittent issues, sometimes the cancel/send invite buttons don't appear. 
+The buttons when they do appear never work though. This is a WP8 specific issue.
