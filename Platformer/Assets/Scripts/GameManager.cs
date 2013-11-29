@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour {
     private Score _score;
     private bool _showConfirmQuit = false;
     private bool _showResume = false;
+    private bool _gameJustLaunched = true;
     private bool _showOrientationChanged = false;
     private float _showOrientationChangedTime = 2.0f;
     private float _showOrientationChangedTimer = 0;
@@ -38,7 +39,7 @@ public class GameManager : MonoBehaviour {
         _score = GameObject.Find("Score").GetComponent<Score>();        
 
         InitialiseSound();
-
+        
 #if UNITY_WINRT && !UNITY_EDITOR  
         WindowsGateway.Initialize();
         WindowsGateway.UnityLoaded();
@@ -137,13 +138,34 @@ public class GameManager : MonoBehaviour {
             GUI.Label(new Rect(Screen.width / 2 - 100, Screen.height / 2 - 100, 200, 200), "Orientation changed...", _orientationChangedGuiStyle);
     }
 
-    public void ShowResume()
+    private void ShowResume()
     {
         _showResume = true;
     }
-	
+
+    private void OnApplicationPause(bool paused)
+    {
+        if (paused)
+        {
+            Pause();
+
+        }
+        else
+        {
+            // Don't show resume button when game first loads
+            if (!_gameJustLaunched)
+                ShowResume();
+            else
+                _gameJustLaunched = false;
+        }
+    }
+
+    void OnApplicationFocus()
+    {
+    }
+
     // Pause the game
-    public void Pause()
+    private void Pause()
     {
         // Stop all audio from playing
         AudioListener.pause = true;
@@ -156,7 +178,7 @@ public class GameManager : MonoBehaviour {
     }
 
     // Unpause the game
-    public void Resume()
+    private void Resume()
     {
         // Resume all audio playing
         AudioListener.pause = false;

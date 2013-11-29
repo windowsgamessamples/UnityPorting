@@ -87,20 +87,6 @@ namespace Platformer
                 return;
 
             UpdateLiveTile();
-
-            // Anything being called back into Unity should be called on the Unity app thread to prevent threading exceptions
-            UnityApp.BeginInvoke(() =>
-            {
-                if (GameManager.Instance == null)
-                {
-                    Debug.WriteLine("No GameManager component.. AppDeactivatedOrClosing will not be run.");
-                    return;
-                }
-
-                // Tell the Unity GameManager to pause the game, and show a resume button, if the game resumes focus..
-                GameManager.Instance.Pause();
-                GameManager.Instance.ShowResume();
-            });
         }
 
         // Update the live tile
