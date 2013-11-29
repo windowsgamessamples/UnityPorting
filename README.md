@@ -21,7 +21,7 @@ Small demonstrations and code snippets for most of the approaches outlined in th
 
 This repo contains the following folders:
 
--  **Platformer** - Unity 4.3 2D game freely available on the Unity Store. We use it as a base to add concepts. 
+-  **Platformer** - Unity 4.3.1 2D game freely available on the Unity Store. We use it as a base to add concepts. 
 -  **PlatformerApps** - Vs.net 2013 solution folder with Windows Store and Windows Phone Apps along with plugin example
 -  **Resources** -  Packages to highlight current shader issues on Windows
 
@@ -49,7 +49,7 @@ For Windows 8.1, there are a couple of extra snippets
 
 The first time you build, you need to follow specific order:
 
-1. Build to Windows Store and Windows Phone in Unity 4.3 (over top of projects in the Windows solution folder)
+1. Build to Windows Store and Windows Phone in Unity 4.3.1 (over top of projects in the Windows solution folder)
 2. Build the Windows Solution (which will automatically add Nuget dependencies)
 3. Run the Windows Store or Windows Phone App!
 
@@ -111,4 +111,5 @@ We are just getting started. Today, it is a sample and lots of useful snippets y
 
 ## Known issues ##
 
-With Unity 4.3, we are seeing a windowing focus problem. If you have multiple monitors and the game is not getting focus, drag it as if you were going to move the window or close the game so focus is restored.  
+With Unity 4.3.0, we are seeing a windowing focus problem. If you have multiple monitors and the game is not getting focus, drag it as if you were going to move the window or close the game so focus is restored.  
+This issue was fixed in 4.3.1 which was released on 29 Nov 2013, please update your editor to that version.
