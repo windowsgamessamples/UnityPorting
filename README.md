@@ -49,13 +49,13 @@ For Windows 8.1, there are a couple of extra snippets
 
 The first time you build, you need to follow specific order:
 
-1. Build to Windows Store and Windows Phone in Unity 4.3.1 (over top of projects in the Windows solution folder)
+1. Build to Windows Store and then Windows Phone in Unity 4.3.1 (over top of projects in the Windows solution folder)
 2. Build the Windows Solution (which will automatically add Nuget dependencies)
 3. Run the Windows Store or Windows Phone App!
 
 See below for tips on each step:  
 
-## Building the Windows Store Player fromUnity 
+## Building the Windows Store Player from Unity 
 
 - File > Build Settings > Windows Store. 
 - Select Xaml/C# and 8.1
@@ -103,6 +103,7 @@ and set the build configuration for "Release" and "Any CPU", there is a post bui
 - MyPluginWP8 Project > /Assets/Plugins/WP8/MyPlugin.dll
 
 Note: If you make changes to the plugins later, every time you update the plugin, you should rebuild in Unity and Visual Studio. 
+Make sure in Visual Studio when rebuilding the plugins, to set the build to 'Release' and 'Any CPU'.
 
 ## Upcoming features  ##
 We are just getting started. Today, it is a sample and lots of useful snippets you can copy and paste into your projects.  We need  to: 
