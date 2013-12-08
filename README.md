@@ -22,7 +22,8 @@ Small demonstrations and code snippets for most of the approaches outlined in th
 This repo contains the following folders:
 
 -  **Platformer** - Unity 4.3.1 2D game freely available on the Unity Store. We use it as a base to add concepts. 
--  **PlatformerApps** - Vs.net 2013 solution folder with Windows Store and Windows Phone Apps along with plugin example
+-  **PlatformerApps** - Vs.net 2013 solution folder with Windows Store and Windows Phone Apps 
+-  **PlatformerApps** - Vs.net 2013 solution folder with Plugin example, includign legacy fixes for Win 8/WP8
 -  **Resources** -  Packages to highlight current shader issues on Windows
 
 
@@ -37,7 +38,7 @@ There are currently the following tasks in the game for both Windows 8.1 and Win
 For Windows 8.1, there are a couple of extra snippets 
 
 - **WACK fixers** has working implementations of missing classes in .NET Core. Today, it has Collections, IO, Sockets, Threading, and other useful class extensions. There is more coming soon. 
-- **Facebook Integration** (Login, Logout, Friend Request) (Windows 8.1 only)
+- **Facebook Integration** (Login, Logout, Friend Request) (WP8 has known issues, see below)
 
 - **Window Resizing sample**, pause/resume at 500px (Windows 8.1 only)
 
@@ -95,7 +96,7 @@ If you  add new plugins or change the player preferences, you will need to merge
 
 The plugin binary outputs are included in the Unity project automatically, but you can update and easily have Unity get the updated plugins.
 
-To build the plugin, open the \UnityPorting\PlatformerApps\Platformer.sln with Visual Studio 2013 
+To build the plugin, open the \UnityPorting\PlatformerPluing\PlatformerPlugin.sln with Visual Studio 2013 
 and set the build configuration for "Release" and "Any CPU", there is a post build event that will automatically copy the resulting MyPlugin.dll (and any adjacent dlls in the target directory) to the correct locations in the Unity project automatically as follows:
 
 - MyPluginUnity Project > /Assets/Plugins/MyPlugin.dll 
@@ -107,13 +108,9 @@ Make sure in Visual Studio when rebuilding the plugins, to set the build to 'Rel
 
 ## Upcoming features  ##
 We are just getting started. Today, it is a sample and lots of useful snippets you can copy and paste into your projects.  We need  to: 
-- Refactor into something more reusable outside of the sample; we will also provide more explanations.   
 - Create guidance papers on getting ready for certification, performance and troubleshooting.  
 
 ## Known issues ##
-
-With Unity 4.3.0, we are seeing a windowing focus problem. If you have multiple monitors and the game is not getting focus, drag it as if you were going to move the window or close the game so focus is restored.  
-This issue was fixed in 4.3.1 which was released on 29 Nov 2013, please update your editor to that version.
 
 Facebook plugin issue on Windows Phone 8 - 
 The web page that appears after selecting a friend to invite has intermittent issues, sometimes the cancel/send invite buttons don't appear. 
