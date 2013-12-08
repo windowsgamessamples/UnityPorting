@@ -23,7 +23,7 @@ This repo contains the following folders:
 
 -  **Platformer** - Unity 4.3.1 2D game freely available on the Unity Store. We use it as a base to add concepts. 
 -  **PlatformerApps** - Vs.net 2013 solution folder with Windows Store and Windows Phone Apps 
--  **PlatformerApps** - Vs.net 2013 solution folder with Plugin example, includign legacy fixes for Win 8/WP8
+-  **PlatformerApps** - Vs.net 2013 solution folder with Plugin example, including legacy fixes for Win 8/WP8
 -  **Resources** -  Packages to highlight current shader issues on Windows
 
 
@@ -37,7 +37,7 @@ There are currently the following tasks in the game for both Windows 8.1 and Win
 
 For Windows 8.1, there are a couple of extra snippets 
 
-- **WACK fixers** has working implementations of missing classes in .NET Core. Today, it has Collections, IO, Sockets, Threading, and other useful class extensions. There is more coming soon. 
+- **WACK fixers** has working implementations of missing classes in .NET Core. Currently, it has Collections, IO, Sockets, Threading, and other useful class extensions. There is more coming soon. 
 - **Facebook Integration** (Login, Logout, Friend Request) (WP8 has known issues, see below)
 
 - **Window Resizing sample**, pause/resume at 500px (Windows 8.1 only)
@@ -96,7 +96,7 @@ If you  add new plugins or change the player preferences, you will need to merge
 
 The plugin binary outputs are included in the Unity project automatically, but you can update and easily have Unity get the updated plugins.
 
-To build the plugin, open the \UnityPorting\PlatformerPluing\PlatformerPlugin.sln with Visual Studio 2013 
+To build the plugin, open the \UnityPorting\PlatformerPlugin\PlatformerPlugin.sln with Visual Studio 2013 
 and set the build configuration for "Release" and "Any CPU", there is a post build event that will automatically copy the resulting MyPlugin.dll (and any adjacent dlls in the target directory) to the correct locations in the Unity project automatically as follows:
 
 - MyPluginUnity Project > /Assets/Plugins/MyPlugin.dll 
@@ -107,7 +107,8 @@ Note: If you make changes to the plugins later, every time you update the plugin
 Make sure in Visual Studio when rebuilding the plugins, to set the build to 'Release' and 'Any CPU'.
 
 ## Upcoming features  ##
-We are just getting started. Today, it is a sample and lots of useful snippets you can copy and paste into your projects.  We need  to: 
+We are just getting started. Currently, it is a sample and lots of useful snippets you can copy and paste into your projects.  
+We need  to: 
 - Create guidance papers on getting ready for certification, performance and troubleshooting.  
 
 ## Known issues ##
