@@ -165,7 +165,7 @@ public class GameManager : MonoBehaviour {
     }
 
     // Pause the game
-    private void Pause()
+    public void Pause()
     {
         // Stop all audio from playing
         AudioListener.pause = true;
@@ -178,7 +178,7 @@ public class GameManager : MonoBehaviour {
     }
 
     // Unpause the game
-    private void Resume()
+    public void Resume()
     {
         // Resume all audio playing
         AudioListener.pause = false;
